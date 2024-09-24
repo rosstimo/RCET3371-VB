@@ -1,8 +1,6 @@
 ﻿Public Class TestingForm
     Private Sub TestingForm_Load(sender As Object, e As EventArgs) Handles Me.Load
-        SerialPort.PortName = "COM5"
-        SerialPort.BaudRate = 9600
-        SerialPort.Open()
+        UpdateStatus()
     End Sub
 
     Sub TestCom()
@@ -37,4 +35,41 @@
         TestCom()
     End Sub
 
+    Private Sub CheckComButton_Click(sender As Object, e As EventArgs) Handles CheckComButton.Click
+        GetPorts()
+    End Sub
+
+    Sub UpdateStatus()
+        'add all current serialport info to the status label
+        ComPortStatusLabel.Text = $"Port: {SerialPort.PortName} Baud: {SerialPort.BaudRate} Status: {SerialPort.IsOpen}"
+    End Sub
+
+    Sub Connect()
+        Try
+            SerialPort.Close()
+            SerialPort.Open()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+        UpdateStatus()
+    End Sub
+
+    Sub GetPorts()
+        PortComboBox.Items.Clear()
+        For Each s As String In SerialPort.GetPortNames()
+            PortComboBox.Items.Add($"{s}")
+        Next
+        PortComboBox.SelectedIndex = 0
+    End Sub
+
+
+    Private Sub ConnectButton_Click(sender As Object, e As EventArgs) Handles ConnectButton.Click
+        Connect()
+    End Sub
+
+    Private Sub PortComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PortComboBox.SelectedIndexChanged
+        SerialPort.Close()
+        SerialPort.PortName = PortComboBox.SelectedItem.ToString
+        Connect()
+    End Sub
 End Class
