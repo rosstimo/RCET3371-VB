@@ -10,15 +10,19 @@ Public Class ACCircuitForm
         Next
     End Sub
 
-    Function SeriesResistance() As Decimal
 
-        Dim value As Double = 222222 '0.1234
-        Console.WriteLine($"This is a test: {value.ToString("C")}")
-        Console.WriteLine($"This is a test: {value.ToString("e")}")
-        Console.WriteLine($"This is a test: {value.ToString("E")}")
-        'now use ToString to get engineering notation
-        Console.WriteLine($"This is a test: {value.ToString("e3")}")
+    ''' <summary>
+    ''' returns the sum of two series resistances
+    ''' </summary>
+    ''' <param name="r1"></param>
+    ''' <param name="r2"></param>
+    ''' <returns></returns>
+    Function SeriesResistance(r1 As Decimal, r2 As Decimal) As Decimal
+        Return r1 + r2
+    End Function
 
+    Function ParallelResistance(r1 As Decimal, r2 As Decimal) As Decimal
+        Return CDec((r1 ^ -1 + r2 ^ -1) ^ -1)
     End Function
 
     Function EngineeringNotationOf(value#) As String
