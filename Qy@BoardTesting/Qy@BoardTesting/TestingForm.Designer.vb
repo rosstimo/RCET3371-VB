@@ -30,10 +30,10 @@ Partial Class TestingForm
         Me.ComPortStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStrip = New System.Windows.Forms.ToolStrip()
         Me.PortComboBox = New System.Windows.Forms.ToolStripComboBox()
-        Me.TopMenuStrip = New System.Windows.Forms.MenuStrip()
-        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CheckComButton = New System.Windows.Forms.ToolStripButton()
         Me.ConnectButton = New System.Windows.Forms.ToolStripButton()
+        Me.TopMenuStrip = New System.Windows.Forms.MenuStrip()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.ToolStrip.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
@@ -80,21 +80,6 @@ Partial Class TestingForm
         Me.PortComboBox.Name = "PortComboBox"
         Me.PortComboBox.Size = New System.Drawing.Size(121, 25)
         '
-        'TopMenuStrip
-        '
-        Me.TopMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
-        Me.TopMenuStrip.Location = New System.Drawing.Point(0, 0)
-        Me.TopMenuStrip.Name = "TopMenuStrip"
-        Me.TopMenuStrip.Size = New System.Drawing.Size(800, 24)
-        Me.TopMenuStrip.TabIndex = 3
-        Me.TopMenuStrip.Text = "MenuStrip1"
-        '
-        'FileToolStripMenuItem
-        '
-        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
-        Me.FileToolStripMenuItem.Text = "&File"
-        '
         'CheckComButton
         '
         Me.CheckComButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -112,6 +97,21 @@ Partial Class TestingForm
         Me.ConnectButton.Name = "ConnectButton"
         Me.ConnectButton.Size = New System.Drawing.Size(23, 22)
         Me.ConnectButton.Text = "ToolStripButton1"
+        '
+        'TopMenuStrip
+        '
+        Me.TopMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
+        Me.TopMenuStrip.Location = New System.Drawing.Point(0, 0)
+        Me.TopMenuStrip.Name = "TopMenuStrip"
+        Me.TopMenuStrip.Size = New System.Drawing.Size(800, 24)
+        Me.TopMenuStrip.TabIndex = 3
+        Me.TopMenuStrip.Text = "MenuStrip1"
+        '
+        'FileToolStripMenuItem
+        '
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "&File"
         '
         'TestingForm
         '
