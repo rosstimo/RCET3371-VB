@@ -73,6 +73,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Qy_Board.vb" />
     <Compile Include="TestingForm.vb">
       <SubType>Form</SubType>
     </Compile>

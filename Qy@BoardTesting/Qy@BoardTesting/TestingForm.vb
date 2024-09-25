@@ -23,6 +23,7 @@
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
+
         UpdateStatus()
     End Sub
 
@@ -32,7 +33,37 @@
         For Each s As String In SerialPort.GetPortNames()
             PortComboBox.Items.Add($"{s}")
         Next
+
         PortComboBox.SelectedIndex = 0
+    End Sub
+
+    Sub PortStatus()
+        'store all serialport properties
+        Dim portName As String = SerialPort.PortName
+        Dim baudRate As Integer = SerialPort.BaudRate
+        Dim isOpen As Boolean = SerialPort.IsOpen
+        Dim parity As IO.Ports.Parity = SerialPort.Parity
+        Dim stopBits As IO.Ports.StopBits = SerialPort.StopBits
+        Dim dataBits As Integer = SerialPort.DataBits
+        Dim handshake As IO.Ports.Handshake = SerialPort.Handshake
+        Dim readTimeout As Integer = SerialPort.ReadTimeout
+        Dim writeTimeout As Integer = SerialPort.WriteTimeout
+        Dim receivedBytesThreshold As Integer = SerialPort.ReceivedBytesThreshold
+        Dim rtsEnable As Boolean = SerialPort.RtsEnable
+
+        'print all serialport properties to the console
+        Console.WriteLine($"Port Name: {portName}")
+        Console.WriteLine($"Baud Rate: {baudRate}")
+        Console.WriteLine($"Is Open: {isOpen}")
+        Console.WriteLine($"Parity: {parity}")
+        Console.WriteLine($"Stop Bits: {stopBits}")
+        Console.WriteLine($"Data Bits: {dataBits}")
+        Console.WriteLine($"Handshake: {handshake}")
+        Console.WriteLine($"Read Timeout: {readTimeout}")
+        Console.WriteLine($"Write Timeout: {writeTimeout}")
+        Console.WriteLine($"Received Bytes Threshold: {receivedBytesThreshold}")
+        Console.WriteLine($"RTS Enable: {rtsEnable}")
+
     End Sub
 
     Sub WriteBytesToConsole(dataBytes() As Byte)
@@ -44,7 +75,8 @@
             Console.Write($" &B{Convert.ToString(dataBytes(i), 2).PadLeft(8, Chr(48))}")
             'print all the bytes in hex
             Console.WriteLine($" 0x{Hex(dataBytes(i))}")
-    Next
+        Next
+
     End Sub
 
     'Event Handlers -----------------------------------------------------------
