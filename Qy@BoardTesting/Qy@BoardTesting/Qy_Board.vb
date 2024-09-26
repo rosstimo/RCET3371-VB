@@ -20,7 +20,8 @@ Public Class Qy_Board
     '            14 | Write to Settings         | Yes           | 1-4                   | 0
     '            15 | Read Settings             | No            | 0                     | 6
 
-    'Qy_ Board Command Functions
+    'Qy_ Board Command Functions ----------------------------------------------|
+
     ''' <summary>
     ''' Null command. Signals End of packet USB, i2c, SPI, USART. (Optional) 
     ''' B0000xxxx
@@ -51,7 +52,7 @@ Public Class Qy_Board
     ''' <returns>Command Byte</returns>
     Function Qy_WriteDigitalOutputs(outputByte As Byte) As Byte()
         Dim data(1) As Byte
-        data(0) = &B10
+        data(0) = &H20
         data(1) = outputByte
         Return data
     End Function
@@ -69,6 +70,7 @@ Public Class Qy_Board
 
     ''' <summary>
     ''' Write 10 bit value to an analog output of the Qy_ board.
+    ''' B01000001
     ''' <br/><br/>
     ''' The first byte is the command byte. 
     ''' <br/>
@@ -94,6 +96,7 @@ Public Class Qy_Board
 
     ''' <summary>
     ''' Write 10 bit value to an analog output of the Qy_ board.
+    ''' B01000010
     ''' <br/><br/>
     ''' The first byte is the command byte. 
     ''' <br/>
@@ -130,9 +133,9 @@ Public Class Qy_Board
     End Function
 
     ''' <summary>
-    ''' Read the analog input A22of the Qy_ board. 
+    ''' Read the analog input A2 of the Qy_ board. 
     ''' <br/>
-    ''' A01 = 01010010
+    ''' A02 = 01010010
     ''' </summary>
     ''' <returns>Byte Array</returns>'
     Function Qy_ReadAnalogInPutA2() As Byte()
@@ -167,8 +170,8 @@ Public Class Qy_Board
 
     ''' <summary>
     ''' Write to the USART1 of the Qy_ board. 
+    ''' 0110nnnn
     ''' <br/>
-    ''' Command: 0110nnnn
     ''' <br/>
     ''' Where the lower 4 bits are the number of bytes to write to the USART1. 
     ''' <br/>
@@ -176,51 +179,43 @@ Public Class Qy_Board
     ''' <br/>
     ''' </summary>
     ''' <returns>Byte Array</returns>'
-    Function WriteToUSART1(USARTData() As Byte) As Byte()
+    Function Qy_WriteToUSART1(USARTData() As Byte) As Byte()
         Dim data(UBound(USARTData) + 1) As Byte
-        Dim argumentBits(0) As Byte
-
-        'prepare argument nybble
-        argumentBits(0) = CByte(UBound(USARTData)) Or CByte(&B11110000)
-
-        'combine comand nybble with argument nybble
-        data(0) = CByte(&B1101111) And argumentBits(0)
 
         'copy USART data bytes to data array
         For i = 0 To UBound(USARTData)
             data(i + 1) = USARTData(i)
-
             'artificially limit to 16 bytes
             Select Case i
                 Case > 15
                     ReDim Preserve data(16)
                     Exit For
             End Select
-
         Next
 
+        data(0) = Combine(CByte(&H60), CByte(UBound(data))
         Return data
     End Function
 
     ''' <summary>
     ''' Read from the USART1 of the Qy_ board. 
+    ''' 0111xxxx
     ''' <br/>
-    ''' Command: 0111xxxx
     ''' <br/>
     ''' Where the lower 4 bits are the number of bytes to read from the USART1. 
     ''' <br/>
     ''' </summary>
     ''' <returns>Byte Array</returns>'
-    Function ReadFromUSART1() As Byte()
+    Function Qy_ReadFromUSART1() As Byte()
         Dim data(0) As Byte
-        data(0) = &B111
+        data(0) = &H70
         Return data
     End Function
 
     ''' <summary>
     ''' Write to the USART2 of the Qy_ board. 
+    ''' B1000nnnn
     ''' <br/>
-    ''' Command: 1000nnnn
     ''' <br/>
     ''' Where the lower 4 bits are the number of bytes to write to the USART2. 
     ''' <br/>
@@ -228,8 +223,7 @@ Public Class Qy_Board
     ''' <br/>
     ''' </summary>
     ''' <returns>Byte Array</returns>
-
-    Function WriteToUSART2(USARTData() As Byte) As Byte()
+    Function Qy_WriteToUSART2(USARTData() As Byte) As Byte()
         Dim data(UBound(USARTData) + 1) As Byte
         Dim argumentBits(0) As Byte
 
@@ -254,17 +248,61 @@ Public Class Qy_Board
 
     ''' <summary>
     ''' Read from the USART2 of the Qy_ board. 
+    ''' B1001xxxx
     ''' <br/>
-    ''' Command: 1001xxxx
     ''' <br/>
     ''' Where the lower 4 bits are the number of bytes to read from the USART2. 
     ''' <br/>
     ''' </summary>
     ''' <returns>Byte Array</returns>'
-    Function ReadFromUSART2() As Byte()
+    Function Qy_ReadFromUSART2() As Byte()
         Dim data(0) As Byte
-        data(0) = &B1001
-
+        data(0) = &H90
         Return data
     End Function
+
+    ''' <summary>
+    ''' Write to the SPI buffer of the Qy_ board
+    ''' B1010nnnn
+    ''' <br/><br/>
+    ''' Where the lower 4 bits are the number of bytes to write to the SPI buffer. 
+    ''' <br/>
+    ''' The next n bytes are the data to write to the SPI buffer. Maximum of 15
+    ''' <br/>
+    ''' </summary>
+    ''' <returns>Byte Array</returns>
+    Function Qy_WriteSPIBuffer(SPIData() As Byte) As Byte()
+        Dim data(UBound(SPIData) + 1) As Byte
+
+        'copy SPI data bytes to data array
+        For i = 0 To UBound(SPIData)
+            data(i + 1) = SPIData(i)
+            'artificially limit to 16 bytes
+            Select Case i
+                Case > 15
+                    ReDim Preserve data(16)
+            End Select
+        Next
+
+        data(0) = Combine(CByte(&HA0), CByte(UBound(data)))
+        Return data
+    End Function
+
+    'Helper functions ---------------------------------------------------------|
+
+    ''' <summary>
+    ''' combine the high nyble of one byte with the low nyble of the other byte
+    ''' </summary>
+    ''' <param name="highNybleOfThis"></param>
+    ''' <param name="lowNybleOfThis"></param>
+    ''' <returns>byte</returns>
+    Private Function Combine(highNybleOfThis As Byte, lowNybleOfThis As Byte) As Byte
+        'keep high nyble 0 out lower nyble
+        highNybleOfThis = CByte(highNybleOfThis) And CByte(&HF0)
+        'keep low nyble 0 out high nyble
+        lowNybleOfThis = CByte(lowNybleOfThis) And CByte(&HF)
+        'Combine nybles and return
+        Return highNybleOfThis Or lowNybleOfThis
+    End Function
+
 End Class
