@@ -288,6 +288,69 @@ Public Class Qy_Board
         Return data
     End Function
 
+    ''' <summary>
+    ''' Read from the SPI buffer of the Qy_ board
+    ''' B1011xxxx
+    ''' <br/><br/>
+    ''' Where the lower 4 bits are the number of bytes to read from the SPI buffer. 
+    ''' <br/>
+    ''' </summary>
+    ''' <returns>Byte Array</returns>
+    Function Qy_ReadSPIBuffer() As Byte()
+        Dim data(0) As Byte
+        data(0) = &HA1
+        Return data
+    End Function
+
+    ''' <summary>
+    ''' I²C Transaction
+    ''' B1100nnnn
+    ''' <br/><br/>
+    ''' Where the lower 4 bits are the number of bytes to write to the I²C buffer. 
+    ''' <br/>
+    ''' The next n bytes are the data to write to the I²C buffer. Maximum of 15
+    ''' <br/><br/>
+    ''' The command byte must be followed by the address byte. |A6|A5|A4|A3|A2|A1|A0|RW|
+    ''' <br/><br/>
+    ''' The I²C data bytes are sent after the address byte. 
+    ''' <br/>
+    ''' </summary>
+    ''' <returns>Byte Array</returns>
+    Function Qy_I2CTransaction(I2CData() As Byte, I2CAddress As Byte) As Byte()
+        Dim data(UBound(I2CData) + 2) As Byte
+
+        'copy I2C data bytes to data array
+        For i = 0 To UBound(I2CData)
+            data(i + 2) = I2CData(i)
+            'artificially limit to 16 bytes
+            Select Case i
+                Case > 15
+                    ReDim Preserve data(16)
+            End Select
+        Next
+
+
+        'combine comand nybble with argument nybble
+        data(0) = CByte(&B11001111) And argumentBits(0)
+
+        'add I2C address byte
+        data(1) = I2CAddress
+
+        Return data
+    End Function
+
+    ''' <summary>
+    ''' SD Card Transaction
+    ''' B1101nnnn
+    ''' <br/><br/>
+    ''' Where the lower 4 bits are the number of bytes to write to the SD card buffer. 
+    ''' <br/>
+    ''' The next n bytes are the data to write to the SD card buffer. Maximum of 15
+    ''' <br/>
+    ''' </summary>
+    ''' <returns>Byte Array</returns>
+
+
     'Helper functions ---------------------------------------------------------|
 
     ''' <summary>
