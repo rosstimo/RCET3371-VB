@@ -38,7 +38,7 @@
     End Sub
 
     Sub PortStatus()
-        'store all serialport properties
+        'store all serial port properties
         Dim portName As String = SerialPort.PortName
         Dim baudRate As Integer = SerialPort.BaudRate
         Dim isOpen As Boolean = SerialPort.IsOpen

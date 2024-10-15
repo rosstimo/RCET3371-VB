@@ -193,7 +193,7 @@ Public Class Qy_Board
             End Select
         Next
 
-        data(0) = Combine(CByte(&H60), CByte(UBound(data))
+        data(0) = Combine(CByte(&H60), CByte(UBound(data)))
         Return data
     End Function
 
@@ -331,7 +331,7 @@ Public Class Qy_Board
 
 
         'combine comand nybble with argument nybble
-        data(0) = CByte(&B11001111) And argumentBits(0)
+        'data(0) = CByte(&B11001111) And argumentBits(0)
 
         'add I2C address byte
         data(1) = I2CAddress
