@@ -22,12 +22,16 @@ Partial Class ShiftingArraysForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.PlotPictureBox = New System.Windows.Forms.PictureBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.PlotButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
+        Me.PlotButton = New System.Windows.Forms.Button()
+        Me.Timer = New System.Windows.Forms.Timer(Me.components)
+        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         CType(Me.PlotPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PlotPictureBox
@@ -52,15 +56,6 @@ Partial Class ShiftingArraysForm
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         '
-        'PlotButton
-        '
-        Me.PlotButton.Location = New System.Drawing.Point(31, 25)
-        Me.PlotButton.Name = "PlotButton"
-        Me.PlotButton.Size = New System.Drawing.Size(108, 57)
-        Me.PlotButton.TabIndex = 0
-        Me.PlotButton.Text = "&Plot"
-        Me.PlotButton.UseVisualStyleBackColor = True
-        '
         'ExitButton
         '
         Me.ExitButton.Location = New System.Drawing.Point(145, 25)
@@ -70,18 +65,41 @@ Partial Class ShiftingArraysForm
         Me.ExitButton.Text = "E&xit"
         Me.ExitButton.UseVisualStyleBackColor = True
         '
+        'PlotButton
+        '
+        Me.PlotButton.Location = New System.Drawing.Point(31, 25)
+        Me.PlotButton.Name = "PlotButton"
+        Me.PlotButton.Size = New System.Drawing.Size(108, 57)
+        Me.PlotButton.TabIndex = 0
+        Me.PlotButton.Text = "&Plot"
+        Me.PlotButton.UseVisualStyleBackColor = True
+        '
+        'Timer
+        '
+        Me.Timer.Enabled = True
+        '
+        'TrackBar1
+        '
+        Me.TrackBar1.Location = New System.Drawing.Point(28, 369)
+        Me.TrackBar1.Name = "TrackBar1"
+        Me.TrackBar1.Size = New System.Drawing.Size(433, 69)
+        Me.TrackBar1.TabIndex = 2
+        '
         'ShiftingArraysForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(803, 471)
+        Me.Controls.Add(Me.TrackBar1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.PlotPictureBox)
         Me.Name = "ShiftingArraysForm"
         Me.Text = "Form1"
         CType(Me.PlotPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -89,4 +107,6 @@ Partial Class ShiftingArraysForm
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents ExitButton As Button
     Friend WithEvents PlotButton As Button
+    Friend WithEvents Timer As Timer
+    Friend WithEvents TrackBar1 As TrackBar
 End Class

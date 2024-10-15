@@ -1,13 +1,16 @@
-﻿Public Class ShiftingArraysForm
-    Private Sub ShiftingArraysForm_Click(sender As Object, e As EventArgs) Handles Me.Click
-        Dim temp() As Integer
-        temp = ShiftArray(RandomNumberFrom(50, 100))
-        PlotPictureBox.Refresh()
-        Plot(temp)
+﻿
+Public Class ShiftingArraysForm
 
-        ' Console.Read()
-    End Sub
+    Function MouseY(Optional currentY As Integer = -1) As Integer
+        Static _mouseY As Integer
 
+        If currentY <> -1 Then
+            _mouseY = currentY
+        End If
+
+        Return _mouseY
+
+    End Function
     Function ShiftArray(newData As Integer) As Integer()
         Static data(99) As Integer
 
@@ -69,4 +72,18 @@
         Return _random
     End Function
 
+
+    'Event Handlers Below -----------------------------------------------------------
+    Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
+        Dim temp() As Integer
+        'temp = ShiftArray(RandomNumberFrom(50, 100))
+        temp = ShiftArray(MouseY())
+        PlotPictureBox.Refresh()
+        'PlotPictureBox.Image = Nothing
+        Plot(temp)
+    End Sub
+
+    Private Sub PlotPictureBox_MouseMove(sender As Object, e As MouseEventArgs) Handles PlotPictureBox.MouseMove
+        MouseY(e.Y)
+    End Sub
 End Class
