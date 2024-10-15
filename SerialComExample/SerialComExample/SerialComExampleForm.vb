@@ -7,14 +7,9 @@ Public Class SerialComExampleForm
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim data(0) As Byte
-        data(0) = &B11110000
-        SerialPort.Write(data, 0, 1)
-        WriteDigital()
-    End Sub
 
-    Private Sub SerialPort_DataReceived(sender As Object, e As IO.Ports.SerialDataReceivedEventArgs) Handles SerialPort.DataReceived
+
+    Private Sub SerialPort_DataReceived(sender As Object, e As IO.Ports.SerialDataReceivedEventArgs) 'Handles SerialPort.DataReceived
         Dim data(SerialPort.BytesToRead) As Byte
         SerialPort.Read(data, 0, SerialPort.BytesToRead)
         For i = 0 To UBound(data)
@@ -40,5 +35,54 @@ Public Class SerialComExampleForm
     End Sub
 
 
+    ''' <summary>
+    ''' Read the analog input A1 of the Qy_ board. 
+    ''' <br/>
+    ''' A01 = 01010001
+    ''' </summary>
+    ''' <returns>Byte Array</returns>'
+    Function Qy_ReadAnalogInPutA1() As Byte()
+        Dim data(0) As Byte
+        data(0) = &B1010001
+        SerialPort.Write(data, 0, 1)
+        Return data
+    End Function
+
+    Function GetSettings() As Byte()
+        Dim data(0) As Byte
+        data(0) = &B11110000
+        SerialPort.Write(data, 0, 1)
+        Return data
+    End Function
+
+    ' Event Handlers ----------------------------------------------------------------------------
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'WriteDigital()
+
+        'SerialPort.Write(Qy_ReadAnalogInPutA1(), 0, 1)
+        ' SerialPort.Write(GetSettings(), 0, 1)
+        'GetSettings()
+        ' Console.WriteLine(SerialPort.ReadExisting())
+        Qy_ReadAnalogInPutA1()
+
+        Sleep(5)
+        Console.WriteLine(SerialPort.BytesToRead)
+        Dim data(SerialPort.BytesToRead) As Byte
+        SerialPort.Read(data, 0, SerialPort.BytesToRead)
+
+        Console.WriteLine($"High: {Hex(data(0))} | Jelly Beans: {data(0)}")
+        Console.WriteLine($"Low: {Hex(data(1))}")
+
+        'GetPorts()
+    End Sub
+    Sub GetPorts()
+        'add all available ports to the port combobox
+        PortComboBox.Items.Clear()
+        For Each s As String In SerialPort.GetPortNames()
+            PortComboBox.Items.Add($"{s}")
+        Next
+
+        PortComboBox.SelectedIndex = 0
+    End Sub
 
 End Class

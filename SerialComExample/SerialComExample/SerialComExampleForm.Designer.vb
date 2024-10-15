@@ -25,6 +25,7 @@ Partial Class SerialComExampleForm
         Me.components = New System.ComponentModel.Container()
         Me.SerialPort = New System.IO.Ports.SerialPort(Me.components)
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.PortComboBox = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'SerialPort
@@ -33,19 +34,30 @@ Partial Class SerialComExampleForm
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(273, 104)
+        Me.Button1.Location = New System.Drawing.Point(410, 160)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(151, 86)
+        Me.Button1.Size = New System.Drawing.Size(226, 132)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'PortComboBox
+        '
+        Me.PortComboBox.FormattingEnabled = True
+        Me.PortComboBox.Location = New System.Drawing.Point(490, 41)
+        Me.PortComboBox.Name = "PortComboBox"
+        Me.PortComboBox.Size = New System.Drawing.Size(240, 28)
+        Me.PortComboBox.TabIndex = 1
+        '
         'SerialComExampleForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1200, 692)
+        Me.Controls.Add(Me.PortComboBox)
         Me.Controls.Add(Me.Button1)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "SerialComExampleForm"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
@@ -54,4 +66,5 @@ Partial Class SerialComExampleForm
 
     Friend WithEvents SerialPort As IO.Ports.SerialPort
     Friend WithEvents Button1 As Button
+    Friend WithEvents PortComboBox As ComboBox
 End Class
