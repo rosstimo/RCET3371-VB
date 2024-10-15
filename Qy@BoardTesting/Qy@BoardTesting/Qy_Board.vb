@@ -1,6 +1,14 @@
 ﻿Imports System.Runtime.InteropServices
 
 Public Class Qy_Board
+
+
+    Public ReadOnly Property status As Byte()
+        Get
+            Return Qy_ReadStatus()
+        End Get
+    End Property
+
     'Qy_ Board Command List
     'Command Number | Command Name              | Argument Used | Required Data Bytes   | Received Data Bytes
     '             0 | Null                      | No            | 0                     | 0
@@ -227,10 +235,10 @@ Public Class Qy_Board
         Dim data(UBound(USARTData) + 1) As Byte
         Dim argumentBits(0) As Byte
 
-        'prepare argument nybble
+        'prepare argument nibble
         argumentBits(0) = CByte(UBound(USARTData)) Or CByte(&B11110000)
 
-        'combine comand nybble with argument nybble
+        'combine command nibble with argument nibble
         data(0) = CByte(&B10001111) And argumentBits(0)
 
         'copy USART data bytes to data array
@@ -330,7 +338,7 @@ Public Class Qy_Board
         Next
 
 
-        'combine comand nybble with argument nybble
+        'combine command nibble with argument nibble
         'data(0) = CByte(&B11001111) And argumentBits(0)
 
         'add I2C address byte
@@ -354,18 +362,22 @@ Public Class Qy_Board
     'Helper functions ---------------------------------------------------------|
 
     ''' <summary>
-    ''' combine the high nyble of one byte with the low nyble of the other byte
+    ''' combine the high nibble of one byte with the low nibble of the other byte
     ''' </summary>
-    ''' <param name="highNybleOfThis"></param>
-    ''' <param name="lowNybleOfThis"></param>
+    ''' <param name="highNibbleOfThis"></param>
+    ''' <param name="lowNibbleOfThis"></param>
     ''' <returns>byte</returns>
-    Private Function Combine(highNybleOfThis As Byte, lowNybleOfThis As Byte) As Byte
-        'keep high nyble 0 out lower nyble
-        highNybleOfThis = CByte(highNybleOfThis) And CByte(&HF0)
-        'keep low nyble 0 out high nyble
-        lowNybleOfThis = CByte(lowNybleOfThis) And CByte(&HF)
-        'Combine nybles and return
-        Return highNybleOfThis Or lowNybleOfThis
+    Private Function Combine(highNibbleOfThis As Byte, lowNibbleOfThis As Byte) As Byte
+        'keep high nibble 0 out lower nibble
+        highNibbleOfThis = CByte(highNibbleOfThis) And CByte(&HF0)
+        'keep low nibble 0 out high nibble
+        lowNibbleOfThis = CByte(lowNibbleOfThis) And CByte(&HF)
+        'Combine nibbles and return
+        Return highNibbleOfThis Or lowNibbleOfThis
     End Function
+
+    Sub testing()
+        'TestingForm.SerialPort.BytesToRead
+    End Sub
 
 End Class

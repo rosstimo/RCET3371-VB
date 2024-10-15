@@ -1,4 +1,30 @@
-﻿Public Class TestingForm
+﻿Option Strict On
+Option Explicit On
+
+Imports System.Threading.Thread
+Public Class TestingForm
+
+    Sub ReadStatus()
+        Dim q As New Qy_Board
+
+        SerialPort.Write(q.Qy_ReadAnalogInPutA1, 0, q.Qy_ReadAnalogInPutA1.Length)
+
+        SendListBox.Items.Clear()
+
+        For Each thing In q.Qy_ReadAnalogInPutA1
+            SendListBox.Items.Add($"0x{Hex(thing)}")
+        Next
+
+        'give some time for the serial data to come in
+        Sleep(5)
+        MsgBox(SerialPort.BytesToRead)
+
+
+
+
+
+    End Sub
+
     'Testing and Debugging ----------------------------------------------------
     Sub TestCom()
         'create an array of bytes called data
@@ -9,10 +35,10 @@
         SerialPort.Write(data, 0, 1) 'send 1 byte from data starting at 0
     End Sub
 
-    'Subs and Functions -------------------------------------------------------
+    'COM Port Subs and Functions -------------------------------------------------------
     Sub UpdateStatus()
         'add all current serial port info to the status label
-        ComPortStatusLabel.Text = $"Port: {SerialPort.PortName} Baud: {SerialPort.BaudRate} Status: {SerialPort.IsOpen}"
+        ComPortStatusLabel.Text = $"Port: {SerialPort.PortName} Baud: {SerialPort.BaudRate} Status: {SerialPort.IsOpen} Input Buffer: {SerialPort.BytesToRead}"
     End Sub
 
     Sub Connect()
@@ -77,25 +103,42 @@
             Console.WriteLine($" 0x{Hex(dataBytes(i))}")
         Next
 
+
     End Sub
+    Sub WriteBytesToListBox(dataBytes() As Byte)
+        'print the bytes to the console
+        For i = 0 To UBound(dataBytes)
+            'print the ascii character of the byte if it is a printable character otherwise print a dot
+            Console.Write($"Byte {CStr(i).PadLeft(2)} is: {If(dataBytes(i) >= 32 And dataBytes(i) <= 126, Chr(dataBytes(i)), ".")}")
+            'print all the bytes in binary
+            Console.Write($" &B{Convert.ToString(dataBytes(i), 2).PadLeft(8, Chr(48))}")
+            'print all the bytes in hex
+            Console.WriteLine($" 0x{Hex(dataBytes(i))}")
+        Next
+
+    End Sub
+
 
     'Event Handlers -----------------------------------------------------------
 
     Private Sub TestingForm_Load(sender As Object, e As EventArgs) Handles Me.Load
+        GetPorts()
         UpdateStatus()
     End Sub
 
     Private Sub SerialPort_DataReceived(sender As Object, e As IO.Ports.SerialDataReceivedEventArgs) Handles SerialPort.DataReceived
         'read all the bytes from the serial port inputbuffer
-        Dim receivedBytes(SerialPort.BytesToRead) As Byte
-        SerialPort.Read(receivedBytes, 0, SerialPort.BytesToRead)
+        ' Dim receivedBytes(SerialPort.BytesToRead) As Byte
+        ' SerialPort.Read(receivedBytes, 0, SerialPort.BytesToRead)
 
         'for debug print the bytes to the console
-        WriteBytesToConsole(receivedBytes)
+        'WriteBytesToConsole(receivedBytes)
+        UpdateStatus()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        TestCom()
+        'TestCom()
+        ReadStatus()
     End Sub
 
     Private Sub CheckComButton_Click(sender As Object, e As EventArgs) Handles CheckComButton.Click
