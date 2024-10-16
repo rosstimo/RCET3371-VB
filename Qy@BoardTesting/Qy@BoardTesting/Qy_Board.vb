@@ -347,17 +347,12 @@ Public Class Qy_Board
         Return data
     End Function
 
-    ''' <summary>
-    ''' SD Card Transaction
-    ''' B1101nnnn
-    ''' <br/><br/>
-    ''' Where the lower 4 bits are the number of bytes to write to the SD card buffer. 
-    ''' <br/>
-    ''' The next n bytes are the data to write to the SD card buffer. Maximum of 15
-    ''' <br/>
-    ''' </summary>
-    ''' <returns>Byte Array</returns>
 
+    Function Qy_ReadSettings() As Byte()
+        Dim data(0) As Byte
+        data(0) = &HF0
+        Return data
+    End Function
 
     'Helper functions ---------------------------------------------------------|
 

@@ -17,12 +17,80 @@ Public Class TestingForm
 
         'give some time for the serial data to come in
         Sleep(5)
-        MsgBox(SerialPort.BytesToRead)
+        'MsgBox(SerialPort.BytesToRead)
 
 
 
 
 
+    End Sub
+
+    Sub GetCommands()
+        'get a list of all the command methods in the Qy_Board class
+        'and add them to the combobox
+        Dim q As New Qy_Board
+        Dim methods() As Reflection.MethodInfo = q.GetType.GetMethods
+
+        For Each method In methods
+            If InStr(method.Name, "Qy_") > 0 Then
+                CommandComboBox.Items.Add(method.Name)
+                Console.WriteLine(method.Name)
+            End If
+        Next
+        'set the default command to the first item in the combobox
+        CommandComboBox.SelectedIndex = 0
+
+    End Sub
+
+    Sub SendCommand(Optional argument As Byte = 0, Optional RequiredDataBytes() As Byte = Nothing)
+        'send the selected command to the Qy_ board
+        Dim q As New Qy_Board
+        Dim command As String = CommandComboBox.SelectedItem.ToString
+        Dim data() As Byte
+        'get the data based on the selected command
+        Select Case command
+            Case "Qy_Null"
+                data = q.Qy_Null
+            Case "Qy_ReadStatus"
+                data = q.Qy_ReadStatus
+            Case "Qy_WriteDigitalOutputs"
+                data = q.Qy_WriteDigitalOutputs(RequiredDataBytes(0))
+            Case "Qy_ReadDigitalInputs"
+                data = q.Qy_ReadDigitalInputs
+            Case "Qy_WriteAnalogOutputA1"
+                data = q.Qy_WriteAnalogOutputA1(RequiredDataBytes(0))
+            Case "Qy_WriteAnalogOutputA2"
+                data = q.Qy_WriteAnalogOutputA2(RequiredDataBytes(0))
+            Case "Qy_ReadAnalogInPutA1"
+                data = q.Qy_ReadAnalogInPutA1
+            Case "Qy_ReadAnalogInPutA2"
+                data = q.Qy_ReadAnalogInPutA2
+            Case "Qy_ReadAnalogInPutA3"
+                data = q.Qy_ReadAnalogInPutA3
+            Case "Qy_ReadAnalogInPutA4"
+                data = q.Qy_ReadAnalogInPutA4
+            Case "Qy_WriteToUSART1"
+                data = q.Qy_WriteToUSART1(RequiredDataBytes)
+            Case "Qy_ReadFromUSART1"
+                data = q.Qy_ReadFromUSART1
+            Case "Qy_WriteToUSART2"
+                data = q.Qy_WriteToUSART2(RequiredDataBytes)
+            Case "Qy_ReadFromUSART2"
+                data = q.Qy_ReadFromUSART2
+            Case "Qy_WriteSPIBuffer"
+                data = q.Qy_WriteSPIBuffer(RequiredDataBytes)
+            Case "Qy_ReadSPIBuffer"
+                data = q.Qy_ReadSPIBuffer
+            Case "Qy_I2CTransaction"
+                ' data = q.Qy_I2CTransaction(RequiredDataBytes)
+            Case "Qy_ReadSettings"
+                data = q.Qy_ReadSettings
+        End Select
+
+        SerialPort.Write(data, 0, data.Length)
+
+        'print the bytes to the console
+        WriteBytesToListBox(data)
     End Sub
 
     'Testing and Debugging ----------------------------------------------------
@@ -124,6 +192,7 @@ Public Class TestingForm
     Private Sub TestingForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         GetPorts()
         UpdateStatus()
+        GetCommands()
     End Sub
 
     Private Sub SerialPort_DataReceived(sender As Object, e As IO.Ports.SerialDataReceivedEventArgs) Handles SerialPort.DataReceived
@@ -136,9 +205,10 @@ Public Class TestingForm
         UpdateStatus()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub SendButton_Click(sender As Object, e As EventArgs) Handles SendButton.Click
         'TestCom()
         ReadStatus()
+        GetCommands()
     End Sub
 
     Private Sub CheckComButton_Click(sender As Object, e As EventArgs) Handles CheckComButton.Click
@@ -155,4 +225,8 @@ Public Class TestingForm
         Connect()
     End Sub
 
+    Private Sub LoadButton_Click(sender As Object, e As EventArgs) Handles LoadButton.Click
+
+
+    End Sub
 End Class
