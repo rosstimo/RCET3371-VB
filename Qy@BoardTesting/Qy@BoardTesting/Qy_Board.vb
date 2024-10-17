@@ -225,26 +225,14 @@ Public Class Qy_Board
     ''' </summary>
     ''' <returns>Byte Array</returns>
     Function Qy_WriteToUSART2(Optional USARTData() As Byte = Nothing) As Byte()
-        Dim data(UBound(USARTData) + 1) As Byte
-        Dim argumentBits(0) As Byte
+        Dim data(16) As Byte
+        If USARTData IsNot Nothing Then
+            ReDim data(UBound(USARTData) + 1)
+            data = CreatePacket(USARTData)
+        End If
 
-        'prepare argument nibble
-        argumentBits(0) = CByte(UBound(USARTData)) Or CByte(&B11110000)
-
-        'combine command nibble with argument nibble
-        data(0) = CByte(&B10001111) And argumentBits(0)
-
-        'copy USART data bytes to data array
-        For i = 0 To UBound(USARTData)
-            data(i + 1) = USARTData(i)
-            'artificially limit to 16 bytes
-            Select Case i
-                Case > 15
-                    ReDim Preserve data(16)
-            End Select
-        Next
-
-        Return data
+        data(0) = CByte(&H80)
+        Return Data
     End Function
 
     ''' <summary>
