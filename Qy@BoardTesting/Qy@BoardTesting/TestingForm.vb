@@ -103,6 +103,21 @@ Public Class TestingForm
         SerialPort.Write(data, 0, 1) 'send 1 byte from data starting at 0
     End Sub
 
+    Sub test()
+        Dim q As New Qy_Board
+        'store the string 'Hello World' to a byte array
+        Dim message() As Byte = System.Text.Encoding.ASCII.GetBytes("Hello World")
+
+        Dim data() As Byte = q.Qy_WriteToUSART1(message)
+        SendListBox.Items.Clear()
+
+        For Each thing In data
+            SendListBox.Items.Add($"0x{Hex(thing)}")
+
+        Next
+
+    End Sub
+
     'COM Port Subs and Functions -------------------------------------------------------
     Sub UpdateStatus()
         'add all current serial port info to the status label
@@ -226,7 +241,7 @@ Public Class TestingForm
     End Sub
 
     Private Sub LoadButton_Click(sender As Object, e As EventArgs) Handles LoadButton.Click
-
+        test()
 
     End Sub
 End Class

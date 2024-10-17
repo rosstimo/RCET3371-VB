@@ -187,21 +187,14 @@ Public Class Qy_Board
     ''' <br/>
     ''' </summary>
     ''' <returns>Byte Array</returns>'
-    Function Qy_WriteToUSART1(USARTData() As Byte) As Byte()
-        Dim data(UBound(USARTData) + 1) As Byte
+    Function Qy_WriteToUSART1(Optional USARTData() As Byte = Nothing) As Byte()
+        Dim data(16) As Byte
+        If USARTData IsNot Nothing Then
+            ReDim data(UBound(USARTData) + 1)
+            data = CreatePacket(USARTData)
+        End If
 
-        'copy USART data bytes to data array
-        For i = 0 To UBound(USARTData)
-            data(i + 1) = USARTData(i)
-            'artificially limit to 16 bytes
-            Select Case i
-                Case > 15
-                    ReDim Preserve data(16)
-                    Exit For
-            End Select
-        Next
-
-        data(0) = Combine(CByte(&H60), CByte(UBound(data)))
+        data(0) = CByte(&H60)
         Return data
     End Function
 
@@ -231,7 +224,7 @@ Public Class Qy_Board
     ''' <br/>
     ''' </summary>
     ''' <returns>Byte Array</returns>
-    Function Qy_WriteToUSART2(USARTData() As Byte) As Byte()
+    Function Qy_WriteToUSART2(Optional USARTData() As Byte = Nothing) As Byte()
         Dim data(UBound(USARTData) + 1) As Byte
         Dim argumentBits(0) As Byte
 
@@ -375,4 +368,18 @@ Public Class Qy_Board
         'TestingForm.SerialPort.BytesToRead
     End Sub
 
+    Function EmptyBytes() As Byte()
+        Dim data(15) As Byte
+        Return data
+    End Function
+    Function CreatePacket(dataBytes As Byte()) As Byte()
+        Dim data(UBound(dataBytes) + 1) As Byte
+
+        'copy data bytes to data array
+        For i = 0 To UBound(dataBytes)
+            data(i + 1) = dataBytes(i)
+        Next
+
+        Return data
+    End Function
 End Class

@@ -38,10 +38,11 @@ Partial Class TestingForm
         Me.ReceiveListBox = New System.Windows.Forms.ListBox()
         Me.SendListBox = New System.Windows.Forms.ListBox()
         Me.CommandGroupBox = New System.Windows.Forms.GroupBox()
-        Me.CommandComboBox = New System.Windows.Forms.ComboBox()
-        Me.ArgumentComboBox = New System.Windows.Forms.ComboBox()
-        Me.RequiredDataBytesComboBox = New System.Windows.Forms.ComboBox()
         Me.LoadButton = New System.Windows.Forms.Button()
+        Me.ArgumentComboBox = New System.Windows.Forms.ComboBox()
+        Me.CommandComboBox = New System.Windows.Forms.ComboBox()
+        Me.CommandLabel = New System.Windows.Forms.Label()
+        Me.ArgumentLabel = New System.Windows.Forms.Label()
         Me.StatusStrip.SuspendLayout()
         Me.ToolStrip.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
@@ -54,7 +55,7 @@ Partial Class TestingForm
         '
         'SendButton
         '
-        Me.SendButton.Location = New System.Drawing.Point(781, 27)
+        Me.SendButton.Location = New System.Drawing.Point(773, 44)
         Me.SendButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.SendButton.Name = "SendButton"
         Me.SendButton.Size = New System.Drawing.Size(95, 42)
@@ -163,8 +164,9 @@ Partial Class TestingForm
         '
         'CommandGroupBox
         '
+        Me.CommandGroupBox.Controls.Add(Me.ArgumentLabel)
+        Me.CommandGroupBox.Controls.Add(Me.CommandLabel)
         Me.CommandGroupBox.Controls.Add(Me.LoadButton)
-        Me.CommandGroupBox.Controls.Add(Me.RequiredDataBytesComboBox)
         Me.CommandGroupBox.Controls.Add(Me.ArgumentComboBox)
         Me.CommandGroupBox.Controls.Add(Me.CommandComboBox)
         Me.CommandGroupBox.Controls.Add(Me.SendButton)
@@ -174,39 +176,49 @@ Partial Class TestingForm
         Me.CommandGroupBox.TabIndex = 5
         Me.CommandGroupBox.TabStop = False
         '
-        'CommandComboBox
-        '
-        Me.CommandComboBox.FormattingEnabled = True
-        Me.CommandComboBox.Location = New System.Drawing.Point(6, 27)
-        Me.CommandComboBox.Name = "CommandComboBox"
-        Me.CommandComboBox.Size = New System.Drawing.Size(292, 28)
-        Me.CommandComboBox.TabIndex = 1
-        '
-        'ArgumentComboBox
-        '
-        Me.ArgumentComboBox.FormattingEnabled = True
-        Me.ArgumentComboBox.Location = New System.Drawing.Point(304, 27)
-        Me.ArgumentComboBox.Name = "ArgumentComboBox"
-        Me.ArgumentComboBox.Size = New System.Drawing.Size(177, 28)
-        Me.ArgumentComboBox.TabIndex = 2
-        '
-        'RequiredDataBytesComboBox
-        '
-        Me.RequiredDataBytesComboBox.FormattingEnabled = True
-        Me.RequiredDataBytesComboBox.Location = New System.Drawing.Point(487, 27)
-        Me.RequiredDataBytesComboBox.Name = "RequiredDataBytesComboBox"
-        Me.RequiredDataBytesComboBox.Size = New System.Drawing.Size(175, 28)
-        Me.RequiredDataBytesComboBox.TabIndex = 3
-        '
         'LoadButton
         '
-        Me.LoadButton.Location = New System.Drawing.Point(678, 27)
+        Me.LoadButton.Location = New System.Drawing.Point(670, 44)
         Me.LoadButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.LoadButton.Name = "LoadButton"
         Me.LoadButton.Size = New System.Drawing.Size(95, 42)
         Me.LoadButton.TabIndex = 4
         Me.LoadButton.Text = "&Load"
         Me.LoadButton.UseVisualStyleBackColor = True
+        '
+        'ArgumentComboBox
+        '
+        Me.ArgumentComboBox.FormattingEnabled = True
+        Me.ArgumentComboBox.Location = New System.Drawing.Point(305, 60)
+        Me.ArgumentComboBox.Name = "ArgumentComboBox"
+        Me.ArgumentComboBox.Size = New System.Drawing.Size(177, 28)
+        Me.ArgumentComboBox.TabIndex = 2
+        '
+        'CommandComboBox
+        '
+        Me.CommandComboBox.FormattingEnabled = True
+        Me.CommandComboBox.Location = New System.Drawing.Point(7, 60)
+        Me.CommandComboBox.Name = "CommandComboBox"
+        Me.CommandComboBox.Size = New System.Drawing.Size(292, 28)
+        Me.CommandComboBox.TabIndex = 1
+        '
+        'CommandLabel
+        '
+        Me.CommandLabel.AutoSize = True
+        Me.CommandLabel.Location = New System.Drawing.Point(6, 27)
+        Me.CommandLabel.Name = "CommandLabel"
+        Me.CommandLabel.Size = New System.Drawing.Size(82, 20)
+        Me.CommandLabel.TabIndex = 5
+        Me.CommandLabel.Text = "Command"
+        '
+        'ArgumentLabel
+        '
+        Me.ArgumentLabel.AutoSize = True
+        Me.ArgumentLabel.Location = New System.Drawing.Point(301, 27)
+        Me.ArgumentLabel.Name = "ArgumentLabel"
+        Me.ArgumentLabel.Size = New System.Drawing.Size(79, 20)
+        Me.ArgumentLabel.TabIndex = 6
+        Me.ArgumentLabel.Text = "Argument"
         '
         'TestingForm
         '
@@ -221,7 +233,7 @@ Partial Class TestingForm
         Me.MainMenuStrip = Me.TopMenuStrip
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "TestingForm"
-        Me.Text = "Form1"
+        Me.Text = "la"
         Me.StatusStrip.ResumeLayout(False)
         Me.StatusStrip.PerformLayout()
         Me.ToolStrip.ResumeLayout(False)
@@ -230,6 +242,7 @@ Partial Class TestingForm
         Me.TopMenuStrip.PerformLayout()
         Me.DataGroupBox.ResumeLayout(False)
         Me.CommandGroupBox.ResumeLayout(False)
+        Me.CommandGroupBox.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -251,6 +264,7 @@ Partial Class TestingForm
     Friend WithEvents CommandGroupBox As GroupBox
     Friend WithEvents CommandComboBox As ComboBox
     Friend WithEvents ArgumentComboBox As ComboBox
-    Friend WithEvents RequiredDataBytesComboBox As ComboBox
     Friend WithEvents LoadButton As Button
+    Friend WithEvents ArgumentLabel As Label
+    Friend WithEvents CommandLabel As Label
 End Class
