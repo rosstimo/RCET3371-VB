@@ -15,8 +15,8 @@ Public Class SerialComExampleForm
 
             'For i = LBound(data) To UBound(data)
             'Console.WriteLine($"Byte: {i} | HEX: {Hex(data(i))} | DEC: {data(i)} | ASCII: {Chr(data(i))}")
-
             'Next
+
             'Byte :  58 | HEX: 51 | DEC: 81 | ASCII: Q
             'Byte :  59 | HEX: 79 | DEC: 121 | ASCII: y
             'Byte :  60 | HEX: 40 | DEC: 64 | ASCII: @
