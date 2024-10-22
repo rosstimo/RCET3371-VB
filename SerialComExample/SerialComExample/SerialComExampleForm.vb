@@ -3,32 +3,37 @@ Imports System.Threading.Thread
 Imports System.Windows.Forms.ComponentModel.Com2Interop
 Public Class SerialComExampleForm
 
+    Sub UpdateStatus()
+        'add all current serial port info to the status label
+        ToolStripStatusLabel.Text = $"Port: {SerialPort.PortName} Baud: {SerialPort.BaudRate} Status: {SerialPort.IsOpen} Input Buffer: {SerialPort.BytesToRead}"
+    End Sub
+
     Sub GetComPorts()
+        PortComboBox.Items.Clear()
+
         For Each portName In SerialPort.GetPortNames()
-            'Console.WriteLine(portName)
             SerialConnect(portName)
             GetSettings()
             Sleep(5)
-            ' Console.WriteLine(SerialPort.BytesToRead)
             Dim data(SerialPort.BytesToRead) As Byte
             SerialPort.Read(data, 0, SerialPort.BytesToRead)
-
-            'For i = LBound(data) To UBound(data)
-            'Console.WriteLine($"Byte: {i} | HEX: {Hex(data(i))} | DEC: {data(i)} | ASCII: {Chr(data(i))}")
-            'Next
-
             'Byte :  58 | HEX: 51 | DEC: 81 | ASCII: Q
             'Byte :  59 | HEX: 79 | DEC: 121 | ASCII: y
             'Byte :  60 | HEX: 40 | DEC: 64 | ASCII: @
             If data.Length >= 64 Then
                 If data(58) = 81 And data(59) = 121 And data(60) = 64 Then
-                    MsgBox($"Qy@ Board COM Confirmed on port: {SerialPort.PortName}")
+                    'MsgBox($"Qy@ Board COM Confirmed on port: {SerialPort.PortName}")
+                    PortComboBox.Items.Add(SerialPort.PortName)
+                    PortComboBox.SelectedItem = SerialPort.PortName
+
+                    'UpdateStatus()
                 End If
             Else
-                MsgBox($"{SerialPort.PortName} is not a Qy@ Board.... : (")
-
+                'MsgBox($"{SerialPort.PortName} is not a Qy@ Board.... : (")
             End If
         Next
+        'PortComboBox.SelectedIndex = 0
+        SerialPort.Close()
     End Sub
 
     Sub WriteDigital()
@@ -73,6 +78,7 @@ Public Class SerialComExampleForm
         SerialPort.PortName = portName
         SerialPort.BaudRate = 9600
         SerialPort.Open()
+        UpdateStatus()
 
     End Sub
 
@@ -92,6 +98,7 @@ Public Class SerialComExampleForm
         Next
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'SerialConnect()
         'WriteDigital()
 
         'SerialPort.Write(Qy_ReadAnalogInPutA1(), 0, 1)
@@ -122,5 +129,17 @@ Public Class SerialComExampleForm
 
     Private Sub ComButton_Click(sender As Object, e As EventArgs) Handles ComButton.Click
         GetComPorts()
+    End Sub
+
+    Private Sub SerialComExampleForm_PreviewKeyDown(sender As Object, e As PreviewKeyDownEventArgs) Handles Me.PreviewKeyDown, PortComboBox.PreviewKeyDown, Button1.PreviewKeyDown
+        Console.WriteLine($"key code: {e.KeyCode}")
+        Console.WriteLine($"key data: {e.KeyData}")
+        Console.WriteLine($"key value: {e.KeyValue}")
+        Console.WriteLine($"modifiers: {e.Modifiers}")
+
+    End Sub
+
+    Private Sub PortComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PortComboBox.SelectedIndexChanged
+        SerialConnect(PortComboBox.SelectedItem.ToString)
     End Sub
 End Class

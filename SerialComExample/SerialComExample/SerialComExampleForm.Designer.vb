@@ -27,6 +27,9 @@ Partial Class SerialComExampleForm
         Me.Button1 = New System.Windows.Forms.Button()
         Me.PortComboBox = New System.Windows.Forms.ComboBox()
         Me.ComButton = New System.Windows.Forms.Button()
+        Me.StatusStrip = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'SerialPort
@@ -35,7 +38,7 @@ Partial Class SerialComExampleForm
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(257, 289)
+        Me.Button1.Location = New System.Drawing.Point(196, 85)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(151, 86)
         Me.Button1.TabIndex = 0
@@ -45,7 +48,7 @@ Partial Class SerialComExampleForm
         'PortComboBox
         '
         Me.PortComboBox.FormattingEnabled = True
-        Me.PortComboBox.Location = New System.Drawing.Point(327, 27)
+        Me.PortComboBox.Location = New System.Drawing.Point(343, 28)
         Me.PortComboBox.Margin = New System.Windows.Forms.Padding(2)
         Me.PortComboBox.Name = "PortComboBox"
         Me.PortComboBox.Size = New System.Drawing.Size(161, 21)
@@ -53,24 +56,43 @@ Partial Class SerialComExampleForm
         '
         'ComButton
         '
-        Me.ComButton.Location = New System.Drawing.Point(637, 289)
+        Me.ComButton.Location = New System.Drawing.Point(353, 85)
         Me.ComButton.Name = "ComButton"
         Me.ComButton.Size = New System.Drawing.Size(151, 86)
         Me.ComButton.TabIndex = 2
         Me.ComButton.Text = "&COM"
         Me.ComButton.UseVisualStyleBackColor = True
         '
+        'StatusStrip
+        '
+        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel})
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 233)
+        Me.StatusStrip.Name = "StatusStrip"
+        Me.StatusStrip.Size = New System.Drawing.Size(537, 22)
+        Me.StatusStrip.TabIndex = 3
+        Me.StatusStrip.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel
+        '
+        Me.ToolStripStatusLabel.Name = "ToolStripStatusLabel"
+        Me.ToolStripStatusLabel.Size = New System.Drawing.Size(113, 10)
+        Me.ToolStripStatusLabel.Text = "ToolStripStatusLabel"
+        '
         'SerialComExampleForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(537, 255)
+        Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.ComButton)
         Me.Controls.Add(Me.PortComboBox)
         Me.Controls.Add(Me.Button1)
         Me.Name = "SerialComExampleForm"
         Me.Text = "Form1"
+        Me.StatusStrip.ResumeLayout(False)
+        Me.StatusStrip.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -78,4 +100,6 @@ Partial Class SerialComExampleForm
     Friend WithEvents Button1 As Button
     Friend WithEvents PortComboBox As ComboBox
     Friend WithEvents ComButton As Button
+    Friend WithEvents StatusStrip As StatusStrip
+    Friend WithEvents ToolStripStatusLabel As ToolStripStatusLabel
 End Class
