@@ -1,7 +1,5 @@
 ﻿Option Strict On
 Option Explicit On
-Imports System.Data.OleDb
-Imports Microsoft.VisualBasic.Logging
 
 Public Class LoggingForm
 
