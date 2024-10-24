@@ -33,25 +33,28 @@ Partial Class LoggingForm
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.LogPictureBox = New System.Windows.Forms.PictureBox()
         Me.GroupBox = New System.Windows.Forms.GroupBox()
+        Me.LogButton = New System.Windows.Forms.Button()
+        Me.FileStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.StatusStrip.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
         CType(Me.LogPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'StatusStrip
         '
         Me.StatusStrip.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel})
-        Me.StatusStrip.Location = New System.Drawing.Point(0, 428)
+        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel, Me.FileStatusLabel})
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 418)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Size = New System.Drawing.Size(800, 22)
+        Me.StatusStrip.Size = New System.Drawing.Size(800, 32)
         Me.StatusStrip.TabIndex = 0
         Me.StatusStrip.Text = "StatusStrip1"
         '
         'ToolStripStatusLabel
         '
         Me.ToolStripStatusLabel.Name = "ToolStripStatusLabel"
-        Me.ToolStripStatusLabel.Size = New System.Drawing.Size(0, 15)
+        Me.ToolStripStatusLabel.Size = New System.Drawing.Size(0, 25)
         '
         'TopMenuStrip
         '
@@ -68,7 +71,7 @@ Partial Class LoggingForm
         '
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.SaveToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(54, 29)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(54, 30)
         Me.FileToolStripMenuItem.Text = "&File"
         '
         'OpenToolStripMenuItem
@@ -109,11 +112,28 @@ Partial Class LoggingForm
         Me.GroupBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox.Controls.Add(Me.LogButton)
         Me.GroupBox.Location = New System.Drawing.Point(12, 307)
         Me.GroupBox.Name = "GroupBox"
         Me.GroupBox.Size = New System.Drawing.Size(776, 118)
         Me.GroupBox.TabIndex = 3
         Me.GroupBox.TabStop = False
+        '
+        'LogButton
+        '
+        Me.LogButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LogButton.Location = New System.Drawing.Point(654, 25)
+        Me.LogButton.Name = "LogButton"
+        Me.LogButton.Size = New System.Drawing.Size(116, 76)
+        Me.LogButton.TabIndex = 0
+        Me.LogButton.Text = "&Log"
+        Me.LogButton.UseVisualStyleBackColor = True
+        '
+        'FileStatusLabel
+        '
+        Me.FileStatusLabel.Name = "FileStatusLabel"
+        Me.FileStatusLabel.Size = New System.Drawing.Size(52, 25)
+        Me.FileStatusLabel.Text = "none"
         '
         'LoggingForm
         '
@@ -133,6 +153,7 @@ Partial Class LoggingForm
         Me.TopMenuStrip.ResumeLayout(False)
         Me.TopMenuStrip.PerformLayout()
         CType(Me.LogPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -149,4 +170,6 @@ Partial Class LoggingForm
     Friend WithEvents SaveFileDialog As SaveFileDialog
     Friend WithEvents LogPictureBox As PictureBox
     Friend WithEvents GroupBox As GroupBox
+    Friend WithEvents LogButton As Button
+    Friend WithEvents FileStatusLabel As ToolStripStatusLabel
 End Class
