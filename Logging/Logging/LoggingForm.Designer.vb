@@ -31,8 +31,11 @@ Partial Class LoggingForm
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.LogPictureBox = New System.Windows.Forms.PictureBox()
+        Me.GroupBox = New System.Windows.Forms.GroupBox()
         Me.StatusStrip.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
+        CType(Me.LogPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'StatusStrip
@@ -57,7 +60,7 @@ Partial Class LoggingForm
         Me.TopMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
         Me.TopMenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.TopMenuStrip.Name = "TopMenuStrip"
-        Me.TopMenuStrip.Size = New System.Drawing.Size(800, 33)
+        Me.TopMenuStrip.Size = New System.Drawing.Size(800, 36)
         Me.TopMenuStrip.TabIndex = 1
         Me.TopMenuStrip.Text = "MenuStrip1"
         '
@@ -90,20 +93,46 @@ Partial Class LoggingForm
         '
         Me.OpenFileDialog.FileName = "OpenFileDialog1"
         '
+        'LogPictureBox
+        '
+        Me.LogPictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LogPictureBox.Location = New System.Drawing.Point(12, 36)
+        Me.LogPictureBox.Name = "LogPictureBox"
+        Me.LogPictureBox.Size = New System.Drawing.Size(776, 265)
+        Me.LogPictureBox.TabIndex = 2
+        Me.LogPictureBox.TabStop = False
+        '
+        'GroupBox
+        '
+        Me.GroupBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox.Location = New System.Drawing.Point(12, 307)
+        Me.GroupBox.Name = "GroupBox"
+        Me.GroupBox.Size = New System.Drawing.Size(776, 118)
+        Me.GroupBox.TabIndex = 3
+        Me.GroupBox.TabStop = False
+        '
         'LoggingForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.GroupBox)
+        Me.Controls.Add(Me.LogPictureBox)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.TopMenuStrip)
         Me.MainMenuStrip = Me.TopMenuStrip
+        Me.MinimumSize = New System.Drawing.Size(800, 500)
         Me.Name = "LoggingForm"
         Me.Text = "Log It!!"
         Me.StatusStrip.ResumeLayout(False)
         Me.StatusStrip.PerformLayout()
         Me.TopMenuStrip.ResumeLayout(False)
         Me.TopMenuStrip.PerformLayout()
+        CType(Me.LogPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -118,4 +147,6 @@ Partial Class LoggingForm
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenFileDialog As OpenFileDialog
     Friend WithEvents SaveFileDialog As SaveFileDialog
+    Friend WithEvents LogPictureBox As PictureBox
+    Friend WithEvents GroupBox As GroupBox
 End Class
