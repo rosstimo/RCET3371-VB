@@ -63,7 +63,7 @@ Partial Class LoggingForm
         Me.TopMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
         Me.TopMenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.TopMenuStrip.Name = "TopMenuStrip"
-        Me.TopMenuStrip.Size = New System.Drawing.Size(800, 36)
+        Me.TopMenuStrip.Size = New System.Drawing.Size(800, 33)
         Me.TopMenuStrip.TabIndex = 1
         Me.TopMenuStrip.Text = "MenuStrip1"
         '
