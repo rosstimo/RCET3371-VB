@@ -24,7 +24,8 @@ Public Class LoggingForm
         Dim oldX%, oldY%
         g.ScaleTransform(CSng(LogPictureBox.Width / 100), CSng(LogPictureBox.Height / 255))
         g.TranslateTransform(0, 255)
-        For x = 0 To UBound(plotData)
+        oldY = plotData(0)
+        For x = 0 To UBound(plotData) - 1
             g.DrawLine(pen, oldX, oldY, x, plotData(x) * -1)
             oldX = x
             oldY = plotData(x) * -1
@@ -35,6 +36,7 @@ Public Class LoggingForm
         Dim newData As Integer = RandomNumberFrom()
         Dim coinToss As Integer = RandomNumberFrom()
         Static lastData As Integer
+        Dim data(1) As Byte
 
         'new data may be posative or negative
         If coinToss >= 5 Then
@@ -49,11 +51,27 @@ Public Class LoggingForm
         End If
 
         Me.dataQ.Enqueue(lastData)
+        data(0) = CByte(lastData)
+
+        StoreData("RND", data)
 
         'this keeps the queue limited to size of 100
         If Me.dataQ.Count > 100 Then
             Me.dataQ.Dequeue()
         End If
+
+    End Sub
+
+    Sub StoreData(prefix As String, data As Byte())
+        Dim filename As String = $"log_{DateTime.Now.ToString("yyMMddhh")}.log"
+
+        FileOpen(1, filename, OpenMode.Append)
+        Write(1, $"$${prefix}")
+        Write(1, data(0))
+        Write(1, data(1))
+        WriteLine(1, $"{DateTime.Now.ToString("yyMMddhhmmss")}{DateTime.Now.Millisecond}")
+
+        FileClose(1)
 
     End Sub
 
