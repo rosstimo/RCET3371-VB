@@ -17,7 +17,6 @@ Public Class LoggingForm
         dataQ.CopyTo(plotdata, 0)
         Plot(plotdata)
 
-
     End Sub
     Sub Plot(plotData() As Integer)
         Dim g As Graphics = LogPictureBox.CreateGraphics
@@ -34,21 +33,27 @@ Public Class LoggingForm
     End Sub
     Sub GetNewData()
         Dim newData As Integer = RandomNumberFrom()
+        Dim coinToss As Integer = RandomNumberFrom()
         Static lastData As Integer
 
-        If newData + lastData > 255 Then
-            Me.dataQ.Enqueue(lastData - newData)
-            lastData -= newData
-        Else
-            Me.dataQ.Enqueue(lastData + newData)
-            lastData += newData
+        'new data may be posative or negative
+        If coinToss >= 5 Then
+            newData = newData * -1
         End If
+
+        lastData += newData
+        If lastData > 255 Then
+            lastData = 255
+        ElseIf lastData < 0 Then
+            lastData = 0
+        End If
+
+        Me.dataQ.Enqueue(lastData)
 
         'this keeps the queue limited to size of 100
         If Me.dataQ.Count > 100 Then
             Me.dataQ.Dequeue()
         End If
-
 
     End Sub
 
@@ -103,7 +108,16 @@ Public Class LoggingForm
         'Dim plotdata() As Integer = {0, 100, 100, 100, 50, 25, 0, 0, 0, 0, 0, 0, 0}
 
         'Plot(plotdata)
-        Updategraph()
+        If Timer.Enabled Then
+            Timer.Enabled = False
+        Else
+            Timer.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
         GetNewData()
+        Updategraph()
+
     End Sub
 End Class

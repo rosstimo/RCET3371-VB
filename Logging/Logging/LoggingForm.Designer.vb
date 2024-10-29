@@ -22,8 +22,10 @@ Partial Class LoggingForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.FileStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TopMenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -34,7 +36,7 @@ Partial Class LoggingForm
         Me.LogPictureBox = New System.Windows.Forms.PictureBox()
         Me.GroupBox = New System.Windows.Forms.GroupBox()
         Me.LogButton = New System.Windows.Forms.Button()
-        Me.FileStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.Timer = New System.Windows.Forms.Timer(Me.components)
         Me.StatusStrip.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
         CType(Me.LogPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,6 +58,12 @@ Partial Class LoggingForm
         Me.ToolStripStatusLabel.Name = "ToolStripStatusLabel"
         Me.ToolStripStatusLabel.Size = New System.Drawing.Size(0, 25)
         '
+        'FileStatusLabel
+        '
+        Me.FileStatusLabel.Name = "FileStatusLabel"
+        Me.FileStatusLabel.Size = New System.Drawing.Size(52, 25)
+        Me.FileStatusLabel.Text = "none"
+        '
         'TopMenuStrip
         '
         Me.TopMenuStrip.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
@@ -71,25 +79,25 @@ Partial Class LoggingForm
         '
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.SaveToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(54, 30)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(54, 29)
         Me.FileToolStripMenuItem.Text = "&File"
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(158, 34)
         Me.OpenToolStripMenuItem.Text = "&Open"
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(158, 34)
         Me.SaveToolStripMenuItem.Text = "&Save"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(270, 34)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(158, 34)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'OpenFileDialog
@@ -129,12 +137,6 @@ Partial Class LoggingForm
         Me.LogButton.Text = "&Log"
         Me.LogButton.UseVisualStyleBackColor = True
         '
-        'FileStatusLabel
-        '
-        Me.FileStatusLabel.Name = "FileStatusLabel"
-        Me.FileStatusLabel.Size = New System.Drawing.Size(52, 25)
-        Me.FileStatusLabel.Text = "none"
-        '
         'LoggingForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -172,4 +174,5 @@ Partial Class LoggingForm
     Friend WithEvents GroupBox As GroupBox
     Friend WithEvents LogButton As Button
     Friend WithEvents FileStatusLabel As ToolStripStatusLabel
+    Friend WithEvents Timer As Timer
 End Class
