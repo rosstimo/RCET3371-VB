@@ -1,18 +1,18 @@
 # Git Lesson Plan
 
 ## Table of Contents
-1. Introduction to Version Control
-2. Setting Up Git
-3. Understanding Git Fundamentals
-4. Working with Changes
-5. Branching and Merging
-6. Remote Collaboration
-7. Common Scenarios and Issues
-8. Advanced Git Concepts
-9. Hands-on Practice and Exercises
-10. Resources for Continued Learning
-11. Assessment and Review
-12. References
+1. [Introduction to Version Control](#1-introduction-to-version-control)
+2. [Setting Up Git](#2-setting-up-git)
+3. [Understanding Git Fundamentals](#3-understanding-git-fundamentals)
+4. [Working with Changes](#4-working-with-changes)
+5. [Branching and Merging](#5-branches)
+6. [Remote Collaboration](#6-remote-collaboration)
+7. [Common Scenarios and Issues](#7-common-scenarios-and-issues)
+8. [Advanced Git Concepts](#8-advanced-git-concepts)
+9. [Hands-on Practice and Exercises](#9-hands-on-practice-and-exercises)
+10. [Resources for Continued Learning](#10-resources-for-continued-learning)
+11. [Assessment and Review](#11-assessment-and-review)
+12. [References](#12-references)
 
 ---
 
@@ -39,6 +39,10 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
 - **macOS:** Install via Homebrew with `brew install git`.
 
 #### Configuration Basics
+- **List All Git Config Settings**
+  ```sh
+  git config --list
+  ```
 - **Set User Identity:**
   ```sh
   git config --global user.name "Your Name"
@@ -48,7 +52,22 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
   ```sh
   git config --global core.editor "vim"
   ```
-
+- **Help With Git Commands**
+  
+  Show the Git commands with:
+  ```sh
+  git --help
+  ```
+  Show more information about a command:
+  ```sh
+  git help add
+  ``` 
+  The example shows more information about the `git add` command.
+  
+  note: This will either open the manual page in your terminal or the html version in your browser
+  
+---
+#### [Back To Top](#table-of-contents)
 ---
 
 ### 3. Understanding Git Fundamentals
@@ -56,7 +75,7 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
 #### Repositories and Commits
 - **Repository (Repo):** A directory that holds all the files, folders, and complete history of your project.
 - **Creating a New Local Repository**
-  1. **Initialize a Repository:**
+    1. **Initialize a Repository:**
      To create a new repository, navigate to your project directory and run:
      ```sh
      mkdir my_project
@@ -65,27 +84,27 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
      ```
      This creates a new Git repository in the `my_project` directory.
      
-  2. **Create a New File:**
+    2. **Create a New File:**
      Create a new text file and add some content:
      ```sh
      echo "Hello, Git!" > file1.txt
      ```
      
-  3. **Check Repository Status:**
+    3. **Check Repository Status:**
      Use `git status` to see the current state of your working directory:
      ```sh
      git status
      ```
      You should see `file1.txt` listed as an untracked file.
      
-  4. **Stage the File:**
+    4. **Stage the File:**
      Add `file1.txt` to the staging area:
      ```sh
      git add file1.txt
      ```
      Run `git status` again to confirm that `file1.txt` is now staged.
      
-  5. **Commit the File:**
+    5. **Commit the File:**
      Commit the staged changes with a descriptive message:
      ```sh
      git commit -m "Add file1.txt with initial content"
@@ -102,7 +121,7 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
 
      A good commit message should be concise, yet descriptive enough to convey the context of the change.
      
-  6. **Modify the File and Create Another Commit:**
+    6. **Modify the File and Create Another Commit:**
      Edit `file1.txt` to add more content:
      ```sh
      echo "This is the second line." >> file1.txt
@@ -113,7 +132,7 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
      ```
      You will see `file1.txt` listed as modified.
      
-  7. **Stage and Commit the Changes:**
+    7. **Stage and Commit the Changes:**
      Stage the modified file:
      ```sh
      git add file1.txt
@@ -126,7 +145,7 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
      - **Good Example:** "Update file1.txt to add additional usage instructions"
      - **Less Good Example:** "Edited file1.txt"
      
-  8. **Repeat to Build Commit History:**
+    8. **Repeat to Build Commit History:**
      Create another file:
      ```sh
      echo "This is another file." > file2.txt
@@ -137,7 +156,7 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
      git commit -m "Add file2.txt"
      ```
      
-  9. **Viewing Commit History:**
+    9. **Viewing Commit History:**
      Use `git log` to see the history of your commits:
      ```sh
      git log
@@ -356,20 +375,6 @@ Once merged, you can delete the `feature-xyz` branch if it's no longer needed:
 ```sh
 git branch -d feature-xyz
 ```
-
-### 5. Branching and Merging
-
-#### Branches Explained
-Branches allow you to work on different parts of a project without affecting the main codebase. This encourages parallel development.
-
-#### Branch Operations
-- **Create Branch:** `git branch branch-name`
-- **Switch Branch:** `git checkout branch-name`
-- **Merge Branch:** `git merge branch-name` to integrate changes.
-- **Rebasing:** Use `git rebase` to create a linear history for easier navigation.
-
-#### Resolving Merge Conflicts
-Merge conflicts occur when changes in different branches affect the same part of a file. Resolve conflicts by manually editing the file, using `git mergetool`, then committing the resolved changes.
 
 ---
 
