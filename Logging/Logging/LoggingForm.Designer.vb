@@ -71,7 +71,7 @@ Partial Class LoggingForm
         Me.TopMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
         Me.TopMenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.TopMenuStrip.Name = "TopMenuStrip"
-        Me.TopMenuStrip.Size = New System.Drawing.Size(800, 33)
+        Me.TopMenuStrip.Size = New System.Drawing.Size(800, 36)
         Me.TopMenuStrip.TabIndex = 1
         Me.TopMenuStrip.Text = "MenuStrip1"
         '
@@ -79,7 +79,7 @@ Partial Class LoggingForm
         '
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.SaveToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(54, 29)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(54, 32)
         Me.FileToolStripMenuItem.Text = "&File"
         '
         'OpenToolStripMenuItem
@@ -117,8 +117,7 @@ Partial Class LoggingForm
         '
         'GroupBox
         '
-        Me.GroupBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.GroupBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox.Controls.Add(Me.LogButton)
         Me.GroupBox.Location = New System.Drawing.Point(12, 307)
@@ -136,6 +135,9 @@ Partial Class LoggingForm
         Me.LogButton.TabIndex = 0
         Me.LogButton.Text = "&Log"
         Me.LogButton.UseVisualStyleBackColor = True
+        '
+        'Timer
+        '
         '
         'LoggingForm
         '

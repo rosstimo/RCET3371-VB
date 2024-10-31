@@ -168,5 +168,6 @@ Public Class LoggingForm
         'YScale()
         sx = CSng(LogPictureBox.Width / xMax)
         sy = CSng(LogPictureBox.Height / yMax)
+        LogPictureBox.Refresh()
     End Sub
 End Class
