@@ -4,28 +4,52 @@ Option Explicit On
 Public Class LoggingForm
 
     Dim dataQ As New Queue
+    Dim xMax% = 1000, yMax% = 255
+    Dim sx! = 1, sy! = 1
 
+    Function GetBackColor(Optional newBackColor As Color = Nothing) As Color
+        Static _backColor As Color
+        If newBackColor <> Nothing Then
+            _backColor = newBackColor
+        End If
+        Return _backColor
+    End Function
+    Function GetForeColor(Optional newForeColor As Color = Nothing) As Color
+        Static _foreColor As Color
+        If newForeColor <> Nothing Then
+            _foreColor = newForeColor
+        End If
+        Return _foreColor
+    End Function
 
     Sub SetDefaults()
-        LogPictureBox.BackColor = Color.Black
-
+        LogPictureBox.BackColor = GetBackColor(Color.Black)
+        GetForeColor(Color.Lime)
+        sx = CSng(LogPictureBox.Width / xMax)
+        sy = CSng(LogPictureBox.Height / yMax)
     End Sub
 
     Sub Updategraph()
-        Dim plotdata(100) As Integer
-        LogPictureBox.Refresh()
+        Dim plotdata(xMax) As Integer
+        ' LogPictureBox.Refresh()
         dataQ.CopyTo(plotdata, 0)
         Plot(plotdata)
 
     End Sub
     Sub Plot(plotData() As Integer)
         Dim g As Graphics = LogPictureBox.CreateGraphics
-        Dim pen As New Pen(Color.Lime)
+        Dim pen As New Pen(GetForeColor())
         Dim oldX%, oldY%
-        g.ScaleTransform(CSng(LogPictureBox.Width / 100), CSng(LogPictureBox.Height / 255))
-        g.TranslateTransform(0, 255)
+        'g.ScaleTransform(CSng(LogPictureBox.Width / Me.xMax), CSng(LogPictureBox.Height / Me.yMax))
+        g.ScaleTransform(Me.sx, Me.sy)
+        g.TranslateTransform(0, Me.yMax)
+        'pen.Width = 2
         oldY = plotData(0)
         For x = 0 To UBound(plotData) - 1
+            pen.Color = GetBackColor()
+            ' g.DrawLine(pen, oldX, 0, oldX, -Me.yMax)
+            g.DrawLine(pen, x, 0, x, -Me.yMax)
+            pen.Color = GetForeColor()
             g.DrawLine(pen, oldX, oldY, x, plotData(x) * -1)
             oldX = x
             oldY = plotData(x) * -1
@@ -55,8 +79,8 @@ Public Class LoggingForm
 
         StoreData("RND", data)
 
-        'this keeps the queue limited to size of 100
-        If Me.dataQ.Count > 100 Then
+        'this keeps the queue limited to size of xMax
+        If Me.dataQ.Count > Me.xMax Then
             Me.dataQ.Dequeue()
         End If
 
@@ -97,7 +121,7 @@ Public Class LoggingForm
     ' Events below here ---------------------------------------------------------------
     Private Sub LoggingForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetDefaults()
-        For i = 0 To 100
+        For i = 0 To xMax
             GetNewData()
         Next
     End Sub
@@ -137,5 +161,12 @@ Public Class LoggingForm
         GetNewData()
         Updategraph()
 
+    End Sub
+
+    Private Sub LogPictureBox_Resize(sender As Object, e As EventArgs) Handles LogPictureBox.Resize
+        'XScale()
+        'YScale()
+        sx = CSng(LogPictureBox.Width / xMax)
+        sy = CSng(LogPictureBox.Height / yMax)
     End Sub
 End Class
