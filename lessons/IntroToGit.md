@@ -38,7 +38,23 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
 - **Linux:** Use your package manager (e.g., `sudo apt install git`).
 - **macOS:** Install via Homebrew with `brew install git`.
 
+#### Opening A Terminal
+- **Windows:** Use git Bash terminal (usually installed with git as above) or optionally Command Prompt or PowerShell.
+    <!-- ![image](./images/gitBash.png) -->
+    <!-- <img src="./images/gitBash.png" alt="Description" width="300" height="200"> -->
+    <!-- <img src="./images/gitBash.png" alt="Description" width="50%" > -->
+
+    <figure>
+        <img src="./images/gitBash.png" alt="Description" width="50%" >
+        <figcaption>To open Git Bash, right-click in any directory/folder within windows file explorer and select "Git Bash Here."</figcaption>
+    </figure>
+
+
+- **Linux:** Use Terminal or another shell.
+- **macOS:** Use Terminal or iTerm.
+
 #### Configuration Basics
+
 - **List All Git Config Settings**
   ```sh
   git config --list
@@ -70,7 +86,7 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
 #### [Back To Top](#table-of-contents)
 ---
 
-### 3. Understanding Git Fundamentals
+### 3. Understanding Git Fundamentals 
 
 #### Repositories and Commits
 - **Repository (Repo):** A directory that holds all the files, folders, and complete history of your project.
