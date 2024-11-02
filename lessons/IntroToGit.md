@@ -259,267 +259,235 @@ Git history is a record of all the changes made to a repository over time. Each 
 
 #### Exploring Git History
 
-- **Viewing History**:
+##### **Viewing History**:
   Use `git log` to display the commit history. By default, `git log` shows each commit in reverse chronological order (most recent first).
 
-    - **Customizing Log Output**:
-        Git provides several options to customize the output of `git log`:
-        - **`--oneline`**: Displays each commit on a single line with its hash and message.
-        - **`--graph`**: Adds an ASCII graph showing branch and merge history.
-        - **`--decorate`**: Shows references (like branches and tags) alongside commit messages.
-        - **`--pretty`**: Allows formatting of the log output. Options include `short`, `full`, `fuller`, `reference`, and custom formats
+- **Customizing Log Output**:
+    Git provides several options to customize the output of `git log`:
+    - **`--oneline`**: Displays each commit on a single line with its hash and message.
+    - **`--graph`**: Adds an ASCII graph showing branch and merge history.
+    - **`--decorate`**: Shows references (like branches and tags) alongside commit messages.
+    - **`--pretty`**: Allows formatting of the log output. Options include `short`, `full`, `fuller`, `reference`, and custom formats
 
-            - Use `git log --oneline` to show each commit on a single line, providing a compact overview.
-            - Use `git log --graph` to display a visual representation of the branch structure and merges.
-            - Use `git log --decorate` to show references (like branches and tags) alongside commit messages.
-            - Use `git log --pretty=oneline` to customize the output format, showing each commit on a single line.
-            - Use `git log --pretty=full` to display detailed information about each commit, including author, date, and commit message.
-            - Use `git log --pretty=format:"%h - %an, %ar : %s"` to customize the output format, showing commit hash, author, relative date, and subject.
-                - Some format option _placeholders_ are:
-                    - `%h`: Abbreviated commit hash
-                    - `%an`: Author name
-                    - `%ar`: Author date, relative
-                    - `%ad`: Author date
-                    - `%s`: Commit subject
-                    - `%cd`: Committer date
-                    - `%cn`: Committer name
-                    - `%ce`: Committer email
-                    - `%Cred`: red color
-                    - `%Cgreen`: green color
-                    - `%Cblue`: blue color
-                    - `%Creset`: reset color
+        - Use `git log --oneline` to show each commit on a single line, providing a compact overview.
+        - Use `git log --graph` to display a visual representation of the branch structure and merges.
+        - Use `git log --decorate` to show references (like branches and tags) alongside commit messages.
+        - Use `git log --pretty=oneline` to customize the output format, showing each commit on a single line.
+        - Use `git log --pretty=full` to display detailed information about each commit, including author, date, and commit message.
+        - Use `git log --pretty=format:"%h - %an, %ar : %s"` to customize the output format, showing commit hash, author, relative date, and subject.
+            - Some format option _placeholders_ are:
+                - `%h`: Abbreviated commit hash
+                - `%an`: Author name
+                - `%ar`: Author date, relative
+                - `%ad`: Author date
+                - `%s`: Commit subject
+                - `%cd`: Committer date
+                - `%cn`: Committer name
+                - `%ce`: Committer email
+                - `%Cred`: red color
+                - `%Cgreen`: green color
+                - `%Cblue`: blue color
+                - `%Creset`: reset color
 
-        - **Example Output**:
-            ```
-            abc1234 - John Doe, 3 days ago : Add new feature
-            def5678 - Jane Smith, 1 week ago : Fix issue #123
-            ```
-            - Combine options like `git log --oneline --graph` to create a visual summary of the history.
-
-      - **Filtering Commits**:
-      You can filter commits using various criteria:
-
-        - **By Author**: Use `--author="Author Name"` to show commits by a specific author.
-        - **By Date**: Use `--since` and `--until` to limit commits to a specific time range.
-        - **By Message**: Use `--grep="keyword"` to search for keywords in commit messages
-            - To view commits by a specific author, use `git log --author="Author Name"`.
-            - To limit commits by date, use options like `--since` and `--until`:
-              ```sh
-              git log --since="2023-01-01" --until="2023-12-31"
-              ```
-            - To search for keywords in commit messages, use `--grep`:
-              ```sh
-              git log --grep="fix"
-              ```
-
-- **Viewing Changes**:
-    - Use `git show` to view the details of a specific commit, including the changes made.
-    - Use `git diff` to see the differences between commits or between the working directory and the latest commit.
-    
-    - **Basic Usage**:
-        - To view details of a specific commit, use:
-            ```sh
-            git show <commit-hash>
-            ```
-        - To view changes between two specific commits, use:
-            ```sh
-            git diff <commit-hash1> <commit-hash2>
-              ```
-    - **`git show` and `git diff` Overview**
-
-        Both `git show` and `git diff` are essential Git commands used to inspect changes in a repository, but they serve different purposes:
-
-        - **`git show`**: Displays information about a specific commit, including its metadata (author, date, message) and the changes introduced by that commit.
-        - **`git diff`**: Compares two states in the repository, showing the differences between them. This could be between your working directory and the staging area, between commits, or between branches.
-
-    - **`git show`**
-
-        The `git show` command is primarily used to display details of a specific commit. By default, it shows the following information:
-
-        - **Commit metadata**: Includes the commit hash, author name, date, and commit message.
-        - **Changes introduced**: Displays the diff of the changes made in that commit.
-
-        - **Basic Usage**
-            ```sh
-            git show <commit-hash>
-            ```
-             or
-            ```sh
-            git show  1a2b3c
-            ```
-            note: Replace `1a2b3c` with the actual commit hash you want to view. You also don't need to type the full hash. Only the first few characters are needed. Enough to be unique within the commit history.
-        - Example Output:
-        ```diff
-        commit -1a2b3c4d5e6f7g8h9i0jklmnopqrs
-        Author: John Doe <john@example.com>
-        Date:   Thu Oct 29 14:00 2024
-
-        Add feature X
-
-        diff --git a/file.txt b/file.txt
-        index abc121..def456 100644
-        --- a/file.txt
-        +++ b/file.txt
-        @@ -3,3 +1,4 @@
-        Line -1
-        Line 0
-        +New line added in feature X
+    - **Example Output**:
         ```
-        **Output Explanation:**
+        abc1234 - John Doe, 3 days ago : Add new feature
+        def5678 - Jane Smith, 1 week ago : Fix issue #123
+        ```
+        - Combine options like `git log --oneline --graph` to create a visual summary of the history.
 
-        - **Commit Metadata**:
+  - **Filtering Commits**:
+  You can filter commits using various criteria:
 
-            - **Commit Hash**: The unique identifier for the commit (e.g., `1a2b3c`).
-            - **Author**: The name and email of the person who made the commit.
-            - **Date**: The timestamp when the commit was made.
-            - **Message**: The commit message describing what was changed.
-
-        - **Diff Section**:  
-            The diff shows what lines were added or removed in each file as part of that commit. It uses symbols like:
-
-            - `+`: Lines that were added.
-            - `-`: Lines that were removed.
+    - **By Author**: Use `--author="Author Name"` to show commits by a specific author.
+    - **By Date**: Use `--since` and `--until` to limit commits to a specific time range.
+    - **By Message**: Use `--grep="keyword"` to search for keywords in commit messages
+        - To view commits by a specific author, use `git log --author="Author Name"`.
+        - To limit commits by date, use options like `--since` and `--until`:
+          ```sh
+          git log --since="2023-01-01" --until="2023-12-31"
+          ```
+        - To search for keywords in commit messages, use `--grep`:
+          ```sh
+          git log --grep="fix"
+          ```
 ---
- - **Line  1** `commit -1a2b3c4d5e6f7g8h9i0jklmnopqrs`
-	- `commit`: This keyword indicates the start of a commit description.
-	- `-1a2b3c4d5e6f7g8h9i0jklmnopqrs`: This is the unique SHA-1 hash that identifies this specific commit. Every commit in Git has a unique hash that acts as its identifier, allowing you to reference it later (e.g., `git show <commit-hash>`).
+##### **Viewing Changes**:
+- Use `git show` to view the details of a specific commit, including the changes made.
+- Use `git diff` to see the differences between commits or between the working directory and the latest commit.
 
- - **Line  2** `Author: John Doe <john@example.com>`
-	- `Author:`: This shows the person who created the commit.
-	- `John Doe <john@example.com>`: This is the name and email of the author who made the changes in this commit. Git tracks who made each change, which is useful for collaboration and tracking history.
+- **Basic Usage**:
+    - To view details of a specific commit, use:
+        ```sh
+        git show <commit-hash>
+        ```
+    - To view changes between two specific commits, use:
+        ```sh
+        git diff <commit-hash1> <commit-hash2>
+          ```
+- **Overview of the `git show` and `git diff` Commands**
 
- - **Line  3** `Date: Thu Oct 29 14:00 2024`
-	- `Date:`: This shows when the commit was made.
-	- `Thu Oct 29 14:00 2024`: The exact date and time when the commit was created. This is in a standard format showing the day of the week, month, day, time, and year.
+    Both `git show` and `git diff` are essential Git commands used to inspect changes in a repository, but they serve different purposes:
 
- - **Line  4** `Add feature X`
-	- This is the commit message provided by the author when they created this commit. It describes what changes were made in this commit. In this case, the message is "Add feature X."
+    - **`git show`**: Displays information about a specific commit, including its metadata (author, date, message) and the changes introduced by that commit.
+    - **`git diff`**: Compares two states in the repository, showing the differences between them. This could be between your working directory and the staging area, between commits, or between branches.
+---
+###### **The `git show` Command**
 
- - **Line  5** `diff --git a/file.txt b/file.txt`
-	- This line indicates that Git is showing a diff (difference) between two versions of `file.txt`.
-    - `a/file.txt`: The version of `file.txt` before the commit (the "old" version).
-    - `b/file.txt`: The version of `file.txt` after the commit (the "new" version).
+The `git show` command is primarily used to display details of a specific commit. By default, it shows the following information:
 
- - **Line  6** `index abc121..def456 100644`
-	- `index abc121..def456`: This shows the file's state before and after the commit using shortened SHA-1 hashes (`abc121`, `def456`). These hashes represent the content of `file.txt` at different points in time:
-    
-    - `abc121`: The hash for the old version of `file.txt`.
-    - `def456`: The hash for the new version of `file.txt`.
-    
-	- `100644`: This represents the file's permissions in Unix format:
-    - `100644`: A regular non-executable file.
-    
+- **Commit metadata**: Includes the commit hash, author name, date, and commit message.
+- **Changes introduced**: Displays the diff of the changes made in that commit.
 
-This permission code indicates that no changes were made to file permissions during this commit.
+- **Basic Usage**
+    ```sh
+    git show <commit-hash>
+    ```
+     or
+    ```sh
+    git show  1a2b3c
+    ```
+    note: Replace `1a2b3c` with the actual commit hash you want to view. You also don't need to type the full hash. Only the first few characters are needed. Enough to be unique within the commit history.
+- **Example Output:**
+    ```diff
+    commit -1a2b3c4d5e6f7g8h9i0jklmnopqrs
+    Author: John Doe <john@example.com>
+    Date:   Thu Oct 29 14:00 2024
 
- - **Line  7** `--- a/file.txt`
+    Add feature X
 
-	- The `--- a/file.txt` line shows that this is the old version of `file.txt`, before any changes were made.
+    diff --git a/file.txt b/file.txt
+    index abc121..def456 100644
+    --- a/file.txt
+    +++ b/file.txt
+    @@ -3,3 +1,4 @@
+    This content wasn't changed
+    This content wasn't changed
+    +New line added in feature X
+    ```
 
- - **Line  8** `+++ b/file.txt`
+    - **Commit Metadata**:
+        The meta data section contains information about the commit itself such as the Commit Hash, Author, Date, Message.
 
-	- The `+++ b/file.txt` line indicates that this is the new version of `file.txt`, after changes were applied.
+    - **Diff Section**:  
+        The diff shows a summary of changes made in the commit. For example what lines were added or removed in each file. 
 
- - **Line  9** `@@ -3,3 +1,4 @@`
+- **Detailed Output Explanation:**
 
-This is called a hunk header, which gives context about where changes occurred in the file:
+    - **Line  1** `commit -1a2b3c4d5e6f7g8h9i0jklmnopqrs`
+        - `commit`: This keyword indicates the start of a commit description.
+        - `-1a2b3c4d5e6f7g8h9i0jklmnopqrs`: This is the unique SHA-1 hash that identifies this specific commit. Every commit in Git has a unique hash that acts as its identifier, allowing you to reference it later (e.g., `git show <commit-hash>`).
 
-	- `@@ -3,3 +1,4 @@`:
-    
-    - `-3,3`: Refers to lines in the old file (`a/file.txt`). It means that in the old version, starting at line 3, there were 3 lines.
-    - `+1,4`: Refers to lines in the new file (`b/file.txt`). It means that in the new version, starting at line 1, there are now 4 lines.
-    
+    - **Line  2** `Author: John Doe <john@example.com>`
+        - `Author:`: This shows the person who created the commit.
+        - `John Doe <john@example.com>`: This is the name and email of the author who made the changes in this commit. Git tracks who made each change, which is useful for collaboration and tracking history.
 
-This tells us that:
+    - **Line  3** `Date: Thu Oct 29 14:00 2024`
+        - `Date:`: This shows when the commit was made.
+        - `Thu Oct 29 14:00 2024`: The exact date and time when the commit was created. This is in a standard format showing the day of the week, month, day, time, and year.
 
-	- In the old file (`a/file.txt`) starting from line 3, there were only 3 lines.
-	- In the new file (`b/file.txt`) starting from line 1, there are now 4 lines (indicating that one or more lines have been added).
+    - **Line  4** `Add feature X`
+        - This is the commit message provided by the author when they created this commit. It describes what changes were made in this commit. In this case, the message is "Add feature X."
 
- - **Line  File Content Changes:
+    - **Line  5** `diff --git a/file.txt b/file.txt`
+        - This line indicates that Git is showing a diff (difference) between two versions of `file.txt`.
+        - `a/file.txt`: The version of `file.txt` before the commit (the "old" version).
+        - `b/file.txt`: The version of `file.txt` after the commit (the "new" version).
 
-The following lines show what exactly changed between these two versions:
+    - **Line  6** `index abc121..def456 100644`
+        - `index abc121..def456`: This shows the file's state before and after the commit using shortened SHA-1 hashes (`abc121`, `def456`). These hashes represent the content of `file.txt` at different points in time:
 
- - **Line  10** Line `Line -1`:
+        - `abc121`: The hash for the old version of `file.txt`.
+        - `def456`: The hash for the new version of `file.txt`.
 
-	- This line starts with no special symbol (neither `+` nor `-`). This means it is an _unchanged_ line present in both versions of the file.
+        - `100644`: This represents the file's permissions in Unix format (rwxrwxrwx). 
+            - 100 (file type): Indicates a regular file.
+            - 6 or rw- (permissions for the owner): Read and write permissions. 
+            - 4 or r-- (permissions for the group): Read-only permissions.
+            - 4 or r-- (permissions for others): Read-only permissions.
 
- - **Line  11** Line `Line 0`:
+     - **Line  7** `--- a/file.txt`
+            - The `--- a/file.txt` line shows that this is the old version of `file.txt`, before any changes were made.
 
-	- Similar to "Line -1", this line has no special symbol and is present in both versions of the file without modification.
+     - **Line  8** `+++ b/file.txt`
+            - The `+++ b/file.txt` line indicates that this is the new version of `file.txt`, after changes were applied.
 
- - **Line  12** Line `+New line added in feature X`:
+     - **Line  9** `@@ -3,3 +1,4 @@`
+        This is called a hunk header, which gives context about where changes occurred in the file:
+        - `-3,3`: Refers to lines in the old file (`a/file.txt`). 
+            - It means that in the old version, starting at line 3 spanning 3 lines.
+        - `+1,4`: Refers to lines in the new file (`b/file.txt`). 
+            - It means that in the new version, starting at line 1, there are now 4 lines.
 
-- The leading `+` symbol indicates that this line was added in the new version (`b/file.txt`) but did not exist in the old version (`a/file.txt`).
-- The text "New line added in feature X" suggests that this line was introduced as part of implementing "feature X."
+        - In the old file (`a/file.txt`) starting from line 3, there were only 3 lines.
+        - In the new file (`b/file.txt`) starting from line 1, there are now 4 lines (indicating that one or more lines have been added).
 
-        - `git show` Options:
+    - **Line  10** Line `This content wasn't changed`:
+        - This line starts with no special symbol (neither `+` nor `-`). This means it is an _unchanged_ line present in both versions of the file.
 
-            - `git show HEAD`: Shows details of the latest commit on your current branch.
-            - `git show <branch>`: Shows details of the latest commit on a specified branch.
-            - `git show --stat`: Displays a summary of changes (number of insertions and deletions) without showing the full diff.
+    - **Line  11** Line `This content wasn't changed`:
+        - Similar to "Line 10", this line has no special symbol and is present in both versions of the file without modification.
 
- - **`git diff`**
+    - **Line  12** Line `+New line added in feature X`:
+
+        - The leading `+` symbol indicates that this line was added in the new version (`b/file.txt`) but did not exist in the old version (`a/file.txt`).
+        - The text "New line added in feature X" suggests that this line was introduced as part of implementing "feature X."
+
+###### **More `git show` Options:**
+
+- `git show <commit-hash>`: Displays details of a specific commit identified by its hash.
+- `git show HEAD`: Shows details of the latest commit on your current branch.
+- `git show <branch>`: Shows details of the latest commit on a specified branch.
+- `git show --stat`: Displays a summary of changes (number of insertions and deletions) without showing the full diff.
+- `git help show`: Opens the manual page for the `git show` command.
+
+---
+###### **The `git diff` Command**
 
 The `git diff` command is used to compare different states in your repository. It highlights differences between files or commits at various stages.
 
  - **Basic Usage**
-```sh
-# Compare working directory with staging area (unstaged changes)
-git diff
+    - Compare working directory with staging area (unstaged changes. Useful before staging changes for a commit)
+    ```sh
+    git diff
+    ```
+    - Compare staging area with last commit (useful before committing)
+    ```sh
+    git diff --staged
+    ```
+    - Compare the current commit (`HEAD`) with its parent (`HEAD~1`) and shows what has changed between them. (Useful to see the changes in the last commit or remember what you were doing.)
+    ```sh
+    git diff HEAD~1 HEAD
+    ```
+    - Compare any two commits throuout the history
+    ```sh
+    git diff <commit1> <commit2>
+    ```
 
-# Compare staging area with last commit (staged changes)
-git diff --staged
+    - Example Output:
+        ```diff
+        diff --git a/file.txt b/file.txt
+        index abc123..def456 100644
+        --- a/file.txt
+        +++ b/file.txt
+        @@ -1,3 +1,4 @@
+        Line 1
+        Line 2
+        +New line added in feature X
+        ```
+###### **More `git diff` Options:**
 
-# Compare two commits
-git diff <commit1> <commit2>
-
-# Compare two branches
-git diff <branch1> <branch2>
-```
- - Example:
-```sh
-git diff HEAD~1 HEAD
-```
-
-This compares the current commit (`HEAD`) with its parent (`HEAD~1`) and shows what has changed between them.
-
- - Output Explanation:
-
-1.  **File Path**: Shows which files have been modified.
-2.  **Line Changes**:
-    
-    -   Lines prefixed with `+`: Added lines.
-    -   Lines prefixed with `-`: Removed lines.
-    
-
- - Example Output:
-```diff
-diff --git a/file.txt b/file.txt
-index abc123..def456 100644
---- a/file.txt
-+++ b/file.txt
-@@ -1,3 +1,4 @@
- Line 1
- Line 2
-+New line added in feature X
-```
-
-In this example:
-
--   The line starting with `+New line added in feature X` indicates that this line was added.
-
- - Key Options:
-
--   `git diff --staged`: Compares staged changes with the last commit (useful before committing).
+-   `git diff --stat`: Shows a summary of changes (number of files changed, lines added/removed).
+-   `git diff --name-only`: Lists only the names of files that differ.
 -   `git diff branchA branchB`: Compares two branches to see differences between them.
--   `git diff <commit1> <commit2>`: Compares two specific commits.
+-   `git diff -w`: Ignores whitespace changes.
+-   `git diff help`: Opens the manual page for the `git diff` command.
 
- - Advanced Usage:
+#### Undoing Changes
+- **Unstage Files:** Use `git reset [file]`.
+- **Amend Commits:** Modify the last commit with `git commit --amend`.
+- **Stashing Changes:** Temporarily save changes with `git stash`.
 
--   **Whitespace Ignoring**: Use `-w` to ignore whitespace differences.
--   **Submodule Changes**: Use `--submodule` to see changes in submodules.
-
-The `git diff` command is used to compare different states in your repository. It highlights differences between files or commits at various stages.
 - **Practical Example**:
   - Suppose you accidentally made some changes to `file1.txt` that you don't want to keep. You can:
     1. Use `git log` to find the commit hash where `file1.txt` was last correct.
@@ -559,18 +527,11 @@ The `git diff` command is used to compare different states in your repository. I
     ```
     This command will move you back to the `main` branch, restoring the current state of all files.
     
-
-#### Exploring Git History
-- **Viewing History:**
-  - `git log` displays commit history.
-  - Use `--oneline` or `--graph` for compact or visual representations.
-
-#### Undoing Changes
-- **Unstage Files:** Use `git reset [file]`.
-- **Amend Commits:** Modify the last commit with `git commit --amend`.
-- **Stashing Changes:** Temporarily save changes with `git stash`.
-
 ---
+#### [Back To Top](#table-of-contents)
+---
+
+# TODO Below Here
 ### 5. Branches
 
 #### Branches Explained
