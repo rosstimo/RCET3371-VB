@@ -95,7 +95,6 @@ See Also: [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Instal
 
 <!---->
 
-<!-- # TODO - Fix This Next -->
 ## Understanding Git Fundamentals 
 
 ### Key Concepts
@@ -230,74 +229,81 @@ See Also: [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Instal
 
 <!---->
 
-## Working with Changes
+## Exploring Git History
 
 ### Understanding Git History
 
-Git history is a record of all the changes made to a repository over time. Each change is captured in a _commit_, which includes information such as the author's name, email, date, and a commit message describing the change. Commits are identified by unique SHA-1 hashes, which serve as pointers to specific points in the repository's history.
-
+Git history is a record of all the changes made to a repository over time. Each change is captured in a _commit_, which includes information such as the author's name, email, date, and a commit message describing the change. Commits are identified by unique SHA-1 hashes, which serve as unique identifiers to specific points in the repository's history.
+    
 ### Key Concepts
+- **Commit**: A snapshot of the project at a specific point in time, capturing changes made.
+- **HEAD**: A reference to the current branch or commit you are working on.
+- **SHA-1 Hash**: A unique identifier for each commit, used to reference specific points in history.
+- **Hunk**: A section of a file that has been modified, added, or removed in a commit.
+- **Parent Commit**: The previous commit in the history, forming a chain of commits.
+- **Branch**: A pointer to a specific commit, allowing for parallel lines of development.
 
--   **Staging Area (Index)**: A space where changes are prepared before committing.
--   **Commits**: Fundamental units in Git history, representing snapshots of the project at different times.
--   **HEAD**: A reference to the current commit or branch you are working on.
--   **Branches**: Pointers to specific commits, allowing for parallel lines of development.
-
-### Exploring Git History
 
 ### **Viewing History**:
   Use `git log` to display the commit history. By default, `git log` shows each commit in reverse chronological order (most recent first).
 
-- **Customizing Log Output**:
-    Git provides several options to customize the output of `git log`:
-    - **`--oneline`**: Displays each commit on a single line with its hash and message.
-    - **`--graph`**: Adds an ASCII graph showing branch and merge history.
-    - **`--decorate`**: Shows references (like branches and tags) alongside commit messages.
-    - **`--pretty`**: Allows formatting of the log output. Options include `short`, `full`, `fuller`, `reference`, and custom formats
+### **Customizing Log Output**:
+Git provides several options to customize the output of `git log`:
 
-        - Use `git log --oneline` to show each commit on a single line, providing a compact overview.
-        - Use `git log --graph` to display a visual representation of the branch structure and merges.
-        - Use `git log --decorate` to show references (like branches and tags) alongside commit messages.
-        - Use `git log --pretty=oneline` to customize the output format, showing each commit on a single line.
-        - Use `git log --pretty=full` to display detailed information about each commit, including author, date, and commit message.
-        - Use `git log --pretty=format:"%h - %an, %ar : %s"` to customize the output format, showing commit hash, author, relative date, and subject.
-            - Some format option _placeholders_ are:
-                - `%h`: Abbreviated commit hash
-                - `%an`: Author name
-                - `%ar`: Author date, relative
-                - `%ad`: Author date
-                - `%s`: Commit subject
-                - `%cd`: Committer date
-                - `%cn`: Committer name
-                - `%ce`: Committer email
-                - `%Cred`: red color
-                - `%Cgreen`: green color
-                - `%Cblue`: blue color
-                - `%Creset`: reset color
+- `git log --oneline`: Displays each commit on a single line with its hash and message.<br>
+- `git log --graph`: Adds an ASCII graph showing branch and merge history.
+- `git log --decorate`: Shows references (like branches and tags) alongside commit messages.
+- `--pretty`: Allows formatting of the log output. Options include `short`, `full`, `fuller`, `reference`, and custom formats.
+- `git log --pretty=oneline`: Customize the output format, showing each commit on a single line.
+- `git log --pretty=full`: Display detailed information about each commit, including author, date, and commit message.
+- `git log --pretty=format:"%h - %an, %ar : %s"`: Customize the output format, showing commit hash, author, relative date, and subject.
+    - Where the format option _placeholders_ are:
+        - `%h`: Abbreviated commit hash
+        - `%an`: Author name
+        - `%ar`: Author date, relative
+        - `%s`: Commit subject
+    ```sh
+    abc1234 - John Doe, 3 days ago : Add new feature
+    def5678 - Jane Smith, 1 week ago : Fix issue \#123
+    ```
+- Combine options like `git log --oneline --graph` to create a visual summary of the history.
 
-    - **Example Output**:
-        ```
-        abc1234 - John Doe, 3 days ago : Add new feature
-        def5678 - Jane Smith, 1 week ago : Fix issue #123
-        ```
-        - Combine options like `git log --oneline --graph` to create a visual summary of the history.
+### **Filtering Commits**:
 
-  - **Filtering Commits**:
-  You can filter commits using various criteria:
+- **By Author**: Use `git log --author="Author Name"` to show commits by a specific author.
 
-    - **By Author**: Use `--author="Author Name"` to show commits by a specific author.
-    - **By Date**: Use `--since` and `--until` to limit commits to a specific time range.
-    - **By Message**: Use `--grep="keyword"` to search for keywords in commit messages
-        - To view commits by a specific author, use `git log --author="Author Name"`.
-        - To limit commits by date, use options like `--since` and `--until`:
-          ```sh
-          git log --since="2023-01-01" --until="2023-12-31"
-          ```
-        - To search for keywords in commit messages, use `--grep`:
-          ```sh
-          git log --grep="fix"
-          ```
----
+- **By Date**: Use `--since` and `--until` to limit commits to a specific time range.
+    ```sh
+    git log --since="2023-01-01" --until="2023-12-31"
+    ```
+    ```sh
+    git log --since=1.week
+    ```
+- **By File**: Use `git log -- <file>` to show commits that affected a specific file.
+    ```sh
+    git log -- file1.txt
+    ```
+- **By String**: Use `git log -S"string"` to search for commits that added or removed a specific string.
+    ```sh
+    git log -S someString
+    ```
+
+- **By Message**: Use `git log --grep="keyword"` to search for keywords in commit messages
+    ```sh
+    git log --grep="fix"
+    ```
+
+
+### See Also:
+- [Git Basics - Viewing the Commit History](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History)
+- [Git Log Documentation](https://git-scm.com/docs/git-log)
+
+### [Back To Top](#table-of-contents)
+
+<!---->
+
+## Exploring Changes
+
 ### **Viewing Changes**:
 - Use `git show` to view the details of a specific commit, including the changes made.
 - Use `git diff` to see the differences between commits or between the working directory and the latest commit.
