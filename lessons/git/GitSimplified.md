@@ -1,18 +1,18 @@
 # Git Simplified
 
 ## Table of Contents
- [Introduction to Version Control](#introduction-to-version-control)
- [Setting Up Git](#setting-up-git)
- [Understanding Git Fundamentals](#understanding-git-fundamentals)
- [Working with Changes](#working-with-changes)
- [Branching and Merging](#branches)
- [References](#references)
+- [Introduction to Version Control](#introduction-to-version-control)
+- [Setting Up Git](#setting-up-git)
+- [Understanding Git Fundamentals](#understanding-git-fundamentals)
+- [Working with Changes](#working-with-changes)
+- [Branching and Merging](#branches)
+- [References](#references)
 
 ---
 
 ## Introduction to Version Control
 
-#### What is Version Control?
+### What is Version Control?
 Version Control is a system that records changes to a file or set of files over time, allowing you to recall specific versions later. It is particularly useful for collaborative projects, tracking changes, and ensuring project integrity.
 
 **Types of Version Control Systems (VCS):**
@@ -20,34 +20,34 @@ Version Control is a system that records changes to a file or set of files over 
 - **Centralized VCS (CVCS):** Uses a single server for all version tracking, which simplifies collaboration but introduces a single point of failure.
 - **Distributed VCS (DVCS):** Every contributor has a full copy of the project history, which allows for offline work and redundancy. Git is an example of a DVCS.
 
-#### Why Git?
+### Why Git?
 Git is a Distributed Version Control System (DVCS) designed for flexibility, performance, and collaboration. Its key benefits include fast operations, distributed architecture, and strong branching and merging capabilities.
 
 ---
 
 ## Setting Up Git
 
-#### Installing Git
+### Installing Git
 - **Windows:** Download the installer from [git-scm.com](https://git-scm.com/).
-- **Linux:** Use your package manager (e.g., `sudo apt install git`).
-- **macOS:** Install via Homebrew with `brew install git`.
+- **Linux:** Use your package manage: `sudo apt install git`
+- **macOS:** Install via Homebrew with: `brew install git`
 
-#### Opening A Terminal
-- **Windows:** Use git Bash terminal (usually installed with git as above) or optionally Command Prompt or PowerShell.
-    <!-- ![image](./images/gitBash.png) -->
-    <!-- <img src="./images/gitBash.png" alt="Description" width="300" height="200"> -->
-    <!-- <img src="./images/gitBash.png" alt="Description" width="50%" > -->
+See Also: [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+
+### Opening A Terminal
+- **Windows:** Use git Bash terminal (usually installed with git as above) or optionally Command Prompt, PowerShell, or Windows Terminal.
 
     <figure>
         <img src="./images/gitBash.png" alt="Description" width="50%" >
         <figcaption>To open Git Bash, right-click in any directory/folder within windows file explorer and select "Git Bash Here."</figcaption>
     </figure>
 
+- **Linux:** Use Terminal or your preferred Terminal Emulator.
+- **macOS:** Use Terminal, iTerm, or your preferred Terminal Emulator.
 
-- **Linux:** Use Terminal or another shell.
-- **macOS:** Use Terminal or iTerm.
 
-#### Configuration Basics
+### Configuration Basics
 
 - **List All Git Config Settings**
   ```sh
@@ -56,26 +56,33 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
 - **Set User Identity:**
   ```sh
   git config --global user.name "Your Name"
-  git config --global user.email "your.email@example.com"
+  git config --global user.email your.email@example.com
   ```
 - **Set Default Editor:**
   ```sh
-  git config --global core.editor "vim"
+  git config --global core.editor notepad
   ```
+- **Set Default Branch Name:**
+  ```sh
+    git config --global init.defaultBranch main
+  ```
+
 - **Help With Git Commands**
   
   Show the Git commands with:
   ```sh
   git --help
   ```
-  Show more information about a command:
+  Show more information about a specific command:
   ```sh
   git help add
   ``` 
   The example shows more information about the `git add` command.
   
   note: This will either open the manual page in your terminal or the html version in your browser
-  
+ 
+See Also: [First-Time Git Setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
+
 ---
 #### [Back To Top](#table-of-contents)
 ---
@@ -83,7 +90,7 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
 <!-- # TODO - Fix This Next -->
 ## Understanding Git Fundamentals 
 
-#### Repositories and Commits
+### Repositories and Commits
 - **Repository (Repo):** A directory that holds all the files, folders, and complete history of your project.
 - **Creating a New Local Repository**
     1. **Initialize a Repository:**
@@ -187,10 +194,10 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
      This will show a list of commits, including the commit messages, authors, and timestamps.
 
 ---
-#### [Back To Top](#table-of-contents)
+### [Back To Top](#table-of-contents)
 ---
 
-#### .gitignore Usage
+### .gitignore Usage
 The `.gitignore` file is used to specify files and directories that Git should ignore to keep the repository clean.
 - **Purpose:** Exclude unnecessary files like build artifacts, logs, or sensitive information from version control.
 - **Common Patterns and Examples:**
@@ -236,25 +243,25 @@ The `.gitignore` file is used to specify files and directories that Git should i
   - **Use Templates:** Start with templates available for various languages and frameworks to ensure comprehensive coverage of common ignore patterns.
 
 ---
-#### [Back To Top](#table-of-contents)
+### [Back To Top](#table-of-contents)
 ---
 
 ## Working with Changes
 
-#### Understanding Git History
+### Understanding Git History
 
 Git history is a record of all the changes made to a repository over time. Each change is captured in a _commit_, which includes information such as the author's name, email, date, and a commit message describing the change. Commits are identified by unique SHA-1 hashes, which serve as pointers to specific points in the repository's history.
 
-#### Key Concepts
+### Key Concepts
 
 -   **Staging Area (Index)**: A space where changes are prepared before committing.
 -   **Commits**: Fundamental units in Git history, representing snapshots of the project at different times.
 -   **HEAD**: A reference to the current commit or branch you are working on.
 -   **Branches**: Pointers to specific commits, allowing for parallel lines of development.
 
-#### Exploring Git History
+### Exploring Git History
 
-#### **Viewing History**:
+### **Viewing History**:
   Use `git log` to display the commit history. By default, `git log` shows each commit in reverse chronological order (most recent first).
 
 - **Customizing Log Output**:
@@ -307,7 +314,7 @@ Git history is a record of all the changes made to a repository over time. Each 
           git log --grep="fix"
           ```
 ---
-#### **Viewing Changes**:
+### **Viewing Changes**:
 - Use `git show` to view the details of a specific commit, including the changes made.
 - Use `git diff` to see the differences between commits or between the working directory and the latest commit.
 
@@ -478,7 +485,7 @@ The `git diff` command is used to compare different states in your repository. I
 -   `git diff -w`: Ignores whitespace changes.
 -   `git diff help`: Opens the manual page for the `git diff` command.
 
-#### Undoing Changes
+### Undoing Changes
 - **Unstage Files:** Use `git reset [file]`.
 - **Amend Commits:** Modify the last commit with `git commit --amend`.
 - **Stashing Changes:** Temporarily save changes with `git stash`.
@@ -523,12 +530,12 @@ The `git diff` command is used to compare different states in your repository. I
     This command will move you back to the `main` branch, restoring the current state of all files.
     
 ---
-#### [Back To Top](#table-of-contents)
+### [Back To Top](#table-of-contents)
 ---
 
 ## Branches
 
-#### Branches Explained
+### Branches Explained
 Branches are essentially different versions of your project that coexist in parallel. This allows developers to work on features, fixes, or experiments without affecting the main codebase. The main branch in Git is commonly called `main` or `master`. Creating branches is a core part of Git's power, enabling collaborative workflows and feature isolation.
 
 - **Why Use Branches?**
@@ -538,7 +545,7 @@ Branches are essentially different versions of your project that coexist in para
 
 A common approach is **Git Flow**, where developers use separate branches for new features (`feature/branch-name`), bug fixes (`hotfix/branch-name`), and releases (`release/branch-name`). This allows structured and organized project development.
 
-#### Branch Operations
+### Branch Operations
 
 
 list branches:
@@ -554,14 +561,14 @@ git add file.txt
 git commit -m "Add file.txt with original content"
 ```
 
-#### 1. Create a Branch
+### 1. Create a Branch
 To create a new branch, you use the `git branch` command followed by the branch name:
 ```sh
 git branch feature-xyz
 ```
 This command creates a new branch named `feature-xyz` based on your current branch. However, you will still be on the original branch (e.g., `main`). To start working on the new branch, you need to switch to it.
 
-#### 2. Switch Branch
+### 2. Switch Branch
 To move to another branch, you use the `git checkout` command:
 ```sh
 git checkout feature-xyz
@@ -572,7 +579,7 @@ git switch feature-xyz
 ```
 Now you are on the `feature-xyz` branch, and any changes you make will be specific to this branch.
 
-#### 3. Create and Switch in One Step
+### 3. Create and Switch in One Step
 You can also create and switch to a new branch in a single step using:
 ```sh
 git checkout -b feature-xyz
@@ -583,21 +590,21 @@ git switch -c feature-xyz
 ```
 This is a handy way to streamline your workflow when starting new features.
 
-#### 4. Modifying the file in the new branch
+### 4. Modifying the file in the new branch
 Edit the file in the new branch:
 ```sh
 echo "This is a new feature" >> file.txt
 ```
 This command appends a line to `file.txt`, indicating that this change is part of the `feature-xyz` branch.
 
-#### 5. Switch Back to the Main Branch
+### 5. Switch Back to the Main Branch
 After making changes in the `feature-xyz` branch, you can switch back to the `main` branch:
 ```sh
 git checkout main
 ```
 This command moves you back to the `main` branch, where you can continue working on other tasks or merge changes from feature branches.
 
-#### 6. Merge Changes from the Feature Branch  
+### 6. Merge Changes from the Feature Branch  
 Once you have finished working on a branch, you often want to merge those changes back into the `main` branch. You first switch back to `main` and then use the `git merge` command:
 ```sh
 git checkout main
@@ -605,26 +612,26 @@ git merge feature-xyz
 ```
 This will integrate the changes from `feature-xyz` into `main`. If there are no conflicting changes, Git will perform a **fast-forward merge** or an **automatic merge**.
 
-#### 7. examine the contents of the file
+### 7. examine the contents of the file
 To see the contents of the file, you can use the `cat` command:
 ```sh
 cat file.txt
 ```
-#### 8. Delete the Feature Branch (Optional)
+### 8. Delete the Feature Branch (Optional)
 Once merged, you can delete the `feature-xyz` branch if it's no longer needed:
 ```sh
 git branch -d feature-xyz
 ```
 
 ---
-#### [Back To Top](#table-of-contents)
+### [Back To Top](#table-of-contents)
 ---
 
 ## References
 - **Official Git Documentation**: [Git Book](https://git-scm.com/book/en/v2)
-- **Interactive Tutorials**: [Learn Git Branching](https://learngitbranching.js.org/)
-- **Glossary of Terms**: Refer to the glossary section for terminology.
+<!-- - **Interactive Tutorials**: [Learn Git Branching](https://learngitbranching.js.org/) -->
+- **Glossary of Terms**: [Glossary](https://git-scm.com/docs/gitglossary)
 
 ---
-#### [Back To Top](#table-of-contents)
+### [Back To Top](#table-of-contents)
 ---
