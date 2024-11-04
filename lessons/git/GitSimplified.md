@@ -1,18 +1,13 @@
 # Git Lesson Plan
 
 ## Table of Contents
-1. [Introduction to Version Control](#1-introduction-to-version-control)
-2. [Setting Up Git](#2-setting-up-git)
-3. [Understanding Git Fundamentals](#3-understanding-git-fundamentals)
-4. [Working with Changes](#4-working-with-changes)
-5. [Branching and Merging](#5-branches)
-6. [Remote Collaboration](#6-remote-collaboration)
-7. [Common Scenarios and Issues](#7-common-scenarios-and-issues)
-8. [Advanced Git Concepts](#8-advanced-git-concepts)
-9. [Hands-on Practice and Exercises](#9-hands-on-practice-and-exercises)
-10. [Resources for Continued Learning](#10-resources-for-continued-learning)
-11. [Assessment and Review](#11-assessment-and-review)
-12. [References](#12-references)
+ [Introduction to Version Control](#1-introduction-to-version-control)
+ [Setting Up Git](#2-setting-up-git)
+ [Understanding Git Fundamentals](#3-understanding-git-fundamentals)
+ [Working with Changes](#4-working-with-changes)
+ [Branching and Merging](#5-branches)
+ <!-- [Remote Collaboration](#6-remote-collaboration) -->
+ [References](#12-references)
 
 ---
 
@@ -86,6 +81,7 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
 #### [Back To Top](#table-of-contents)
 ---
 
+# TODO - Fix This Next
 ### 3. Understanding Git Fundamentals 
 
 #### Repositories and Commits
@@ -531,7 +527,6 @@ The `git diff` command is used to compare different states in your repository. I
 #### [Back To Top](#table-of-contents)
 ---
 
-# TODO Below Here
 ### 5. Branches
 
 #### Branches Explained
@@ -623,196 +618,14 @@ git branch -d feature-xyz
 ```
 
 ---
-
-### 6. Remote Collaboration
-
-#### Remote Repositories and GitHub
-- **Adding Remote:** Use `git remote add origin [url]` to add a remote repository.
-- **Pushing to Remote:** Use `git push` to upload changes.
-- **Pulling from Remote:** Use `git pull` to fetch and merge changes.
-
-#### Forking and Pull Requests
-- **Forking:** Create a personal copy of someone else's repository.
-- **Pull Requests:** Request to merge your changes into the original project.
-
+#### [Back To Top](#table-of-contents)
 ---
 
-### 7. Common Scenarios and Issues
-
-#### Common Problems and Solutions
-- **Merge Conflicts**: Use `git mergetool` or manually resolve conflicts.
-- **Detached HEAD**: Checkout an existing branch or create a new branch to resume a normal state.
-- **Accidental Deletion of Branches**: Use `git reflog` to recover lost branches.
-
-#### Best Practices
-- **Frequent Commits:** Make commits frequently with descriptive messages.
-- **Use Branches:** Keep feature and experimental work in separate branches.
-
----
-
-### 8. Advanced Git Concepts
-
-#### Git Bisect for Bug Hunting
-Use `git bisect` to find the commit that introduced a bug by performing a binary search.
-
-#### Cherry-pick and Rebase
-- **Cherry-pick:** Apply changes from a specific commit to the current branch.
-- **Rebase:** Reapply commits on top of another branch to maintain a clean project history.
-
----
-
-### 9. Hands-on Practice and Exercises
-- **Set Up a Repository**: Create a new repository, add some files, and create commits.
-- **Branching Exercise**: Create a feature branch, make changes, and merge it back.
-- **Conflict Resolution Practice**: Simulate and resolve a merge conflict.
-
----
-
-### 10. Resources for Continued Learning
+### References
 - **Official Git Documentation**: [Git Book](https://git-scm.com/book/en/v2)
 - **Interactive Tutorials**: [Learn Git Branching](https://learngitbranching.js.org/)
 - **Glossary of Terms**: Refer to the glossary section for terminology.
 
----
 
-### 11. Assessment and Review
-- **Quiz**: Short quiz on Git commands and their use cases.
-- **Group Exercise**: Collaboratively create and merge branches in a shared repository.
-
----
-
-### 12. References
-- Information gathered from official Git documentation, community contributions, and uploaded notes.
-
----
-
-#Below Here: Parking Lot
-
-##### 4. Merge Branch
-Once you have finished working on a branch, you often want to merge those changes back into the `main` branch. You first switch back to `main` and then use the `git merge` command:
-```sh
-git checkout main
-git merge feature-xyz
-```
-This will integrate the changes from `feature-xyz` into `main`. If there are no conflicting changes, Git will perform a **fast-forward merge** or an **automatic merge**.
-
-- **Fast-Forward Merge**: If no new commits have been made on `main` since you branched off, Git will simply move the pointer of `main` forward, effectively integrating all changes without creating a merge commit.
-- **Three-Way Merge**: If new commits were made on `main` while you were working on `feature-xyz`, Git will create a new commit that reconciles changes from both branches, preserving the full history.
-
-##### 5. Merge Conflicts
-Merge conflicts occur when changes in different branches affect the same part of a file. Git cannot automatically determine which change should be kept, so it will ask for manual intervention.
-
-**Example Scenario: Resolving a Conflict**
-- Suppose you have two branches: `main` and `feature-a`.
-- Both branches have modified the same line in `file.txt`.
-- When you attempt to merge `feature-a` into `main`, Git reports a conflict:
-  ```sh
-  git merge feature-a
-  # Output: CONFLICT (content): Merge conflict in file.txt
-  ```
-
-- To resolve the conflict, open `file.txt` in your editor. You will see markers that look like this:
-  ```
-  <<<<<<< HEAD
-  Line from the main branch
-  =======
-  Line from feature-a
-  >>>>>>> feature-a
-  ```
-- Choose which version to keep, or combine them manually, then save the file.
-- After resolving the conflict, add the resolved file to the staging area:
-  ```sh
-  git add file.txt
-  ```
-- Finally, complete the merge by committing:
-  ```sh
-  git commit -m "Merge feature-a with conflict resolution"
-  ```
-
-##### 6. Deleting Branches
-Once a feature branch has been merged into `main`, it is good practice to delete it to keep your branch list tidy:
-```sh
-git branch -d feature-xyz
-```
-The `-d` flag stands for "delete." This will only delete branches that have already been merged. If the branch hasn’t been merged, Git will warn you. To force delete an unmerged branch, use `-D` instead:
-```sh
-git branch -D feature-xyz
-```
-However, be careful with this, as it will remove any unmerged work permanently.
-
-#### Rebasing vs. Merging
-
-##### Merging
-Merging is a straightforward way to combine branches. It creates a merge commit and preserves the complete history of all branches.
-- **Pros**:
-  - Easy to understand and use.
-  - Keeps a detailed history of how changes were integrated.
-- **Cons**:
-  - History can become cluttered with many merge commits, especially when there are multiple active branches.
-
-##### Rebasing
-Rebasing, on the other hand, re-applies your branch's commits on top of another branch. For example, to rebase `feature-xyz` onto `main`:
-```sh
-git checkout feature-xyz
-git rebase main
-```
-This process rewrites the commit history of `feature-xyz`, creating a linear sequence of commits.
-
-- **Pros**:
-  - Clean, linear history that is easy to understand.
-  - No merge commits.
-- **Cons**:
-  - History is rewritten, which can be problematic if others are working on the same branch.
-  - Not recommended for public branches, as it changes the commit hashes.
-
-##### Interactive Rebase
-Interactive rebase (`git rebase -i`) allows you to edit, squash, or reorder commits during the rebase process. This is useful for cleaning up your commit history before merging into the main branch.
-
-**Example: Interactive Rebase**
-- Suppose your branch has several commits that need to be cleaned up before merging:
-```sh
-git rebase -i HEAD~4
-```
-  This command will open an editor with the last 4 commits. You can choose to squash commits (combine them), reword commit messages, or reorder them.
-
-#### Resolving Rebase Conflicts
-Similar to merging, rebasing can also lead to conflicts if the same lines were modified. Git will pause the rebase and prompt you to resolve the conflicts.
-
-To continue rebasing after resolving conflicts:
-```sh
-git rebase --continue
-```
-To abort the rebase and return to the original branch state:
-```sh
-git rebase --abort
-```
-
-#### Practical Example: Feature Development Workflow
-1. **Create a Branch for Your Feature**
-   ```sh
-   git checkout -b feature-login
-   ```
-2. **Make Changes and Commit**
-   ```sh
-   # Edit files
-   git add .
-   git commit -m "Add initial login functionality"
-   ```
-3. **Push Your Branch to a Remote Repository**
-   ```sh
-   git push origin feature-login
-   ```
-4. **Open a Pull Request**
-   Create a pull request on GitHub (or another Git hosting service) to merge your changes into `main`.
-5. **Review and Merge**
-   Once reviewed and approved, you can merge the feature branch into `main` and delete it.
-6. **Delete the Branch Locally and Remotely**
-   ```sh
-   git branch -d feature-login
-   git push origin --delete feature-login
-   ```
-
-#### Summary
-Branching and merging are critical parts of any Git workflow, providing flexibility, safety, and collaboration for teams of all sizes. Whether you are using feature branches for parallel development or relying on rebasing to maintain a clean commit history, understanding these operations deeply will help you get the most out of Git.
 
 
