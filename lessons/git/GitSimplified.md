@@ -21,9 +21,15 @@ Version Control is a system that records changes to a file or set of files over 
 - **Distributed VCS (DVCS):** Every contributor has a full copy of the project history, which allows for offline work and redundancy. Git is an example of a DVCS.
 
 ### Why Git?
-Git is a Distributed Version Control System (DVCS) designed for flexibility, performance, and collaboration. Its key benefits include fast operations, distributed architecture, and strong branching and merging capabilities.
+Git is a Distributed Version Control System (DVCS) designed for flexibility, performance, and collaboration. Its key benefits include fast operations, distributed architecture, and strong branching and merging capabilities. Git is widely used in open-source projects and enterprise environments. Git is free! $$$
 
----
+### See Also:
+- [About Version Control](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
+- [Git Basics Videos](https://git-scm.com/videos)
+
+#### [Back To Top](#table-of-contents)
+
+<!---->
 
 ## Setting Up Git
 
@@ -33,7 +39,6 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
 - **macOS:** Install via Homebrew with: `brew install git`
 
 See Also: [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-
 
 ### Opening A Terminal
 - **Windows:** Use git Bash terminal (usually installed with git as above) or optionally Command Prompt, PowerShell, or Windows Terminal.
@@ -46,64 +51,91 @@ See Also: [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Instal
 - **Linux:** Use Terminal or your preferred Terminal Emulator.
 - **macOS:** Use Terminal, iTerm, or your preferred Terminal Emulator.
 
-
 ### Configuration Basics
 
-- **List All Git Config Settings**
-  ```sh
-  git config --list
-  ```
-- **Set User Identity:**
-  ```sh
-  git config --global user.name "Your Name"
-  git config --global user.email your.email@example.com
-  ```
-- **Set Default Editor:**
-  ```sh
-  git config --global core.editor notepad
-  ```
-- **Set Default Branch Name:**
-  ```sh
+-  List all current Git Config settings with:
+    ```sh
+    git config --list
+    ```
+-  **Set User Identity:**
+    ```sh
+    git config --global user.name "Your Name"
+    git config --global user.email your.email@example.com
+    ```
+-  **Set Default Editor:**
+    ```sh
+    git config --global core.editor notepad
+    ```
+-   **Set Default Branch Name:**
+    ```sh
     git config --global init.defaultBranch main
-  ```
+    ```
 
-- **Help With Git Commands**
-  
-  Show the Git commands with:
-  ```sh
-  git --help
-  ```
-  Show more information about a specific command:
-  ```sh
-  git help add
-  ``` 
-  The example shows more information about the `git add` command.
-  
-  note: This will either open the manual page in your terminal or the html version in your browser
- 
-See Also: [First-Time Git Setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
+### Help With Git Commands
 
----
+ - Show the available Git commands with:
+
+    ```sh
+    git --help
+    ```
+ - Show more information about a specific command:
+
+    ```sh
+    git help add
+    ``` 
+    The example shows more information about the `git add` command.
+    note: This will either open the manual page in your terminal or the html version in your browser
+
+### See Also: 
+- [First-Time Git Setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
+- [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Git Command Reference](https://git-scm.com/docs/git#_git_commands)
+
 #### [Back To Top](#table-of-contents)
----
+
+<!---->
 
 <!-- # TODO - Fix This Next -->
 ## Understanding Git Fundamentals 
 
+### Key Concepts
+
+- **Working Directory:** The directory on your local machine where you work on and make changes to files.
+- **Local Repository:** The `.git` directory that stores the project's history and metadata.
+- **Remote Repository:** A repository hosted on a remote server (e.g., GitHub, GitLab).
+- **Working Tree:** The files and directories in your working directory.
+- **Staging Area (Index):** A space where changes are prepared before committing.
+- **Commits:** Snapshots of the project at different times, representing changes made.
+- **Branches:** Pointers to specific commits, allowing for parallel lines of development.
+- **HEAD:** A reference to the current branch or commit you are working on.
+
+
 ### Repositories and Commits
-- **Repository (Repo):** A directory that holds all the files, folders, and complete history of your project.
-- **Creating a New Local Repository**
-    1. **Initialize a Repository:**
-     To create a new repository, navigate to your project directory and run:
-     ```sh
-     mkdir my_project
-     cd my_project
-     git init
-     ```
-     This creates a new Git repository in the `my_project` directory.
-     
-    2. **Create a New File:**
-     Create a new text file and add some content:
+
+#### Creating a New Local Repository
+
+- **Create a New Directory:**
+
+    Navigate to your project directory and run:
+    ```sh
+    mkdir my_project
+    cd my_project
+    ```
+- **Initialize a Repository:**
+    From within the new directory run:
+    ```sh
+    git init
+    ```
+    This creates a new Git repository in the `my_project` directory.
+    
+    Now if you run `ls -lah` you should see a `.git` directory, which contains the repository data.
+    ```sh
+    ls -lah
+    ```
+
+- **Create a New File:**
+
+    Create a new text file and add some content:
      ```sh
      echo "Hello, Git!" > file1.txt
      ```
@@ -116,38 +148,42 @@ See Also: [First-Time Git Setup](https://git-scm.com/book/en/v2/Getting-Started-
      cat file1.txt
      ```
      
-    3. **Check Repository Status:**
+- **Check Repository Status:**
+
      Use `git status` to see the current state of your working directory:
      ```sh
      git status
      ```
      You should see `file1.txt` listed as an untracked file.
      
-    4. **Stage the File:**
+- **Stage the File:**
+
      Add `file1.txt` to the staging area:
      ```sh
      git add file1.txt
      ```
      Run `git status` again to confirm that `file1.txt` is now staged.
      
-    5. **Commit the File:**
+- **Commit the File:**
+
      Commit the staged changes with a descriptive message:
      ```sh
      git commit -m "Add file1.txt with initial content"
      ```
      This creates a commit that saves the state of `file1.txt` to the repository.
 
-     **Commit Messages:** Commit messages should be informative and clearly describe what changes were made and why. Good commit messages make it easier for others (and your future self) to understand the history of the project.
+     - **Commit Messages:** Commit messages should be informative and clearly describe what changes were made and why. Good commit messages make it easier for others (and your future self) to understand the history of the project. A good commit message should be concise, yet descriptive enough to convey the context of the change.
 
-     **Examples of Good vs. Less Good Commit Messages:**
-     - **Good:** "Add initial content to file1.txt"
-     - **Good:** "Update file1.txt to include a second line explaining usage"
-     - **Less Good:** "Updated file"
-     - **Less Good:** "Fix"
-
-     A good commit message should be concise, yet descriptive enough to convey the context of the change.
+    - **Examples of Good vs. Less Good Commit Messages:**
+        - **Good:** "Add initial content to file1.txt"
+        - **Good:** "Update file1.txt to include a second line explaining usage"
+        - **Good:** "Update file1.txt to add additional usage instructions"
+        - **Less Good:** "Updated file"
+        - **Less Good:** "Fix"
+        - **Less Good:** "Edited file1.txt"
      
-    6. **Modify the File and Create Another Commit:**
+- **Modify the File and Create Another Commit:**
+
      Edit `file1.txt` to add more content:
      ```sh
      echo "This is the second line." >> file1.txt
@@ -156,26 +192,18 @@ See Also: [First-Time Git Setup](https://git-scm.com/book/en/v2/Getting-Started-
      ```sh
      cat file1.txt
      ```
-     Check the status to see the changes:
+     Check the status to see the changes. You will see `file1.txt` listed as modified.
      ```sh
      git status
      ```
-     You will see `file1.txt` listed as modified.
-     
-    7. **Stage and Commit the Changes:**
-     Stage the modified file:
+     Stage and commit the modified file:
      ```sh
      git add file1.txt
-     ```
-     Commit the changes:
-     ```sh
      git commit -m "Update file1.txt with a second line"
      ```
-     When writing commit messages, remember to describe what was changed and why.
-     - **Good Example:** "Update file1.txt to add additional usage instructions"
-     - **Less Good Example:** "Edited file1.txt"
      
-    8. **Repeat to Build Commit History:**
+- **Repeat to Build Commit History:**
+
      Create another file:
      ```sh
      echo "This is another file." > file2.txt
@@ -186,65 +214,21 @@ See Also: [First-Time Git Setup](https://git-scm.com/book/en/v2/Getting-Started-
      git commit -m "Add file2.txt"
      ```
      
-    9. **Viewing Commit History:**
+- **Viewing Commit History:**
+
      Use `git log` to see the history of your commits:
      ```sh
      git log
      ```
      This will show a list of commits, including the commit messages, authors, and timestamps.
 
----
+### See Also:
+- [Git Basics - Getting a Git Repository](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository)
+- [Git Basics - Recording Changes to the Repository](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
+
 ### [Back To Top](#table-of-contents)
----
 
-### .gitignore Usage
-The `.gitignore` file is used to specify files and directories that Git should ignore to keep the repository clean.
-- **Purpose:** Exclude unnecessary files like build artifacts, logs, or sensitive information from version control.
-- **Common Patterns and Examples:**
-  - **Ignore Log Files:**
-    ```
-    *.log
-    ```
-    This pattern ignores all files with the `.log` extension, such as `debug.log` or `application.log`.
-  - **Ignore Build Directories:**
-    ```
-    build/
-    dist/
-    ```
-    These lines ignore the entire `build` and `dist` directories, which are typically used for compiled files or distribution packages.
-  - **Ignore Operating System Files:**
-    ```
-    .DS_Store  # macOS metadata
-    Thumbs.db  # Windows image cache
-    ```
-    These entries ignore metadata files created by operating systems.
-  - **Ignore Environment Files:**
-    ```
-    .env
-    ```
-    This line ignores `.env` files that often contain sensitive environment variables.
-  - **Ignore IDE and Editor Files:**
-    ```
-    *.swp    # Vim swap files
-    .vscode/ # Visual Studio Code settings
-    *.idea/  # IntelliJ IDEA project settings
-    ```
-    These lines prevent editor-specific settings or temporary files from being included in the repository.
-  - **Negating Patterns:**
-    ```
-    *.log
-    !important.log
-    ```
-    The first line ignores all `.log` files, but the second line ensures that `important.log` is not ignored.
-
-- **Best Practices:**
-  - **Project-Specific Files:** Tailor `.gitignore` to include files specific to your project's environment and tools.
-  - **Global Ignore File:** For files common across all projects (like OS-specific files), use a global ignore file set up via `git config --global core.excludesfile <file>`.
-  - **Use Templates:** Start with templates available for various languages and frameworks to ensure comprehensive coverage of common ignore patterns.
-
----
-### [Back To Top](#table-of-contents)
----
+<!---->
 
 ## Working with Changes
 
@@ -628,9 +612,11 @@ git branch -d feature-xyz
 ---
 
 ## References
-- **Official Git Documentation**: [Git Book](https://git-scm.com/book/en/v2)
+- **Official Git Documentation**: [Git Documentation](https://git-scm.com/doc)
+- **Official Pro Git Book**: [Git Book](https://git-scm.com/book/en/v2)
 <!-- - **Interactive Tutorials**: [Learn Git Branching](https://learngitbranching.js.org/) -->
 - **Glossary of Terms**: [Glossary](https://git-scm.com/docs/gitglossary)
+- **Git Reference Manual**: [Git Reference](https://git-scm.com/docs)
 
 ---
 ### [Back To Top](#table-of-contents)
