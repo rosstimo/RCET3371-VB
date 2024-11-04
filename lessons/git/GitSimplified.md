@@ -1,17 +1,16 @@
-# Git Lesson Plan
+# Git Simplified
 
 ## Table of Contents
- [Introduction to Version Control](#1-introduction-to-version-control)
- [Setting Up Git](#2-setting-up-git)
- [Understanding Git Fundamentals](#3-understanding-git-fundamentals)
- [Working with Changes](#4-working-with-changes)
- [Branching and Merging](#5-branches)
- <!-- [Remote Collaboration](#6-remote-collaboration) -->
- [References](#12-references)
+ [Introduction to Version Control](#introduction-to-version-control)
+ [Setting Up Git](#setting-up-git)
+ [Understanding Git Fundamentals](#understanding-git-fundamentals)
+ [Working with Changes](#working-with-changes)
+ [Branching and Merging](#branches)
+ [References](#references)
 
 ---
 
-### 1. Introduction to Version Control
+## Introduction to Version Control
 
 #### What is Version Control?
 Version Control is a system that records changes to a file or set of files over time, allowing you to recall specific versions later. It is particularly useful for collaborative projects, tracking changes, and ensuring project integrity.
@@ -26,7 +25,7 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
 
 ---
 
-### 2. Setting Up Git
+## Setting Up Git
 
 #### Installing Git
 - **Windows:** Download the installer from [git-scm.com](https://git-scm.com/).
@@ -81,8 +80,8 @@ Git is a Distributed Version Control System (DVCS) designed for flexibility, per
 #### [Back To Top](#table-of-contents)
 ---
 
-# TODO - Fix This Next
-### 3. Understanding Git Fundamentals 
+<!-- # TODO - Fix This Next -->
+## Understanding Git Fundamentals 
 
 #### Repositories and Commits
 - **Repository (Repo):** A directory that holds all the files, folders, and complete history of your project.
@@ -240,7 +239,7 @@ The `.gitignore` file is used to specify files and directories that Git should i
 #### [Back To Top](#table-of-contents)
 ---
 
-### 4. Working with Changes
+## Working with Changes
 
 #### Understanding Git History
 
@@ -255,7 +254,7 @@ Git history is a record of all the changes made to a repository over time. Each 
 
 #### Exploring Git History
 
-##### **Viewing History**:
+#### **Viewing History**:
   Use `git log` to display the commit history. By default, `git log` shows each commit in reverse chronological order (most recent first).
 
 - **Customizing Log Output**:
@@ -308,7 +307,7 @@ Git history is a record of all the changes made to a repository over time. Each 
           git log --grep="fix"
           ```
 ---
-##### **Viewing Changes**:
+#### **Viewing Changes**:
 - Use `git show` to view the details of a specific commit, including the changes made.
 - Use `git diff` to see the differences between commits or between the working directory and the latest commit.
 
@@ -328,7 +327,7 @@ Git history is a record of all the changes made to a repository over time. Each 
     - **`git show`**: Displays information about a specific commit, including its metadata (author, date, message) and the changes introduced by that commit.
     - **`git diff`**: Compares two states in the repository, showing the differences between them. This could be between your working directory and the staging area, between commits, or between branches.
 ---
-###### **The `git show` Command**
+##### **The `git show` Command**
 
 The `git show` command is primarily used to display details of a specific commit. By default, it shows the following information:
 
@@ -429,7 +428,7 @@ The `git show` command is primarily used to display details of a specific commit
         - The leading `+` symbol indicates that this line was added in the new version (`b/file.txt`) but did not exist in the old version (`a/file.txt`).
         - The text "New line added in feature X" suggests that this line was introduced as part of implementing "feature X."
 
-###### **More `git show` Options:**
+##### **More `git show` Options:**
 
 - `git show <commit-hash>`: Displays details of a specific commit identified by its hash.
 - `git show HEAD`: Shows details of the latest commit on your current branch.
@@ -438,7 +437,7 @@ The `git show` command is primarily used to display details of a specific commit
 - `git help show`: Opens the manual page for the `git show` command.
 
 ---
-###### **The `git diff` Command**
+##### **The `git diff` Command**
 
 The `git diff` command is used to compare different states in your repository. It highlights differences between files or commits at various stages.
 
@@ -471,7 +470,7 @@ The `git diff` command is used to compare different states in your repository. I
         Line 2
         +New line added in feature X
         ```
-###### **More `git diff` Options:**
+##### **More `git diff` Options:**
 
 -   `git diff --stat`: Shows a summary of changes (number of files changed, lines added/removed).
 -   `git diff --name-only`: Lists only the names of files that differ.
@@ -527,7 +526,7 @@ The `git diff` command is used to compare different states in your repository. I
 #### [Back To Top](#table-of-contents)
 ---
 
-### 5. Branches
+## Branches
 
 #### Branches Explained
 Branches are essentially different versions of your project that coexist in parallel. This allows developers to work on features, fixes, or experiments without affecting the main codebase. The main branch in Git is commonly called `main` or `master`. Creating branches is a core part of Git's power, enabling collaborative workflows and feature isolation.
@@ -554,15 +553,15 @@ echo "This is a original content on branch main." > file.txt
 git add file.txt
 git commit -m "Add file.txt with original content"
 ```
-> 
-##### 1. Create a Branch
+
+#### 1. Create a Branch
 To create a new branch, you use the `git branch` command followed by the branch name:
 ```sh
 git branch feature-xyz
 ```
 This command creates a new branch named `feature-xyz` based on your current branch. However, you will still be on the original branch (e.g., `main`). To start working on the new branch, you need to switch to it.
 
-##### 2. Switch Branch
+#### 2. Switch Branch
 To move to another branch, you use the `git checkout` command:
 ```sh
 git checkout feature-xyz
@@ -573,7 +572,7 @@ git switch feature-xyz
 ```
 Now you are on the `feature-xyz` branch, and any changes you make will be specific to this branch.
 
-##### 3. Create and Switch in One Step
+#### 3. Create and Switch in One Step
 You can also create and switch to a new branch in a single step using:
 ```sh
 git checkout -b feature-xyz
@@ -584,21 +583,21 @@ git switch -c feature-xyz
 ```
 This is a handy way to streamline your workflow when starting new features.
 
-##### 4. modifying the file in the new branch
+#### 4. Modifying the file in the new branch
 Edit the file in the new branch:
 ```sh
 echo "This is a new feature" >> file.txt
 ```
 This command appends a line to `file.txt`, indicating that this change is part of the `feature-xyz` branch.
 
-##### 5. Switch Back to the Main Branch
+#### 5. Switch Back to the Main Branch
 After making changes in the `feature-xyz` branch, you can switch back to the `main` branch:
 ```sh
 git checkout main
 ```
 This command moves you back to the `main` branch, where you can continue working on other tasks or merge changes from feature branches.
 
-##### 6. Merge Changes from the Feature Branch  
+#### 6. Merge Changes from the Feature Branch  
 Once you have finished working on a branch, you often want to merge those changes back into the `main` branch. You first switch back to `main` and then use the `git merge` command:
 ```sh
 git checkout main
@@ -606,12 +605,12 @@ git merge feature-xyz
 ```
 This will integrate the changes from `feature-xyz` into `main`. If there are no conflicting changes, Git will perform a **fast-forward merge** or an **automatic merge**.
 
-##### 7. examine the contents of the file
+#### 7. examine the contents of the file
 To see the contents of the file, you can use the `cat` command:
 ```sh
 cat file.txt
 ```
-##### 8. Delete the Feature Branch (Optional)
+#### 8. Delete the Feature Branch (Optional)
 Once merged, you can delete the `feature-xyz` branch if it's no longer needed:
 ```sh
 git branch -d feature-xyz
@@ -621,11 +620,11 @@ git branch -d feature-xyz
 #### [Back To Top](#table-of-contents)
 ---
 
-### References
+## References
 - **Official Git Documentation**: [Git Book](https://git-scm.com/book/en/v2)
 - **Interactive Tutorials**: [Learn Git Branching](https://learngitbranching.js.org/)
 - **Glossary of Terms**: Refer to the glossary section for terminology.
 
-
-
-
+---
+#### [Back To Top](#table-of-contents)
+---
