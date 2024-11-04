@@ -302,27 +302,31 @@ Git provides several options to customize the output of `git log`:
 
 <!---->
 
-## Exploring Changes
+## **Viewing Changes**:
 
-### **Viewing Changes**:
-- Use `git show` to view the details of a specific commit, including the changes made.
-- Use `git diff` to see the differences between commits or between the working directory and the latest commit.
+### Key Concepts
+- **Diff**: The difference between two states of a file or set of files.
+- **Patch**: A file containing the differences between two versions of a file, used to apply changes.
+- **Commit**: A snapshot of the project at a specific point in time, capturing changes made.
+- **HEAD**: A reference to the current branch or commit you are working on.
+- **SHA-1 Hash**: A unique identifier for each commit, used to reference specific points in history.
+- **Hunk**: A section of a file that has been modified, added, or removed in a commit.
+
+- **Overview of the `git show` and `git diff` Commands**
+
+Both `git show` and `git diff` are essential Git commands used to inspect changes in a repository, but they serve different purposes:
 
 - **Basic Usage**:
+    - `git show`: Displays information about a specific commit, including its metadata (author, date, message) and the changes introduced by that commit.
     - To view details of a specific commit, use:
         ```sh
         git show <commit-hash>
         ```
+    - `git diff`: Compares two states in the repository, showing the differences between them. This could be between your working directory and the staging area, between commits, or between branches.
     - To view changes between two specific commits, use:
         ```sh
         git diff <commit-hash1> <commit-hash2>
-          ```
-- **Overview of the `git show` and `git diff` Commands**
-
-    Both `git show` and `git diff` are essential Git commands used to inspect changes in a repository, but they serve different purposes:
-
-    - **`git show`**: Displays information about a specific commit, including its metadata (author, date, message) and the changes introduced by that commit.
-    - **`git diff`**: Compares two states in the repository, showing the differences between them. This could be between your working directory and the staging area, between commits, or between branches.
+        ```
 ---
 ##### **The `git show` Command**
 
