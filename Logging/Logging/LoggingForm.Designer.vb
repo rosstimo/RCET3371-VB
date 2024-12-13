@@ -36,7 +36,7 @@ Partial Class LoggingForm
         Me.LogPictureBox = New System.Windows.Forms.PictureBox()
         Me.GroupBox = New System.Windows.Forms.GroupBox()
         Me.LogButton = New System.Windows.Forms.Button()
-        Me.Timer = New System.Windows.Forms.Timer(Me.components)
+        Me.SampleTimer = New System.Windows.Forms.Timer(Me.components)
         Me.StatusStrip.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
         CType(Me.LogPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,31 +47,32 @@ Partial Class LoggingForm
         '
         Me.StatusStrip.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel, Me.FileStatusLabel})
-        Me.StatusStrip.Location = New System.Drawing.Point(0, 418)
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 359)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Size = New System.Drawing.Size(800, 32)
+        Me.StatusStrip.Padding = New System.Windows.Forms.Padding(1, 0, 9, 0)
+        Me.StatusStrip.Size = New System.Drawing.Size(524, 22)
         Me.StatusStrip.TabIndex = 0
         Me.StatusStrip.Text = "StatusStrip1"
         '
         'ToolStripStatusLabel
         '
         Me.ToolStripStatusLabel.Name = "ToolStripStatusLabel"
-        Me.ToolStripStatusLabel.Size = New System.Drawing.Size(0, 25)
+        Me.ToolStripStatusLabel.Size = New System.Drawing.Size(0, 17)
         '
         'FileStatusLabel
         '
         Me.FileStatusLabel.Name = "FileStatusLabel"
-        Me.FileStatusLabel.Size = New System.Drawing.Size(52, 25)
+        Me.FileStatusLabel.Size = New System.Drawing.Size(34, 17)
         Me.FileStatusLabel.Text = "none"
         '
         'TopMenuStrip
         '
-        Me.TopMenuStrip.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
         Me.TopMenuStrip.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.TopMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
         Me.TopMenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.TopMenuStrip.Name = "TopMenuStrip"
-        Me.TopMenuStrip.Size = New System.Drawing.Size(800, 36)
+        Me.TopMenuStrip.Padding = New System.Windows.Forms.Padding(4, 1, 0, 1)
+        Me.TopMenuStrip.Size = New System.Drawing.Size(524, 24)
         Me.TopMenuStrip.TabIndex = 1
         Me.TopMenuStrip.Text = "MenuStrip1"
         '
@@ -79,25 +80,25 @@ Partial Class LoggingForm
         '
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.SaveToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(54, 32)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 22)
         Me.FileToolStripMenuItem.Text = "&File"
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(158, 34)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.OpenToolStripMenuItem.Text = "&Open"
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(158, 34)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.SaveToolStripMenuItem.Text = "&Save"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(158, 34)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'OpenFileDialog
@@ -109,9 +110,11 @@ Partial Class LoggingForm
         Me.LogPictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LogPictureBox.Location = New System.Drawing.Point(12, 36)
+        Me.LogPictureBox.Location = New System.Drawing.Point(8, 23)
+        Me.LogPictureBox.Margin = New System.Windows.Forms.Padding(2)
+        Me.LogPictureBox.MinimumSize = New System.Drawing.Size(255, 255)
         Me.LogPictureBox.Name = "LogPictureBox"
-        Me.LogPictureBox.Size = New System.Drawing.Size(776, 265)
+        Me.LogPictureBox.Size = New System.Drawing.Size(503, 255)
         Me.LogPictureBox.TabIndex = 2
         Me.LogPictureBox.TabStop = False
         '
@@ -120,36 +123,40 @@ Partial Class LoggingForm
         Me.GroupBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox.Controls.Add(Me.LogButton)
-        Me.GroupBox.Location = New System.Drawing.Point(12, 307)
+        Me.GroupBox.Location = New System.Drawing.Point(8, 281)
+        Me.GroupBox.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox.Name = "GroupBox"
-        Me.GroupBox.Size = New System.Drawing.Size(776, 118)
+        Me.GroupBox.Padding = New System.Windows.Forms.Padding(2)
+        Me.GroupBox.Size = New System.Drawing.Size(508, 77)
         Me.GroupBox.TabIndex = 3
         Me.GroupBox.TabStop = False
         '
         'LogButton
         '
         Me.LogButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LogButton.Location = New System.Drawing.Point(654, 25)
+        Me.LogButton.Location = New System.Drawing.Point(427, 16)
+        Me.LogButton.Margin = New System.Windows.Forms.Padding(2)
         Me.LogButton.Name = "LogButton"
-        Me.LogButton.Size = New System.Drawing.Size(116, 76)
+        Me.LogButton.Size = New System.Drawing.Size(77, 49)
         Me.LogButton.TabIndex = 0
         Me.LogButton.Text = "&Log"
         Me.LogButton.UseVisualStyleBackColor = True
         '
-        'Timer
+        'SampleTimer
         '
         '
         'LoggingForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(524, 381)
         Me.Controls.Add(Me.GroupBox)
         Me.Controls.Add(Me.LogPictureBox)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.TopMenuStrip)
         Me.MainMenuStrip = Me.TopMenuStrip
-        Me.MinimumSize = New System.Drawing.Size(800, 500)
+        Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.MinimumSize = New System.Drawing.Size(540, 420)
         Me.Name = "LoggingForm"
         Me.Text = "Log It!!"
         Me.StatusStrip.ResumeLayout(False)
@@ -176,5 +183,5 @@ Partial Class LoggingForm
     Friend WithEvents GroupBox As GroupBox
     Friend WithEvents LogButton As Button
     Friend WithEvents FileStatusLabel As ToolStripStatusLabel
-    Friend WithEvents Timer As Timer
+    Friend WithEvents SampleTimer As Timer
 End Class

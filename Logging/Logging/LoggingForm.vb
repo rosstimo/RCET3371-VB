@@ -4,7 +4,9 @@ Option Explicit On
 Public Class LoggingForm
 
     Dim dataQ As New Queue
-    Dim xMax% = 1000, yMax% = 255
+    Dim sampleInterval% = 100
+    Dim xMax% = ((1000 \ sampleInterval) * 30)
+    Dim yMax% = 255
     Dim sx! = 1, sy! = 1
 
     Function GetBackColor(Optional newBackColor As Color = Nothing) As Color
@@ -23,10 +25,27 @@ Public Class LoggingForm
     End Function
 
     Sub SetDefaults()
+        Dim logging As Boolean = SampleTimer.Enabled
+
+        If logging Then
+            SampleTimer.Enabled = False
+        End If
+
         LogPictureBox.BackColor = GetBackColor(Color.Black)
         GetForeColor(Color.Lime)
         sx = CSng(LogPictureBox.Width / xMax)
         sy = CSng(LogPictureBox.Height / yMax)
+        dataQ.Clear()
+
+        For i = 0 To xMax - 1
+            ' GetNewData()
+            dataQ.Enqueue(0)
+        Next
+        SampleTimer.Interval = sampleInterval
+
+        If logging Then
+            SampleTimer.Enabled = True
+        End If
     End Sub
 
     Sub Updategraph()
@@ -42,14 +61,18 @@ Public Class LoggingForm
         Dim oldX%, oldY%
         'g.ScaleTransform(CSng(LogPictureBox.Width / Me.xMax), CSng(LogPictureBox.Height / Me.yMax))
         g.ScaleTransform(Me.sx, Me.sy)
+        'pen.ScaleTransform(1, 1)
         g.TranslateTransform(0, Me.yMax)
         'pen.Width = 2
         oldY = plotData(0)
         For x = 0 To UBound(plotData) - 1
             pen.Color = GetBackColor()
-            ' g.DrawLine(pen, oldX, 0, oldX, -Me.yMax)
+            pen.Width = 1.25
+            pen.Alignment = Drawing2D.PenAlignment.Outset
             g.DrawLine(pen, x, 0, x, -Me.yMax)
             pen.Color = GetForeColor()
+            pen.Width = 1
+            pen.Alignment = Drawing2D.PenAlignment.Inset
             g.DrawLine(pen, oldX, oldY, x, plotData(x) * -1)
             oldX = x
             oldY = plotData(x) * -1
@@ -62,7 +85,7 @@ Public Class LoggingForm
         Static lastData As Integer
         Dim data(1) As Byte
 
-        'new data may be posative or negative
+        'new data may be positive or negative
         If coinToss >= 5 Then
             newData = newData * -1
         End If
@@ -121,9 +144,7 @@ Public Class LoggingForm
     ' Events below here ---------------------------------------------------------------
     Private Sub LoggingForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetDefaults()
-        For i = 0 To xMax
-            GetNewData()
-        Next
+
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
@@ -150,24 +171,49 @@ Public Class LoggingForm
         'Dim plotdata() As Integer = {0, 100, 100, 100, 50, 25, 0, 0, 0, 0, 0, 0, 0}
 
         'Plot(plotdata)
-        If Timer.Enabled Then
-            Timer.Enabled = False
+        If SampleTimer.Enabled Then
+            SampleTimer.Enabled = False
         Else
-            Timer.Enabled = True
+            SampleTimer.Enabled = True
         End If
     End Sub
 
-    Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
+    Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles SampleTimer.Tick
+        Static oldMillis As Integer
+        Static avgMillis(9) As Integer, sample%, avg#
+        Dim newMillis% = DateTime.Now.Millisecond + (DateTime.Now.Second * 1000) + (DateTime.Now.Minute * 60 * 1000)
+
+        If sample > 9 Then
+            sample = 0
+        End If
+        avgMillis(sample) = newMillis - oldMillis - sampleInterval
+        avg = 0
+        For i = 0 To UBound(avgMillis)
+            avg += avgMillis(i)
+        Next
+        avg = avg / 9
+
+        Me.Text = $"{DateTime.Now.ToShortTimeString} - {CStr(newMillis - oldMillis)} Error: {(newMillis - oldMillis) - sampleInterval} avg: {avg}"
+        oldMillis = newMillis
+        sample += 1
+
         GetNewData()
-        Updategraph()
+        'Updategraph()
 
     End Sub
 
     Private Sub LogPictureBox_Resize(sender As Object, e As EventArgs) Handles LogPictureBox.Resize
-        'XScale()
-        'YScale()
-        sx = CSng(LogPictureBox.Width / xMax)
-        sy = CSng(LogPictureBox.Height / yMax)
-        LogPictureBox.Refresh()
+        'LogPictureBox.Refresh()
+        SetDefaults()
+    End Sub
+
+    Private Sub LoggingForm_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
+        Me.Refresh()
+        'LogPictureBox.Refresh()
+    End Sub
+
+    Private Sub LoggingForm_ResizeBegin(sender As Object, e As EventArgs) Handles Me.ResizeBegin
+
+        SetDefaults()
     End Sub
 End Class
