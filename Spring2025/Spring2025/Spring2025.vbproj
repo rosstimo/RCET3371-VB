@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D78A7A21-423D-409E-B3FD-7E8C4783DE4D}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>Spring2025.Module1</StartupObject>
+    <StartupObject>Spring2025.Spring2025</StartupObject>
     <RootNamespace>Spring2025</RootNamespace>
     <AssemblyName>Spring2025</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -69,7 +69,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Module1.vb" />
+    <Compile Include="Spring2025.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
