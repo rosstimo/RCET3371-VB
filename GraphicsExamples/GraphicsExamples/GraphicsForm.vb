@@ -3,6 +3,26 @@
         'TODO
     End Sub
 
+    'TODO
+    '[ ] log each drawing segment to a sequential file
+    '[ ] make file records look like:
+    ' <startX>, <startY>, <endX>, <endY>, <color>, <time stamp to millisecond>
+    ' 0,104,236,205,"Black", "20250203094534123"
+    ' 0,104,236,205,"Black", "20250203094534123"
+
+    Sub LogToFile(startX%, startY%, endX%, endY%)
+
+        FileOpen(1, "log.log", OpenMode.Append)
+        Write(1, startX)
+        Write(1, startY)
+        Write(1, endX)
+        Write(1, endY)
+        Write(1, "TimeStamp")
+
+        Write(1, Color.Black)
+
+    End Sub
+
     Sub DrawLine(oldX%, oldY%, x%, y%)
         Dim g As Graphics = DrawPictureBox.CreateGraphics
         Dim pen As New Pen(Color.Black)
@@ -38,6 +58,7 @@
     End Sub
 
     Private Sub DrawButton_Click(sender As Object, e As EventArgs) Handles DrawButton.Click
+
     End Sub
 
     Private Sub DrawPictureBox_MouseMove(sender As Object, e As MouseEventArgs) Handles DrawPictureBox.MouseMove
@@ -46,6 +67,7 @@
 
         If e.Button = MouseButtons.Left Then
             DrawLine(oldX, oldY, e.X, e.Y)
+            'log to file
         End If
 
         oldX = e.X
