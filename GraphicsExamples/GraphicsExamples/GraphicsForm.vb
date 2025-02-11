@@ -1,4 +1,8 @@
-﻿Public Class GraphicsForm
+﻿Option Explicit On
+Option Strict On
+Imports System.CodeDom.Compiler
+
+Public Class GraphicsForm
     Sub SetDefaults()
         'TODO
     End Sub
@@ -12,20 +16,46 @@
 
     Sub LogToFile(startX%, startY%, endX%, endY%)
 
-        FileOpen(1, "log.log", OpenMode.Append)
+        FileOpen(1, $"lines-{ DateTime.Now.ToString("yyMMddhh")}.log", OpenMode.Append)
+
+        Write(1, DateTime.Now.ToString("yy:MM:dd:hh:mm:ss:fff"))
         Write(1, startX)
         Write(1, startY)
         Write(1, endX)
         Write(1, endY)
-        Write(1, "TimeStamp")
+        Write(1, Color.Black.ToString) 'TODO: get actual color here
+        WriteLine(1)
 
-        Write(1, Color.Black)
+        FileClose(1)
+    End Sub
+
+    Function ShiftArray(y%, Optional shift As Boolean = False) As Integer()
+        Static graphY(DrawPictureBox.Width) As Integer
+
+        If shift Then
+            For x = LBound(graphY) To UBound(graphY) - 1
+                graphY(x) = graphY(x + 1)
+            Next
+
+            graphY(UBound(graphY)) = y
+        End If
+
+        Return graphY
+    End Function
+
+    Sub PlotArray()
+        Dim temp() = ShiftArray(0)
+        DrawPictureBox.Refresh()
+
+        For x = LBound(temp) To UBound(temp) - 1
+            DrawLine(x, temp(x), x + 1, temp(x + 1))
+        Next
 
     End Sub
 
     Sub DrawLine(oldX%, oldY%, x%, y%)
         Dim g As Graphics = DrawPictureBox.CreateGraphics
-        Dim pen As New Pen(Color.Black)
+        Dim pen As New Pen(Color.Lime)
 
         'Dim scaleX!, scaleY!, deltaX!, deltaY!
 
@@ -68,10 +98,18 @@
         If e.Button = MouseButtons.Left Then
             DrawLine(oldX, oldY, e.X, e.Y)
             'log to file
+            LogToFile(oldX, oldY, e.X, e.Y)
         End If
+        'send new data to array
+        ShiftArray(e.Y, True)
+
 
         oldX = e.X
         oldY = e.Y
 
+    End Sub
+
+    Private Sub PlotTimer_Tick(sender As Object, e As EventArgs) Handles PlotTimer.Tick
+        PlotArray()
     End Sub
 End Class
