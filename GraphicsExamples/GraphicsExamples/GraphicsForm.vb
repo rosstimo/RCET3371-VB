@@ -48,6 +48,7 @@ Public Class GraphicsForm
         DrawPictureBox.Refresh()
 
         For x = LBound(temp) To UBound(temp) - 1
+            'in back color drawline x+1 from top to bottom
             DrawLine(x, temp(x), x + 1, temp(x + 1))
         Next
 
