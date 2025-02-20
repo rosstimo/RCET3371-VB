@@ -1,4 +1,4 @@
-﻿Module Module1
+﻿Module OOPExample
 
     Sub Main()
 
