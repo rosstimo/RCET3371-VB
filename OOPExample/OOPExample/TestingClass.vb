@@ -1,3 +1,13 @@
-﻿Public Class TestingClass
+﻿Option Strict On
+Option Explicit On
 
-End Class
+Namespace Tim
+    Public Class TestingClass
+
+
+        Public Shared Sub SomeSub()
+
+        End Sub
+
+    End Class
+End Namespace
