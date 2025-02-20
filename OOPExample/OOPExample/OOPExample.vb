@@ -9,6 +9,10 @@ Module OOPExample
         CircuitSolver.SeriesCircuit.SolveSeriesCircuit()
         CircuitSolver.ParallelSolver.SolveParallelCircuit()
 
+        Console.WriteLine(Libs.UsefullStuffLib.LuckyNumber)
+
+
+
     End Sub
 
 End Module
