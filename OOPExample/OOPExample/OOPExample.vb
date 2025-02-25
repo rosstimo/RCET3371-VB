@@ -19,7 +19,16 @@ Module OOPExample
         Console.WriteLine(DeckTwo.Name)
         Console.WriteLine(OtherDeck.Name)
 
-        Deck.testDeal()
+        '
+        'Deck.testDeal()
+
+        Deck.Shuffle()
+
+        For i = 1 To 52
+            'Console.WriteLine(Deck.GetRemaining())
+            'Console.WriteLine($"")
+            Console.WriteLine(Deck.Deal().PrettyName)
+        Next
 
 
     End Sub
