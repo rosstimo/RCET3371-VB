@@ -11,6 +11,15 @@ Module OOPExample
 
         Console.WriteLine(Libs.UsefullStuffLib.LuckyNumber)
 
+        Dim Deck As New CardGame.DeckOfCards("Bill")
+        Dim DeckTwo As New CardGame.DeckOfCards("Frank")
+        Dim OtherDeck As New CardGame.DeckOfCards("Mary")
+
+        Console.WriteLine(Deck.Name)
+        Console.WriteLine(DeckTwo.Name)
+        Console.WriteLine(OtherDeck.Name)
+
+        Deck.testDeal()
 
 
     End Sub
