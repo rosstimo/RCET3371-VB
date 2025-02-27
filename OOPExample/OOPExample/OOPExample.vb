@@ -1,5 +1,6 @@
 ﻿Option Strict On
 Option Explicit On
+Imports OOPExample.CardGame
 
 Module OOPExample
 
@@ -14,6 +15,7 @@ Module OOPExample
         Dim Deck As New CardGame.DeckOfCards("Bill")
         Dim DeckTwo As New CardGame.DeckOfCards("Frank")
         Dim OtherDeck As New CardGame.DeckOfCards("Mary")
+        Dim currentCard As PlayingCard
 
         Console.WriteLine(Deck.Name)
         Console.WriteLine(DeckTwo.Name)
@@ -24,11 +26,23 @@ Module OOPExample
 
         Deck.Shuffle()
 
-        For i = 1 To 52
+        For i = 1 To 53
             'Console.WriteLine(Deck.GetRemaining())
             'Console.WriteLine($"")
-            Console.WriteLine(Deck.Deal().PrettyName)
+            currentCard = Deck.Deal()
+            If currentCard IsNot Nothing Then
+                Console.WriteLine(currentCard.PrettyName)
+            End If
         Next
+
+
+        'If currentCard IsNot Nothing Then
+
+        '    Console.WriteLine(Deck.Deal())
+        '    Console.WriteLine(Deck.Deal().PrettyName)
+        'End If
+
+
 
 
     End Sub
