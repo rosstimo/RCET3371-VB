@@ -5,12 +5,12 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5043DFBE-1381-456E-BB8F-3CEAEA6B7308}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <StartupObject>OOPExample.OOPExample</StartupObject>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>OOPExample.My.MyApplication</StartupObject>
     <RootNamespace>OOPExample</RootNamespace>
     <AssemblyName>OOPExample</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Console</MyType>
+    <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -85,6 +85,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>

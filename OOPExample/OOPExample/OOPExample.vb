@@ -1,5 +1,6 @@
 ﻿Option Strict On
 Option Explicit On
+Imports System.Windows.Forms
 Imports OOPExample.CardGame
 
 Module OOPExample
