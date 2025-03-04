@@ -26,9 +26,13 @@ Partial Class SerialComForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SerialComForm))
         Me.SerialPort = New System.IO.Ports.SerialPort(Me.components)
         Me.ComStatusStrip = New System.Windows.Forms.StatusStrip()
-        Me.ComNameStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.PortLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ComDropDownButton = New System.Windows.Forms.ToolStripDropDownButton()
         Me.ComPortComboBox = New System.Windows.Forms.ToolStripComboBox()
+        Me.PortNameStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.PortStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.BufferLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.BufferStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ComStatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -38,18 +42,18 @@ Partial Class SerialComForm
         'ComStatusStrip
         '
         Me.ComStatusStrip.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ComStatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComNameStatusLabel, Me.ComDropDownButton})
+        Me.ComStatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComDropDownButton, Me.PortLabel, Me.PortNameStatusLabel, Me.PortStatusLabel, Me.BufferLabel, Me.BufferStatusLabel})
         Me.ComStatusStrip.Location = New System.Drawing.Point(0, 418)
         Me.ComStatusStrip.Name = "ComStatusStrip"
         Me.ComStatusStrip.Size = New System.Drawing.Size(800, 32)
         Me.ComStatusStrip.TabIndex = 0
         Me.ComStatusStrip.Text = "StatusStrip"
         '
-        'ComNameStatusLabel
+        'PortLabel
         '
-        Me.ComNameStatusLabel.Name = "ComNameStatusLabel"
-        Me.ComNameStatusLabel.Size = New System.Drawing.Size(48, 25)
-        Me.ComNameStatusLabel.Text = "Port:"
+        Me.PortLabel.Name = "PortLabel"
+        Me.PortLabel.Size = New System.Drawing.Size(48, 25)
+        Me.PortLabel.Text = "Port:"
         '
         'ComDropDownButton
         '
@@ -65,6 +69,30 @@ Partial Class SerialComForm
         '
         Me.ComPortComboBox.Name = "ComPortComboBox"
         Me.ComPortComboBox.Size = New System.Drawing.Size(121, 33)
+        '
+        'PortNameStatusLabel
+        '
+        Me.PortNameStatusLabel.Name = "PortNameStatusLabel"
+        Me.PortNameStatusLabel.Size = New System.Drawing.Size(55, 25)
+        Me.PortNameStatusLabel.Text = "None"
+        '
+        'PortStatusLabel
+        '
+        Me.PortStatusLabel.Name = "PortStatusLabel"
+        Me.PortStatusLabel.Size = New System.Drawing.Size(36, 25)
+        Me.PortStatusLabel.Text = "???"
+        '
+        'BufferLabel
+        '
+        Me.BufferLabel.Name = "BufferLabel"
+        Me.BufferLabel.Size = New System.Drawing.Size(63, 25)
+        Me.BufferLabel.Text = "Buffer:"
+        '
+        'BufferStatusLabel
+        '
+        Me.BufferStatusLabel.Name = "BufferStatusLabel"
+        Me.BufferStatusLabel.Size = New System.Drawing.Size(36, 25)
+        Me.BufferStatusLabel.Text = "???"
         '
         'SerialComForm
         '
@@ -83,7 +111,11 @@ Partial Class SerialComForm
 
     Friend WithEvents SerialPort As IO.Ports.SerialPort
     Friend WithEvents ComStatusStrip As StatusStrip
-    Friend WithEvents ComNameStatusLabel As ToolStripStatusLabel
+    Friend WithEvents PortLabel As ToolStripStatusLabel
     Friend WithEvents ComDropDownButton As ToolStripDropDownButton
     Friend WithEvents ComPortComboBox As ToolStripComboBox
+    Friend WithEvents PortNameStatusLabel As ToolStripStatusLabel
+    Friend WithEvents PortStatusLabel As ToolStripStatusLabel
+    Friend WithEvents BufferLabel As ToolStripStatusLabel
+    Friend WithEvents BufferStatusLabel As ToolStripStatusLabel
 End Class
