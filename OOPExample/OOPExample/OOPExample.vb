@@ -13,14 +13,14 @@ Module OOPExample
 
         Console.WriteLine(Libs.UsefullStuffLib.LuckyNumber)
 
-        Dim Deck As New CardGame.DeckOfCards("Bill")
-        Dim DeckTwo As New CardGame.DeckOfCards("Frank")
-        Dim OtherDeck As New CardGame.DeckOfCards("Mary")
+        Dim Deck As New CardGame.DeckOfCards()
+        'Dim DeckTwo As New CardGame.DeckOfCards("Frank")
+        ' Dim OtherDeck As New CardGame.DeckOfCards("Mary")
         Dim currentCard As PlayingCard
 
-        Console.WriteLine(Deck.Name)
-        Console.WriteLine(DeckTwo.Name)
-        Console.WriteLine(OtherDeck.Name)
+        ' Console.WriteLine(Deck.Name)
+        '   Console.WriteLine(DeckTwo.Name)
+        '   Console.WriteLine(OtherDeck.Name)
 
         '
         'Deck.testDeal()

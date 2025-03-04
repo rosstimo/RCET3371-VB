@@ -26,8 +26,8 @@ Namespace CardGame
 
         Private _deck As New Stack(Of PlayingCard)
 
-        Sub New(name As String)
-            Me.Name = name
+        Sub New()
+            'Me.Name = name
             Shuffle()
         End Sub
 

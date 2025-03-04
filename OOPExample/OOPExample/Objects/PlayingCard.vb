@@ -69,6 +69,44 @@ Namespace CardGame
             Return _value
         End Function
 
+        Public Function ShortName() As String
+            Return $"{ShortValue()}{ShortSuit()}"
+        End Function
+        Public Function ShortSuit() As String
+            Dim _suit As String
+
+            Select Case Me.Suit
+                Case 1
+                    _suit = "S"
+                Case 2
+                    _suit = "D"
+                Case 3
+                    _suit = "C"
+                Case 4
+                    _suit = "H"
+            End Select
+
+            Return _suit
+        End Function
+
+        Public Function ShortValue() As String
+            Dim _value As String
+
+            Select Case Me.Value
+                Case 1
+                    _value = "A"
+                Case 11
+                    _value = "J"
+                Case 12
+                    _value = "Q"
+                Case 13
+                    _value = "K"
+                Case Else
+                    _value = CStr(Me.Value)
+            End Select
+
+            Return _value
+        End Function
     End Class
 
 End Namespace
