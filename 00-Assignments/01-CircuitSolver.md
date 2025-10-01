@@ -3,7 +3,12 @@
 ## Objective
 Build a Windows Forms program that lets the user configure and solve the given AC circuit using **graphical controls** (combo boxes, text boxes, sliders, etc.). The program will display voltages, currents, impedances, and power in either **polar** or **rectangular** form.
 
+
+
 ---
+
+
+![AC Circuit](../resources/AC-SeriesParallel.png)
 
 ## User Interface Requirements
 
