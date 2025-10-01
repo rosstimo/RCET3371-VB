@@ -3,12 +3,15 @@
 ## Objective
 Build a Windows Forms program that lets the user configure and solve the given AC circuit using **graphical controls** (combo boxes, text boxes, sliders, etc.). The program will display voltages, currents, impedances, and power in either **polar** or **rectangular** form.
 
-
-
 ---
 
 
-![AC Circuit](../resources/AC-SeriesParallel.png)
+<p align="center">
+  <img src="../resources/AC-SeriesParallel.png" alt="AC Circuit" style="width:60%; max-width:60%;">
+  <br>
+  <em>Figure 1: AC Series–Parallel Circuit to be solved by your program. You can find the image in the resources folder.</em>
+</p>
+
 
 ## User Interface Requirements
 
@@ -38,6 +41,10 @@ Build a Windows Forms program that lets the user configure and solve the given A
     - **(unit)** (no prefix)  
     - **k** (kilo, 10³)  
     - **M** (mega, 10⁶)
+  - **Note:**
+    - For inductance (L1), only use prefixes **µ** (micro) and **m** (milli).
+    - For capacitance (C1, C2), only use prefixes **p** (pico) and **µ** (micro).
+    - For resistance (R1), use only **(unit)** (no prefix), **k** (kilo), and **M** (mega).
 
 - Example: `47` + `µ` → **47 µF**
 
@@ -59,9 +66,12 @@ Build a Windows Forms program that lets the user configure and solve the given A
 - Output should include:
   - Total impedance (Ztotal)
   - Source current (Igen)
+  - Resistance of R1
+  - Capacitance of C1 and C2
+  - Inductance of L1
   - Reactance of C1, C2, and L1 (XC1, XC2, XL1)
   - Impedance of L1 (ZL1)
-  - Impedance of the parallel combination of C2 and L1 (ZC2L1)
+  - Impedance of the parallel combination of C2 and L1 (ZEQ)
   - Voltage across each component (VRgen, VR1, VC1, VC2, VL1)
   - Current through each component (IRgen, IR1, IC1, IC2, IL1)
   - Real power (P) Watts
