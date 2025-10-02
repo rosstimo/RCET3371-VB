@@ -23,10 +23,10 @@ Partial Class PrettyNumbersForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.ExitButton = New System.Windows.Forms.Button()
-        Me.CalculateButton = New System.Windows.Forms.Button()
         Me.InputTextBox = New System.Windows.Forms.TextBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.CalculateButton = New System.Windows.Forms.Button()
+        Me.ExitButton = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -40,6 +40,13 @@ Partial Class PrettyNumbersForm
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
+        'InputTextBox
+        '
+        Me.InputTextBox.Location = New System.Drawing.Point(6, 25)
+        Me.InputTextBox.Name = "InputTextBox"
+        Me.InputTextBox.Size = New System.Drawing.Size(311, 26)
+        Me.InputTextBox.TabIndex = 0
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.CalculateButton)
@@ -50,15 +57,6 @@ Partial Class PrettyNumbersForm
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         '
-        'ExitButton
-        '
-        Me.ExitButton.Location = New System.Drawing.Point(169, 25)
-        Me.ExitButton.Name = "ExitButton"
-        Me.ExitButton.Size = New System.Drawing.Size(157, 92)
-        Me.ExitButton.TabIndex = 1
-        Me.ExitButton.Text = "E&xit"
-        Me.ExitButton.UseVisualStyleBackColor = True
-        '
         'CalculateButton
         '
         Me.CalculateButton.Location = New System.Drawing.Point(6, 25)
@@ -68,21 +66,23 @@ Partial Class PrettyNumbersForm
         Me.CalculateButton.Text = "&Calculate"
         Me.CalculateButton.UseVisualStyleBackColor = True
         '
-        'InputTextBox
+        'ExitButton
         '
-        Me.InputTextBox.Location = New System.Drawing.Point(6, 25)
-        Me.InputTextBox.Name = "InputTextBox"
-        Me.InputTextBox.Size = New System.Drawing.Size(311, 26)
-        Me.InputTextBox.TabIndex = 0
+        Me.ExitButton.Location = New System.Drawing.Point(169, 25)
+        Me.ExitButton.Name = "ExitButton"
+        Me.ExitButton.Size = New System.Drawing.Size(157, 92)
+        Me.ExitButton.TabIndex = 1
+        Me.ExitButton.Text = "E&xit"
+        Me.ExitButton.UseVisualStyleBackColor = True
         '
-        'Form1
+        'PrettyNumbersForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(490, 408)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Name = "Form1"
+        Me.Name = "PrettyNumbersForm"
         Me.Text = "Pretty Numbers"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
