@@ -2,7 +2,16 @@
 
 Public Class PrettyNumbersForm
 
+    Sub DoMath()
+        Dim real@ = 1000, imaginary@ = 1000, magnitude@, theta@
 
+        magnitude = System.Math.Sqrt(real ^ 2 + imaginary ^ 2)
+        theta = System.Math.Atan(imaginary / real) * (180 / System.Math.PI)
+        imaginary = magnitude * System.Math.Sin((System.Math.PI / 180) * theta)
+        real = magnitude * System.Math.Cos((System.Math.PI / 180) * theta)
+
+        Console.Read()
+    End Sub
     Private Function EngineeringNotation(value As Decimal, fix As Integer) As String
         Dim valueString$
         Dim valueSplit() As String
@@ -70,9 +79,10 @@ Public Class PrettyNumbersForm
             'get text from textbox1 and format in scientific notation using ToString method
             'Display(CDec(InputTextBox.Text).ToString("0.0000E+00"))
             Display(Pretty(EngineeringNotation(InputTextBox.Text, 6)))
-
-
         End If
+
+        DoMath()
+
     End Sub
 
 
