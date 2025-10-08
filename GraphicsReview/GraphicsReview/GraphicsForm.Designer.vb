@@ -38,7 +38,7 @@ Partial Class GraphicsForm
         Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.Controls.Add(Me.ExitButton)
         Me.GroupBox1.Controls.Add(Me.ClearButton)
-        Me.GroupBox1.Location = New System.Drawing.Point(475, 375)
+        Me.GroupBox1.Location = New System.Drawing.Point(371, 435)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(313, 128)
         Me.GroupBox1.TabIndex = 0
@@ -64,9 +64,13 @@ Partial Class GraphicsForm
         '
         'DrawingPictureBox
         '
+        Me.DrawingPictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DrawingPictureBox.Location = New System.Drawing.Point(12, 12)
+        Me.DrawingPictureBox.MinimumSize = New System.Drawing.Size(200, 200)
         Me.DrawingPictureBox.Name = "DrawingPictureBox"
-        Me.DrawingPictureBox.Size = New System.Drawing.Size(776, 357)
+        Me.DrawingPictureBox.Size = New System.Drawing.Size(672, 428)
         Me.DrawingPictureBox.TabIndex = 1
         Me.DrawingPictureBox.TabStop = False
         '
@@ -74,9 +78,9 @@ Partial Class GraphicsForm
         '
         Me.StatusStrip.ImageScalingSize = New System.Drawing.Size(28, 28)
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CoordsStatusLabel})
-        Me.StatusStrip.Location = New System.Drawing.Point(0, 506)
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 577)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Size = New System.Drawing.Size(800, 39)
+        Me.StatusStrip.Size = New System.Drawing.Size(696, 39)
         Me.StatusStrip.TabIndex = 2
         Me.StatusStrip.Text = "StatusStrip1"
         '
@@ -90,10 +94,11 @@ Partial Class GraphicsForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 545)
+        Me.ClientSize = New System.Drawing.Size(696, 616)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.DrawingPictureBox)
         Me.Controls.Add(Me.GroupBox1)
+        Me.MinimumSize = New System.Drawing.Size(350, 500)
         Me.Name = "GraphicsForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Graphics!"
