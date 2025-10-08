@@ -1,6 +1,6 @@
 ﻿Public Class GraphicsForm
     Sub SetDefaults()
-
+        DrawingPictureBox.BackColor = Color.BlanchedAlmond
     End Sub
 
     Sub DrawLineOnForm()
@@ -42,5 +42,11 @@
         DrawLineOnPictureBox()
     End Sub
 
+    Private Sub GraphicsForm_Load(sender As Object, e As EventArgs) Handles Me.Load
+        SetDefaults()
+    End Sub
 
+    Private Sub DrawingPictureBox_MouseMove(sender As Object, e As MouseEventArgs) Handles DrawingPictureBox.MouseMove
+        CoordsStatusLabel.Text = $"({e.X},{e.Y})"
+    End Sub
 End Class

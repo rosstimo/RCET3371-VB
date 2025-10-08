@@ -83,8 +83,8 @@ Partial Class GraphicsForm
         'CoordsStatusLabel
         '
         Me.CoordsStatusLabel.Name = "CoordsStatusLabel"
-        Me.CoordsStatusLabel.Size = New System.Drawing.Size(141, 30)
-        Me.CoordsStatusLabel.Text = "MouseCoords"
+        Me.CoordsStatusLabel.Size = New System.Drawing.Size(50, 30)
+        Me.CoordsStatusLabel.Text = "(x,y)"
         '
         'GraphicsForm
         '
