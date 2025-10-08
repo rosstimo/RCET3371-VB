@@ -23,8 +23,8 @@ Partial Class GraphicsForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.ClearButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
+        Me.ClearButton = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -39,15 +39,6 @@ Partial Class GraphicsForm
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
-        'ClearButton
-        '
-        Me.ClearButton.Location = New System.Drawing.Point(6, 28)
-        Me.ClearButton.Name = "ClearButton"
-        Me.ClearButton.Size = New System.Drawing.Size(145, 79)
-        Me.ClearButton.TabIndex = 0
-        Me.ClearButton.Text = "&Clear"
-        Me.ClearButton.UseVisualStyleBackColor = True
-        '
         'ExitButton
         '
         Me.ExitButton.Location = New System.Drawing.Point(157, 28)
@@ -56,6 +47,15 @@ Partial Class GraphicsForm
         Me.ExitButton.TabIndex = 1
         Me.ExitButton.Text = "E&xit"
         Me.ExitButton.UseVisualStyleBackColor = True
+        '
+        'ClearButton
+        '
+        Me.ClearButton.Location = New System.Drawing.Point(6, 28)
+        Me.ClearButton.Name = "ClearButton"
+        Me.ClearButton.Size = New System.Drawing.Size(145, 79)
+        Me.ClearButton.TabIndex = 0
+        Me.ClearButton.Text = "&Clear"
+        Me.ClearButton.UseVisualStyleBackColor = True
         '
         'GraphicsForm
         '
