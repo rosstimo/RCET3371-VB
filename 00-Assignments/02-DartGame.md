@@ -51,25 +51,7 @@ Create a VB.NET Windows Forms application that simulates a dart game. The progra
 - Test switching between play and review modes.
 - Ensure the program runs without errors or warnings.
 
-### 8. Extra Credit (Optional)
-- Add scoring based on dart position (e.g., closer to center = higher score).
-- Display a running score for each round.
-- Allow saving and loading logs from different files.
-- Add sound effects for dart throws.
 
----
-
-## Submission
-- Submit your complete project folder and log file to Canvas.
-- Include a brief README describing your implementation, features, and any extra credit.
-
-## Grading
-- Functionality: 60 pts
-- Code quality & comments: 20 pts
-- User interface: 10 pts
-- Extra credit features: 10 pts
-
----
 
 **Questions?** Ask in class or on Canvas.
 
