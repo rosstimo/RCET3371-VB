@@ -18,7 +18,7 @@ Create a VB.NET Windows Forms application that simulates a dart game. The progra
 
 ### 2. Review Mode
 - The application must provide a way to review past rounds:
-  - Display a list of previous rounds (from the sequential file).
+  - Display a list of previous rounds (retrieved from the sequential file).
   - When a round is selected, display the three dart positions for that round on the PictureBox.
 - Play mode and review mode are mutually exclusive; only one can be active at a time.
 
@@ -36,7 +36,8 @@ Create a VB.NET Windows Forms application that simulates a dart game. The progra
 - Ensure darts are always drawn within the bounds of the PictureBox.
 
 ### 5. File I/O
-- Log each round to a sequential file (e.g., `DartGameLog.txt`).
+- Log each round to a sequential file (e.g., `DartGame.log`).
+- Use a relative file path so the log file is created in the same directory as the VB source code files.
 - Each entry must include the round number and the X, Y coordinates for all three darts.
 - Implement error handling for file read/write operations.
 
@@ -51,18 +52,3 @@ Create a VB.NET Windows Forms application that simulates a dart game. The progra
 - Test switching between play and review modes.
 - Ensure the program runs without errors or warnings.
 
-
-
-**Questions?** Ask in class or on Canvas.
-
----
-
-## Clarification Points
-- What format should the sequential file use for logging rounds? (e.g., CSV, plain text)
-- Should the dartboard have a visual target (e.g., rings, bullseye) or just a blank area?
-- Should the review mode allow editing or only viewing past rounds?
-- Is there a maximum number of rounds to display/review?
-- Should the program display scores or just dart positions?
-- Should the log file be overwritten each session or append new rounds?
-
-Please clarify these points as needed.
