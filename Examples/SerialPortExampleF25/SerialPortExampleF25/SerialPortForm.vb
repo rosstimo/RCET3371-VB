@@ -1,17 +1,44 @@
 ﻿Imports System.IO.Ports
+Imports System.Net.Configuration
 
 Public Class SerialPortForm
 
+    Sub SetDefaults()
+        ConnectionStatusLabel.Text = "No Connection"
+        GetPorts()
+    End Sub
+
+    Sub GetPorts()
+        Dim ports() = SerialPort.GetPortNames()
+
+        For Each port In ports
+            PortsComboBox.Items.Add(port)
+        Next
+
+        Try
+            PortsComboBox.SelectedIndex = 0
+        Catch ex As Exception
+            ' no com ports :(
+        End Try
+
+    End Sub
+
     Sub Connect()
 
+        'TODO: try catch to avoid crashing
         SerialPort1.Close()
-        SerialPort1.BaudRate = 115200 'Q@ Board Default
-        SerialPort1.Parity = Parity.None
-        SerialPort1.StopBits = StopBits.One
-        SerialPort1.DataBits = 8
-        SerialPort1.PortName = "COM4"
+        Try
+            SerialPort1.BaudRate = 115200 'Qy@ Board Default
+            SerialPort1.Parity = Parity.None
+            SerialPort1.StopBits = StopBits.One
+            SerialPort1.DataBits = 8
+            SerialPort1.PortName = "COM4" 'TODO iterate through com ports check for Qy@
+            SerialPort1.Open()
+            ConnectionStatusLabel.Text = SerialPort1.PortName
+        Catch ex As Exception
 
-        SerialPort1.Open()
+        End Try
+
 
     End Sub
 
@@ -30,13 +57,12 @@ Public Class SerialPortForm
             Console.WriteLine($"Byte {i}: {Chr(data(i))}")
         Next
 
-        Console.WriteLine($"Is this Q@ Board: {IsQuietBoard(data)}")
+        Console.WriteLine($"Is this Qy@ Board: {IsQuietBoard(data)}")
         Console.WriteLine(UBound(data))
 
     End Sub
 
     Function IsQuietBoard(data() As Byte) As Boolean
-
 
         If UBound(data) = 64 And Chr(data(60)) = "@" Then
             Return True
@@ -44,15 +70,8 @@ Public Class SerialPortForm
             Return False
         End If
 
-
     End Function
 
-    Function CheckIfQuietBoard() As Boolean
-        Dim bytes(0) As Byte
-        bytes(0) = &B11110000
-        SerialPort1.Write(bytes, 0, 1)
-        Return True
-    End Function
 
     Private Sub SerialPortForm_Click(sender As Object, e As EventArgs) Handles Me.Click
         Connect()
@@ -68,5 +87,15 @@ Public Class SerialPortForm
 
         Read()
 
+    End Sub
+
+    Private Sub SerialPortForm_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+        SetDefaults()
+
+    End Sub
+
+    Private Sub ConnectButton_Click(sender As Object, e As EventArgs) Handles ConnectButton.Click
+        Connect()
     End Sub
 End Class
