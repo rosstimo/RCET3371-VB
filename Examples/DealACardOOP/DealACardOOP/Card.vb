@@ -42,8 +42,8 @@
 
     Sub New(rank As String, suit As String)
 
-        Me.suit = suit
-        Me.rank = rank
+        Me.suit = suit.ToUpper
+        Me.rank = rank.ToUpper
 
 
         Me.frontImage = My.Resources.ResourceManager.GetObject($"{Me.rank}{Me.suit}")
