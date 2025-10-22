@@ -1,9 +1,11 @@
 ﻿Imports System.IO.Ports
 Imports System.Net.Configuration
+Imports System.Threading.Thread
 
 Public Class SerialPortForm
 
     Sub SetDefaults()
+        SerialPort1.Close()
         ConnectionStatusLabel.Text = "No Connection"
         GetPorts()
     End Sub
@@ -11,7 +13,10 @@ Public Class SerialPortForm
     Sub GetPorts()
         Dim ports() = SerialPort.GetPortNames()
 
+        PortsComboBox.Items.Clear()
+
         For Each port In ports
+            'TODO only add ports that i can talk to. like Qy@ board
             PortsComboBox.Items.Add(port)
         Next
 
@@ -32,15 +37,33 @@ Public Class SerialPortForm
             SerialPort1.Parity = Parity.None
             SerialPort1.StopBits = StopBits.One
             SerialPort1.DataBits = 8
-            SerialPort1.PortName = "COM4" 'TODO iterate through com ports check for Qy@
+            SerialPort1.PortName = PortsComboBox.SelectedItem 'TODO iterate through com ports check for Qy@
             SerialPort1.Open()
-            ConnectionStatusLabel.Text = SerialPort1.PortName
+            If IsQuietBoard() Then
+                ConnectionStatusLabel.Text = $"Qy@ Connected on {SerialPort1.PortName}"
+            Else
+                SetDefaults()
+            End If
         Catch ex As Exception
-
+            MsgBox(ex.Message)
+        SetDefaults()
         End Try
 
 
     End Sub
+
+
+
+    Sub Send(data() As Byte)
+        SerialPort1.ReadExisting() 'Flush input buffer 
+        SerialPort1.Write(data, 0, UBound(data))
+    End Sub
+
+    Function Receive() As Byte()
+        Dim data(SerialPort1.BytesToRead) As Byte
+        SerialPort1.Read(data, 0, SerialPort1.BytesToRead)
+        Return data
+    End Function
 
     Sub Write()
         Dim data(0) As Byte 'put bytes into array
@@ -57,21 +80,24 @@ Public Class SerialPortForm
             Console.WriteLine($"Byte {i}: {Chr(data(i))}")
         Next
 
-        Console.WriteLine($"Is this Qy@ Board: {IsQuietBoard(data)}")
+        Console.WriteLine($"Is this Qy@ Board: {IsQuietBoard()}")
         Console.WriteLine(UBound(data))
 
     End Sub
 
-    Function IsQuietBoard(data() As Byte) As Boolean
-
-        If UBound(data) = 64 And Chr(data(60)) = "@" Then
-            Return True
-        Else
-            Return False
-        End If
+    Function IsQuietBoard() As Boolean
+        Dim data(0) As Byte 'put bytes into array
+        data(0) = &B11110000 'actual data as a byte
+        Send(data)
+        Sleep(100)
+        'data = Receive()
+        'If UBound(data) = 64 And Chr(data(60)) = "@" Then
+        Return True
+        ' Else
+        'Return False
+        'End If
 
     End Function
-
 
     Private Sub SerialPortForm_Click(sender As Object, e As EventArgs) Handles Me.Click
         Connect()
@@ -85,14 +111,12 @@ Public Class SerialPortForm
             Console.WriteLine("oops!")
         End Try
 
-        Read()
+        'Read()
 
     End Sub
 
     Private Sub SerialPortForm_Load(sender As Object, e As EventArgs) Handles Me.Load
-
         SetDefaults()
-
     End Sub
 
     Private Sub ConnectButton_Click(sender As Object, e As EventArgs) Handles ConnectButton.Click
