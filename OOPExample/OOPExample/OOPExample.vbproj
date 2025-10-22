@@ -125,199 +125,202 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\2C.jpg" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\2D.jpg" />
+    <None Include="cards\2C.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\2H.jpg" />
+    <None Include="cards\2D.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\2S.jpg" />
+    <None Include="cards\2H.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\3C.jpg" />
+    <None Include="cards\2S.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\3D.jpg" />
+    <None Include="cards\3C.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\3H.jpg" />
+    <None Include="cards\3D.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\3S.jpg" />
+    <None Include="cards\3H.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\4C.jpg" />
+    <None Include="cards\3S.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\4D.jpg" />
+    <None Include="cards\4C.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\4H.jpg" />
+    <None Include="cards\4D.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\4S.jpg" />
+    <None Include="cards\4H.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\5C.jpg" />
+    <None Include="cards\4S.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\5D.jpg" />
+    <None Include="cards\5C.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\5H.jpg" />
+    <None Include="cards\5D.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\5S.jpg" />
+    <None Include="cards\5H.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\6C.jpg" />
+    <None Include="cards\5S.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\6D.jpg" />
+    <None Include="cards\6C.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\6H.jpg" />
+    <None Include="cards\6D.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\6S.jpg" />
+    <None Include="cards\6H.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\7C.jpg" />
+    <None Include="cards\6S.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\7D.jpg" />
+    <None Include="cards\7C.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\7H.jpg" />
+    <None Include="cards\7D.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\7S.jpg" />
+    <None Include="cards\7H.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\8C.jpg" />
+    <None Include="cards\7S.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\8D.jpg" />
+    <None Include="cards\8C.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\8H.jpg" />
+    <None Include="cards\8D.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\8S.jpg" />
+    <None Include="cards\8H.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\9C.jpg" />
+    <None Include="cards\8S.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\9D.jpg" />
+    <None Include="cards\9C.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\9H.jpg" />
+    <None Include="cards\9D.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\9S.jpg" />
+    <None Include="cards\9H.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\10C.jpg" />
+    <None Include="cards\9S.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\10D.jpg" />
+    <None Include="cards\10C.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\10H.jpg" />
+    <None Include="cards\10D.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\10S.jpg" />
+    <None Include="cards\10H.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AC.jpg" />
+    <None Include="cards\10S.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\aces.jpg" />
+    <None Include="cards\AC.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AD.jpg" />
+    <None Include="cards\aces.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AH.jpg" />
+    <None Include="cards\AD.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AS.jpg" />
+    <None Include="cards\AH.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\back_cards-07.jpg" />
+    <None Include="cards\AS.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\blue_back.jpg" />
+    <None Include="cards\back_cards-07.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CardBack.jpeg" />
+    <None Include="cards\blue_back.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Gray_back.jpg" />
+    <None Include="cards\CardBack.jpeg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Green_back.jpg" />
+    <None Include="cards\Gray_back.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\honor_clubs.jpg" />
+    <None Include="cards\Green_back.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\honor_diamond.jpg" />
+    <None Include="cards\honor_clubs.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\honor_heart-14.jpg" />
+    <None Include="cards\honor_diamond.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\honor_spade.jpg" />
+    <None Include="cards\honor_heart-14.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\JC.jpg" />
+    <None Include="cards\honor_spade.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\JD.jpg" />
+    <None Include="cards\JC.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\JH.jpg" />
+    <None Include="cards\JD.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\JS.jpg" />
+    <None Include="cards\JH.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\KC.jpg" />
+    <None Include="cards\JS.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\KD.jpg" />
+    <None Include="cards\KC.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\KH.jpg" />
+    <None Include="cards\KD.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\KS.jpg" />
+    <None Include="cards\KH.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\purple_back.jpg" />
+    <None Include="cards\KS.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\QC.jpg" />
+    <None Include="cards\purple_back.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\QD.jpg" />
+    <None Include="cards\QC.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\QH.jpg" />
+    <None Include="cards\QD.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\QS.jpg" />
+    <None Include="cards\QH.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Red_back.jpg" />
+    <None Include="cards\QS.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Yellow_back.jpg" />
+    <None Include="cards\Red_back.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cards\Yellow_back.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
