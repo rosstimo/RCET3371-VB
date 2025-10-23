@@ -18,7 +18,7 @@
         'g.DrawImage(theDeck.DealCard.frontImage, 150, 150)
         'g.DrawImage(theDeck.DealCard.frontImage, 175, 175)
         'g.DrawImage(twoS.frontImage, 150, 150)
-
+        Me.Text = theDeck.CardsRemaining
 
         g.Dispose()
     End Sub

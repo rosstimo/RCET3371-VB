@@ -14,6 +14,41 @@
     End Sub
 
     Sub Shuffle()
+        Dim _suit$, _rank$
+
+        For suit = 1 To 4
+
+            Select Case suit
+                Case 1
+                    _suit = "s"
+                Case 2
+                    _suit = "h"
+                Case 3
+                    _suit = "c"
+                Case 4
+                    _suit = "d"
+            End Select
+
+            For rank = 1 To 13
+                Select Case rank
+                    Case 1
+                        _rank = "a"
+                    Case 1 To 10
+                        _rank = rank.ToString
+                    Case 11
+                        _rank = "j"
+                    Case 12
+                        _rank = "q"
+                    Case 13
+                        _rank = "k"
+                End Select
+
+                Dim newCard As New Card(_rank, _suit)
+                Me._deck.Push(newCard)
+
+            Next
+        Next
+
 
     End Sub
 
@@ -22,7 +57,11 @@
     ''' </summary>
     ''' <returns>Card</returns>
     Function DealCard() As Card
-        Return _deck.Pop
+        Try
+            Return _deck.Pop
+        Catch ex As Exception
+            Return Nothing
+        End Try
     End Function
 
     ''' <summary>
@@ -34,7 +73,8 @@
     End Function
 
     Sub New()
-        test()
+        'test()
+        Shuffle()
     End Sub
 
 End Class
