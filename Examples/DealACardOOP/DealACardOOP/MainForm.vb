@@ -9,18 +9,20 @@
         'Dim theDeck As New Deck
         'Dim currentCard As New Card
         Dim g As Graphics = Me.CreateGraphics
+        Dim offset% = 50
 
+        For row = 1 To 4
+            For column = 1 To 13
+                g.DrawImage(theDeck.DealCard.frontImage, column * offset, row * offset * 2)
+                Me.Text = theDeck.CardsRemaining
 
-
-        ' g.DrawImage(, 10, 10)
-        g.DrawImage(theDeck.DealCard.frontImage, 100, 100)
-        'g.DrawImage(theDeck.DealCard.frontImage, 125, 125)
-        'g.DrawImage(theDeck.DealCard.frontImage, 150, 150)
-        'g.DrawImage(theDeck.DealCard.frontImage, 175, 175)
-        'g.DrawImage(twoS.frontImage, 150, 150)
-        Me.Text = theDeck.CardsRemaining
+            Next
+        Next
 
         g.Dispose()
     End Sub
 
+    Private Sub ShuffleButton_Click(sender As Object, e As EventArgs) Handles ShuffleButton.Click
+        Me.theDeck.Shuffle()
+    End Sub
 End Class

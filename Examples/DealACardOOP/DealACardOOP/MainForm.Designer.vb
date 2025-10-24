@@ -22,10 +22,29 @@ Partial Class MainForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container()
+        Me.ShuffleButton = New System.Windows.Forms.Button()
+        Me.SuspendLayout()
+        '
+        'ShuffleButton
+        '
+        Me.ShuffleButton.Location = New System.Drawing.Point(568, 328)
+        Me.ShuffleButton.Name = "ShuffleButton"
+        Me.ShuffleButton.Size = New System.Drawing.Size(168, 97)
+        Me.ShuffleButton.TabIndex = 0
+        Me.ShuffleButton.Text = "&Shuffle"
+        Me.ShuffleButton.UseVisualStyleBackColor = True
+        '
+        'MainForm
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.ShuffleButton)
+        Me.Name = "MainForm"
         Me.Text = "Form1"
+        Me.ResumeLayout(False)
+
     End Sub
 
+    Friend WithEvents ShuffleButton As Button
 End Class
