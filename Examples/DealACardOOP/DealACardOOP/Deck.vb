@@ -1,7 +1,7 @@
 ﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar
 
 Public Class Deck
-    Private _deck As New Stack(Of Card)
+    Private _deck As New Stack(Of Card) 'TODO try queue to see if a more efficient shuffle is possible with insert
 
     Sub test()
         Dim ah As New Card("a", "h")

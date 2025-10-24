@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="Card.vb" />
     <Compile Include="Deck.vb" />
+    <Compile Include="GameLogic.vb" />
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>

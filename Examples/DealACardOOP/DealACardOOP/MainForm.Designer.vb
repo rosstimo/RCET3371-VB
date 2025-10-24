@@ -27,7 +27,7 @@ Partial Class MainForm
         '
         'ShuffleButton
         '
-        Me.ShuffleButton.Location = New System.Drawing.Point(568, 328)
+        Me.ShuffleButton.Location = New System.Drawing.Point(1114, 588)
         Me.ShuffleButton.Name = "ShuffleButton"
         Me.ShuffleButton.Size = New System.Drawing.Size(168, 97)
         Me.ShuffleButton.TabIndex = 0
@@ -38,7 +38,7 @@ Partial Class MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1317, 697)
         Me.Controls.Add(Me.ShuffleButton)
         Me.Name = "MainForm"
         Me.Text = "Form1"

@@ -52,7 +52,7 @@
             Me.frontImage = My.Resources.aces
         End If
 
-        Me.backImage = My.Resources.CardBack
+        Me.backImage = My.Resources.Green_back
 
     End Sub
 
