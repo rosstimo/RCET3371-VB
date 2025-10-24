@@ -44,7 +44,10 @@
                 End Select
 
                 Dim newCard As New Card(_rank, _suit)
-                Me._deck.Push(newCard)
+
+                If Not (Me._deck.Contains(newCard)) Then
+                    Me._deck.Push(newCard)
+                End If
 
             Next
         Next
