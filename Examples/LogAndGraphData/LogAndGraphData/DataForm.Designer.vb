@@ -39,19 +39,23 @@ Partial Class DataForm
         '
         'GraphPictureBox
         '
+        Me.GraphPictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GraphPictureBox.BackColor = System.Drawing.Color.Black
         Me.GraphPictureBox.Location = New System.Drawing.Point(12, 52)
         Me.GraphPictureBox.Name = "GraphPictureBox"
-        Me.GraphPictureBox.Size = New System.Drawing.Size(1225, 345)
+        Me.GraphPictureBox.Size = New System.Drawing.Size(894, 224)
         Me.GraphPictureBox.TabIndex = 0
         Me.GraphPictureBox.TabStop = False
         '
         'ButtonGroupBox
         '
+        Me.ButtonGroupBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ButtonGroupBox.Controls.Add(Me.ExitButton)
         Me.ButtonGroupBox.Controls.Add(Me.Button2)
         Me.ButtonGroupBox.Controls.Add(Me.Button1)
-        Me.ButtonGroupBox.Location = New System.Drawing.Point(769, 541)
+        Me.ButtonGroupBox.Location = New System.Drawing.Point(438, 282)
         Me.ButtonGroupBox.Name = "ButtonGroupBox"
         Me.ButtonGroupBox.Size = New System.Drawing.Size(468, 113)
         Me.ButtonGroupBox.TabIndex = 1
@@ -91,7 +95,7 @@ Partial Class DataForm
         Me.TopMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileTopStripMenuItem})
         Me.TopMenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.TopMenuStrip.Name = "TopMenuStrip"
-        Me.TopMenuStrip.Size = New System.Drawing.Size(1249, 38)
+        Me.TopMenuStrip.Size = New System.Drawing.Size(918, 38)
         Me.TopMenuStrip.TabIndex = 2
         Me.TopMenuStrip.Text = "MenuStrip1"
         '
@@ -105,9 +109,9 @@ Partial Class DataForm
         '
         Me.StatusStrip.ImageScalingSize = New System.Drawing.Size(28, 28)
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FilePathStatusLabel})
-        Me.StatusStrip.Location = New System.Drawing.Point(0, 640)
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 398)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Size = New System.Drawing.Size(1249, 39)
+        Me.StatusStrip.Size = New System.Drawing.Size(918, 39)
         Me.StatusStrip.TabIndex = 3
         Me.StatusStrip.Text = "StatusStrip1"
         '
@@ -121,7 +125,7 @@ Partial Class DataForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1249, 679)
+        Me.ClientSize = New System.Drawing.Size(918, 437)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.ButtonGroupBox)
         Me.Controls.Add(Me.GraphPictureBox)
