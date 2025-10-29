@@ -25,7 +25,7 @@ Partial Class DataForm
         Me.GraphPictureBox = New System.Windows.Forms.PictureBox()
         Me.ButtonGroupBox = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.GraphButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
         Me.TopMenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileTopStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -53,7 +53,7 @@ Partial Class DataForm
         '
         Me.ButtonGroupBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ButtonGroupBox.Controls.Add(Me.ExitButton)
-        Me.ButtonGroupBox.Controls.Add(Me.Button2)
+        Me.ButtonGroupBox.Controls.Add(Me.GraphButton)
         Me.ButtonGroupBox.Controls.Add(Me.Button1)
         Me.ButtonGroupBox.Location = New System.Drawing.Point(438, 282)
         Me.ButtonGroupBox.Name = "ButtonGroupBox"
@@ -70,14 +70,14 @@ Partial Class DataForm
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'Button2
+        'GraphButton
         '
-        Me.Button2.Location = New System.Drawing.Point(162, 28)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(147, 61)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Button2"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.GraphButton.Location = New System.Drawing.Point(162, 28)
+        Me.GraphButton.Name = "GraphButton"
+        Me.GraphButton.Size = New System.Drawing.Size(147, 61)
+        Me.GraphButton.TabIndex = 1
+        Me.GraphButton.Text = "&Graph"
+        Me.GraphButton.UseVisualStyleBackColor = True
         '
         'ExitButton
         '
@@ -148,7 +148,7 @@ Partial Class DataForm
     Friend WithEvents GraphPictureBox As PictureBox
     Friend WithEvents ButtonGroupBox As GroupBox
     Friend WithEvents ExitButton As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents GraphButton As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents TopMenuStrip As MenuStrip
     Friend WithEvents FileTopStripMenuItem As ToolStripMenuItem
