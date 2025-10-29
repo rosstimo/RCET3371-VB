@@ -17,9 +17,6 @@
         'draw the back of the card then the front of the card the same specific height of 300 pixels 
 
         Dim dealtCard As Card = theDeck.DealCard()
-                g.Transform = New Drawing2D.Matrix()
-        'g.TranslateTransform(column * offset, row * offset * 2)
-        ' g.PageUnit = GraphicsUnit.Inch
         g.DrawImage(dealtCard.backImage, rectangle)
         g.TranslateTransform(offset, offset)
         g.DrawImage(dealtCard.frontImage, rectangle)
