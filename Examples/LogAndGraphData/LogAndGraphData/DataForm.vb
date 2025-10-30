@@ -22,15 +22,20 @@ Public Class DataForm
     Sub GraphData()
         Dim g As Graphics = GraphPictureBox.CreateGraphics
         Dim pen As New Pen(Color.Lime)
-        Dim scaleX As Single = CSng(GraphPictureBox.Width / 100)
-        Dim scaleY As Single = CSng((GraphPictureBox.Height / 100) * -1)
+        Dim scaleX! = CSng(GraphPictureBox.Width / 100)
+        Dim scaleY! = CSng((GraphPictureBox.Height / 100) * -1)
+        Dim oldY% = GetRandomNumberAround(50, 50)
+        Dim newY% = 50
 
-        g.TranslateTransform(0, GraphPictureBox.Height)
-        g.ScaleTransform(scaleX, scaleY)
+        g.TranslateTransform(0, GraphPictureBox.Height) 'move origin to bottom left
+        g.ScaleTransform(scaleX, scaleY) 'scale to 100 x 100 units
+        pen.Width = 0.25 'fix pen so it is not too thick
 
-
-        pen.Width = 0.25
-        g.DrawLine(pen, 5, 50, 95, 50)
+        For x = 0 To 100
+            newY = GetRandomNumberAround(oldY, 5)
+            g.DrawLine(pen, x - 1, oldY, x, newY)
+            oldY = newY
+        Next
 
         g.Dispose()
         pen.Dispose()
@@ -40,13 +45,9 @@ Public Class DataForm
     'Event Handlers -----------------------------------------------------------
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
-
     End Sub
 
     Private Sub GraphButton_Click(sender As Object, e As EventArgs) Handles GraphButton.Click
-        'GraphData()
-        For i = 1 To 100
-            Console.WriteLine(GetRandomNumberAround(50, 50))
-        Next
+        GraphData()
     End Sub
 End Class
