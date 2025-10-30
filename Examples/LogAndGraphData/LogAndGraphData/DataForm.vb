@@ -1,7 +1,7 @@
 ﻿Option Strict On
 Option Explicit On
 Public Class DataForm
-
+    Dim DataBuffer As New Queue(Of Integer)
     'Program Logic ------------------------------------------------------------
     Function GetRandomNumberAround(thisNumber%, Optional within% = 10) As Integer
         Dim result%
@@ -15,26 +15,38 @@ Public Class DataForm
         Return CInt(System.Math.Floor((Rnd() * (max + 1))))
     End Function
 
-    Function GetData() As Integer
-        Return 5
-    End Function
+
+    Sub GetData()
+        Dim _last%
+        If Me.DataBuffer.Count > 0 Then
+            _last = Me.DataBuffer.Last
+        Else
+            _last = GetRandomNumberAround(50, 50)
+        End If
+
+        If DataBuffer.Count >= 100 Then 'keep the queue trimmed to graph x length
+            Me.DataBuffer.Dequeue()
+        End If
+        Me.DataBuffer.Enqueue(GetRandomNumberAround(_last, 5))
+    End Sub
 
     Sub GraphData()
         Dim g As Graphics = GraphPictureBox.CreateGraphics
         Dim pen As New Pen(Color.Lime)
         Dim scaleX! = CSng(GraphPictureBox.Width / 100)
         Dim scaleY! = CSng((GraphPictureBox.Height / 100) * -1)
-        Dim oldY% = GetRandomNumberAround(50, 50)
-        Dim newY% = 50
 
+        g.Clear(Color.Black)
         g.TranslateTransform(0, GraphPictureBox.Height) 'move origin to bottom left
         g.ScaleTransform(scaleX, scaleY) 'scale to 100 x 100 units
         pen.Width = 0.25 'fix pen so it is not too thick
 
-        For x = 0 To 100
-            newY = GetRandomNumberAround(oldY, 5)
-            g.DrawLine(pen, x - 1, oldY, x, newY)
-            oldY = newY
+        Dim oldY% = 0 ' GetRandomNumberAround(50, 50)
+        Dim x = -1
+        For Each y In Me.DataBuffer.Reverse
+            x += 1
+            g.DrawLine(pen, x - 1, oldY, x, y)
+            oldY = y
         Next
 
         g.Dispose()
@@ -48,6 +60,7 @@ Public Class DataForm
     End Sub
 
     Private Sub GraphButton_Click(sender As Object, e As EventArgs) Handles GraphButton.Click
+        GetData()
         GraphData()
     End Sub
 End Class
