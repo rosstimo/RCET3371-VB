@@ -33,6 +33,8 @@ Partial Class DataForm
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.FilePathStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SampleTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.OpenTopMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GraphPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ButtonGroupBox.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
@@ -103,6 +105,7 @@ Partial Class DataForm
         '
         'FileTopStripMenuItem
         '
+        Me.FileTopStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenTopMenuItem})
         Me.FileTopStripMenuItem.Name = "FileTopStripMenuItem"
         Me.FileTopStripMenuItem.Size = New System.Drawing.Size(62, 34)
         Me.FileTopStripMenuItem.Text = "&File"
@@ -122,6 +125,19 @@ Partial Class DataForm
         Me.FilePathStatusLabel.Name = "FilePathStatusLabel"
         Me.FilePathStatusLabel.Size = New System.Drawing.Size(208, 30)
         Me.FilePathStatusLabel.Text = "ToolStripStatusLabel1"
+        '
+        'SampleTimer
+        '
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'OpenTopMenuItem
+        '
+        Me.OpenTopMenuItem.Name = "OpenTopMenuItem"
+        Me.OpenTopMenuItem.Size = New System.Drawing.Size(315, 40)
+        Me.OpenTopMenuItem.Text = "&Open"
         '
         'DataForm
         '
@@ -157,4 +173,6 @@ Partial Class DataForm
     Friend WithEvents StatusStrip As StatusStrip
     Friend WithEvents FilePathStatusLabel As ToolStripStatusLabel
     Friend WithEvents SampleTimer As Timer
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents OpenTopMenuItem As ToolStripMenuItem
 End Class

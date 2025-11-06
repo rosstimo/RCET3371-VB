@@ -28,6 +28,37 @@ Public Class DataForm
 
     End Sub
 
+    Sub LoadData()
+        Dim choice As DialogResult
+        Dim fileNumber% = FreeFile()
+        Dim currentRecord$
+        Dim temp() As String
+
+        OpenFileDialog1.FileName = ""
+        OpenFileDialog1.Filter = "log file (*.log)|*.log"
+        choice = OpenFileDialog1.ShowDialog()
+        If choice = DialogResult.OK Then
+            'MsgBox(OpenFileDialog1.FileName)
+            Try
+                FileOpen(fileNumber, OpenFileDialog1.FileName, OpenMode.Input)
+                Me.DataBuffer.Clear()
+
+                Do Until EOF(fileNumber)
+                    currentRecord = LineInput(fileNumber)
+                    temp = Split(currentRecord, ",")
+                    Me.DataBuffer.Enqueue(CInt(temp(temp.GetUpperBound(0))))
+                Loop
+                FileClose(fileNumber)
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        Else
+            'cancel
+            'MsgBox("Canceled")
+        End If
+        GraphData()
+    End Sub
+
     Sub GetData()
         Dim _last%
         Dim sample%
@@ -49,7 +80,8 @@ Public Class DataForm
         Dim g As Graphics = GraphPictureBox.CreateGraphics
         Dim pen As New Pen(Color.Lime)
         Dim eraser As New Pen(Color.Black)
-        Dim scaleX! = CSng(GraphPictureBox.Width / 100)
+        'Dim scaleX! = CSng(GraphPictureBox.Width / 100)
+        Dim scaleX! = CSng(GraphPictureBox.Width / Me.DataBuffer.Count)
         Dim scaleY! = CSng((GraphPictureBox.Height / 100) * -1)
 
         'g.Clear(Color.Black)
@@ -68,6 +100,7 @@ Public Class DataForm
 
         g.Dispose()
         pen.Dispose()
+        eraser.Dispose()
 
     End Sub
 
@@ -90,5 +123,9 @@ Public Class DataForm
         GetData()
         GraphData()
 
+    End Sub
+
+    Private Sub OpenTopMenuItem_Click(sender As Object, e As EventArgs) Handles OpenTopMenuItem.Click
+        LoadData()
     End Sub
 End Class
