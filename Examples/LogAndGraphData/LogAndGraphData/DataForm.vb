@@ -15,9 +15,22 @@ Public Class DataForm
         Return CInt(System.Math.Floor((Rnd() * (max + 1))))
     End Function
 
+    Sub LogData(currentSample%)
+        Dim filePath$ = $"..\..\data_{DateTime.Now.ToString("yyMMddhh")}.log"
+        FileOpen(1, filePath, OpenMode.Append)
+        Write(1, "$$")
+        Write(1, DateTime.Now)
+        Write(1, DateTime.Now.Millisecond)
+        WriteLine(1, currentSample)
+
+        FileClose(1)
+
+
+    End Sub
 
     Sub GetData()
         Dim _last%
+        Dim sample%
         If Me.DataBuffer.Count > 0 Then
             _last = Me.DataBuffer.Last
         Else
@@ -27,7 +40,9 @@ Public Class DataForm
         If DataBuffer.Count >= 100 Then 'keep the queue trimmed to graph x length
             Me.DataBuffer.Dequeue()
         End If
-        Me.DataBuffer.Enqueue(GetRandomNumberAround(_last, 5))
+        sample = GetRandomNumberAround(_last, 5)
+        Me.DataBuffer.Enqueue(sample)
+        LogData(sample)
     End Sub
 
     Sub GraphData()
