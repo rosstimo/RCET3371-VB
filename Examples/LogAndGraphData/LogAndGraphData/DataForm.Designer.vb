@@ -22,15 +22,17 @@ Partial Class DataForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GraphPictureBox = New System.Windows.Forms.PictureBox()
         Me.ButtonGroupBox = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.GraphButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
+        Me.GraphButton = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TopMenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileTopStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.FilePathStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.SampleTimer = New System.Windows.Forms.Timer(Me.components)
         CType(Me.GraphPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ButtonGroupBox.SuspendLayout()
         Me.TopMenuStrip.SuspendLayout()
@@ -61,14 +63,14 @@ Partial Class DataForm
         Me.ButtonGroupBox.TabIndex = 1
         Me.ButtonGroupBox.TabStop = False
         '
-        'Button1
+        'ExitButton
         '
-        Me.Button1.Location = New System.Drawing.Point(9, 28)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(147, 61)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.ExitButton.Location = New System.Drawing.Point(315, 28)
+        Me.ExitButton.Name = "ExitButton"
+        Me.ExitButton.Size = New System.Drawing.Size(147, 61)
+        Me.ExitButton.TabIndex = 2
+        Me.ExitButton.Text = "E&xit"
+        Me.ExitButton.UseVisualStyleBackColor = True
         '
         'GraphButton
         '
@@ -79,14 +81,14 @@ Partial Class DataForm
         Me.GraphButton.Text = "&Graph"
         Me.GraphButton.UseVisualStyleBackColor = True
         '
-        'ExitButton
+        'Button1
         '
-        Me.ExitButton.Location = New System.Drawing.Point(315, 28)
-        Me.ExitButton.Name = "ExitButton"
-        Me.ExitButton.Size = New System.Drawing.Size(147, 61)
-        Me.ExitButton.TabIndex = 2
-        Me.ExitButton.Text = "E&xit"
-        Me.ExitButton.UseVisualStyleBackColor = True
+        Me.Button1.Location = New System.Drawing.Point(9, 28)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(147, 61)
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'TopMenuStrip
         '
@@ -154,4 +156,5 @@ Partial Class DataForm
     Friend WithEvents FileTopStripMenuItem As ToolStripMenuItem
     Friend WithEvents StatusStrip As StatusStrip
     Friend WithEvents FilePathStatusLabel As ToolStripStatusLabel
+    Friend WithEvents SampleTimer As Timer
 End Class
