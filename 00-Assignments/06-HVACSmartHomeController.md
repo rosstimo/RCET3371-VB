@@ -25,7 +25,7 @@ Refer to the schematic PDF for hardware wiring and IO details.
   - Time of day clock (HH:MM AM/PM)
   - Current temperature
   - Current temperature setpoint
-  - Indicators for enabled mode heating/cooling
+  - Indicators for enabled mode heating/cooling/off
   - Fan Mode On/Auto
   - Fan On/Off status
   - Fault indicator
